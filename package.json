@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "dragtable": "^2.0.12",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ts-components": "^0.1.14",
     "jquery-ui-sortable": "^1.0.0",
     "normalize.css": "^8.0.1",
