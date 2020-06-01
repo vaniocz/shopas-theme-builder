@@ -1,0 +1,398 @@
+.product-detail {
+    margin-bottom: 30px;
+
+    &__container {
+        @include container;
+    }
+
+    &__gallery {
+        display: table;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+
+    &__gallery-thumbnails {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__gallery-thumbnail {
+        border: 1px solid transparent;
+        margin: 0 20px 20px 0;
+        max-width: 150px;
+
+        &.is-active {
+            border-color: $primary;
+        }
+    }
+
+    &__gallery-thumbnail-link {
+        display: block;
+        outline: none;
+    }
+
+    &__gallery-thumbnail-image {
+        width: 100%;
+    }
+
+    &__gallery-image-container {
+        align-self: flex-start;
+        flex: 1 0;
+        margin-bottom: 20px;
+        min-height: 1px;
+        position: relative;
+        text-align: center;
+    }
+
+    &__gallery-image-tag {
+        border-radius: 3px;
+        color: white;
+        font-weight: 600;
+        line-height: 22px;
+        padding: 3px 10px;
+        position: absolute; top: -10px;
+        text-transform: uppercase;
+        min-width: 50px;
+
+        &::after {
+            border: 6px solid transparent;
+            content: "";
+            position: absolute; bottom: -6px;
+            width: 0; height: 0;
+        }
+    }
+
+    &__gallery-image-tag--primary {
+        background-color: $primary;
+        right: -10px;
+
+        &::after {
+            border-left-color: $primary;
+            left: 6px;
+        }
+    }
+
+    &__gallery-image-tag--secondary {
+        background-color: $success;
+        left: -10px;
+
+        &::after {
+            border-right-color: $success;
+            right: 6px;
+        }
+    }
+
+    &__gallery-image-tag-icon {
+        display: none;
+    }
+
+    &__gallery-image {
+        width: 100%;
+    }
+
+    &__gallery-image-placeholder {
+        background: url("../../images/image_placeholder.png") center no-repeat;
+        background-size: contain;
+        display: block;
+        width: 170px; height: 170px;
+    }
+
+    &__description {
+        margin-bottom: 15px;
+    }
+
+    &__tags {
+        @include clearfix;
+        margin-top: 20px;
+    }
+
+    &__tag {
+        background-color: darken(white, 5%);
+        color: darken(white, 85%);
+        float: left;
+        line-height: 40px;
+        margin: 0 5px 5px 0 !important;
+        padding: 0 15px;
+        text-align: center;
+        text-transform: uppercase;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__tag-icon {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        margin: -15px 0 20px;
+    }
+
+    &__prices {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    &__price-before-discount {
+        color: darken(white, 30%);
+        margin-bottom: 5px;
+        text-decoration: line-through;
+    }
+
+    &__delivery-price-title::after {
+        content: ": ";
+    }
+
+    &__delivery-price {
+        background-color: darken(white, 5%);
+        color: darken(white, 85%);
+        display: inline-block;
+        line-height: 40px;
+        margin: 20px 5px 0 0;
+        padding: 0 15px;
+        text-align: center;
+
+        &::before {
+            font-icon: url("../../images/icon_truck.svg");
+            font-size: 16px;
+            margin-right: 5px;
+            vertical-align: top;
+        }
+    }
+
+    &__delivery-price-title {
+        text-transform: uppercase;
+    }
+
+    &__delivery-price--null &__delivery-price-title::after {
+        content: "Doprava zdarma";
+    }
+
+    &__delivery-price--null &__delivery-price-title-content,
+    &__delivery-price--null &__delivery-price-items {
+        display: none;
+    }
+
+    &__price-before-discount-item-label,
+    &__delivery-price-item-label {
+        display: none;
+    }
+
+    &__price-before-discount-item-vat-label,
+    &__delivery-price-item-vat-label {
+        display: none;
+        font-size: 11px;
+    }
+
+    &__price-before-discount-item,
+    &__delivery-price-item {
+        display: none;
+        font-weight: normal;
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__price-before-discount-item-value {
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    &__price-before-discount-item-excluding-vat &__price-before-discount-item-vat-label,
+    &__delivery-price-item-excluding-vat &__delivery-price-item-vat-label {
+        display: inline;
+    }
+
+    &__price-item-value {
+        font-weight: 500;
+    }
+
+    &__price-item {
+        color: $primary;
+        font-size: 36px;
+        line-height: 1;
+        font-weight: normal;
+    }
+
+    &__price-item-including-vat ~ &__price-item-excluding-vat,
+    &__price-item-excluding-vat ~ &__price-item-including-vat {
+        color: darken(white, 30%);
+        font-size: 12px;
+        display: flex;
+
+        &::before {
+            content: "(";
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__price-item-label {
+        display: none;
+    }
+
+    &__price-item-vat-label {
+        display: none;
+        font-size: 13px;
+    }
+
+    &__price-excluding-vat &__price-item-vat-label {
+        display: inline;
+    }
+
+    &__price-item-including-vat ~ &__price-item-excluding-vat &__price-item-vat-label,
+    &__price-item-excluding-vat ~ &__price-item-including-vat &__price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__rating {
+        display: inline-block;
+        vertical-align: 5px;
+    }
+
+    &__add-to-cart {
+        @include clearfix;
+        margin-top: 15px;
+    }
+
+    &__quantity {
+        float: left;
+        margin-right: 15px;
+    }
+    
+    &__quantity-label {
+        display: inline-block;
+        margin-right: 15px;
+    }
+
+    &__quantity-input {
+        height: 42px;
+    }
+
+    &__add-to-cart-button {
+        @include button-primary;
+        float: left;
+        margin-bottom: 15px;
+    }
+
+    &__missing-price,
+    &__out-of-stock {
+        background-color: rgba(darken(white, 10%), 0.8);
+        display: table;
+        margin-top: 15px;
+        padding: 15px;
+    }
+
+    &__action {
+        display: inline-block;
+        margin: 25px 25px 5px 0;
+        order: 201;
+
+        .no-js & {
+            display: none;
+        }
+    }
+
+    &__action-link {
+        text-decoration: underline;
+    }
+
+    &__action-icon {
+        color: $primary;
+        font-size: 19px;
+        margin-right: 8px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__gallery {
+            margin-bottom: 15px;
+        }
+
+        &__gallery-image-container {
+            margin-bottom: 15px;
+        }
+
+        &__gallery-thumbnail {
+            margin: 0 15px 15px 0;
+        }
+
+        &__tag {
+            line-height: 35px;
+            padding: 0 10px;
+        }
+
+        &__tag-icon {
+            font-size: 16px;
+        }
+
+        &__subtitle {
+            font-size: 14px;
+        }
+
+        &__quantity-input {
+            height: 37px;
+        }
+    }
+
+    @media print, (min-width: $breakpoint-large) {
+        @include clearfix;
+        margin-bottom: 60px;
+
+        &__gallery {
+            direction: rtl;
+            float: left;
+            margin-bottom: 0;
+            padding-right: 15px;
+            max-width: 60%;
+        }
+
+        &__gallery-thumbnails {
+            direction: ltr;
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        &__gallery-thumbnail {
+            display: table;
+            margin: 0 30px 30px 0;
+        }
+
+        &__gallery-thumbnail-image {
+            height: auto;
+        }
+
+        &__gallery-image-container {
+            display: table-cell;
+            direction: ltr;
+            margin-bottom: 30px;
+            min-width: 50px;
+        }
+
+        &__title,
+        &__subtitle,
+        &__content {
+            display: table;
+            padding-left: 15px;
+        }
+
+        &__title {
+            font-size: 36px;
+        }
+
+        &__description {
+            margin-bottom: 30px;
+        }
+    }
+}

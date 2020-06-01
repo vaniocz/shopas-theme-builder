@@ -1,0 +1,17 @@
+.number-format {
+    &__thousands-separator::after {
+        content: " ";
+    }
+
+    &__decimals:not([data-decimals-length="0"])::before {
+        content: ",";
+    }
+
+    &__decimals-separator {
+        display: none;
+    }
+
+    &__unit:not(:empty)::before {
+        content: " ";
+    }
+}

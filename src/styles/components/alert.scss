@@ -1,0 +1,64 @@
+.alert {
+    display: table;
+    min-width: 500px; max-width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    position: relative;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &--dismissable {
+        padding-right: 55px;
+    }
+
+    &--success, &-success {
+        background-color: rgba($success, 0.8);
+        color: white;
+    }
+
+    &--warning, &-warning {
+        background-color: rgba($warning, 0.8);
+    }
+
+    &--danger, &-danger {
+        background-color: rgba($danger, 0.8);
+        color: white;
+    }
+
+    &--info, &-info {
+        background-color: rgba(darken(white, 10%), 0.8);
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+
+    &__close {
+        background-color: rgba(black, 0.15);
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        line-height: 25px;
+        padding: 0;
+        position: absolute; top: 13px; right: 15px;
+        text-align: center;
+        vertical-align: top;
+        width: 25px;
+
+        &::before {
+            content: "×";
+            display: inline-block;
+            font-size: 19px;
+            font-weight: normal;
+            vertical-align: top;
+        }
+
+        &:hover {
+            background-color: rgba(black, 0.25);
+        }
+    }
+}

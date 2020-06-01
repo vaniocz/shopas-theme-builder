@@ -1,0 +1,114 @@
+.categories {
+    height: 0;
+    line-height: 1.3rem;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    width: 100%;
+    --collapse-dimensions: height;
+
+    &.collapse--active {
+        height: auto;
+    }
+
+    &--level-1 {
+        padding: 0 15px;
+    }
+
+    &__items {
+        @include clearfix;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__item {
+        align-items: flex-start;
+        clear: left;
+        display: flex;
+        float: left;
+        flex-wrap: wrap;
+        margin: 15px 0 0 20px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__link {
+        order: -1;
+    }
+
+    &__image-container {
+        display: none;
+    }
+
+    &__toggle {
+        cursor: pointer;
+        line-height: 1px;
+        margin: -500px;
+        padding: 500px;
+        position: relative; top: 1px; left: 3px;
+
+        &::after {
+            color: $primary;
+            display: inline-block;
+            font-icon: url("../../images/icon_angle_down.svg");
+            font-size: 16px;
+            transition: transform 0.3s ease;
+            width: 1em; line-height: 1em;
+        }
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &--level-1 > &__items {
+        margin-bottom: 15px;
+    }
+
+    &--level-1 > &__items > &__item {
+        margin-left: 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__link {
+        color: darken(white, 85%);
+    }
+
+    &__item.is-active > &__link {
+        color: $primary;
+        display: inline-block;
+
+        &::before {
+            display: inline-block;
+            font-icon: url("../../images/icon_angle_double_right.svg");
+            font-size: 16px;
+            vertical-align: top;
+            width: 1em; height: 1em;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        &--level-1 {
+            height: auto !important;
+            padding: 0;
+        }
+
+        &--level-1 > &__items > &__item > &__toggle {
+            display: none;
+        }
+
+        &--level-1 > &__items > &__item--all {
+            display: none;
+        }
+
+        &--level-1 > &__items > &__item--all + &__item {
+            margin-top: 0;
+        }
+
+        &--level-2 {
+            height: auto !important;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{% extends './index.html.twig' %}
+
+{% block header %}{% endblock %}
+
+{% block footer %}
+    <div class="autocomplete-suggestions autocomplete-suggestions--bottom-orientation" style="position: absolute; max-height: 300px; z-index: 9999; top: 63.5px; left: 424.833px; width: 249px">
+        <div class="autocomplete-group"><span class="autocomplete-group-label">Často hledané výrazy</span></div>
+
+        <div class="autocomplete-suggestion" data-index="0">
+            <a class="header__search-suggestion-link" href="./category.html">výraz</a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="1">
+            <a class="header__search-suggestion-link" href="./category.html">další</a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="2">
+            <a class="header__search-suggestion-link" href="./category.html">jiný</a>
+        </div>
+
+        <div class="autocomplete-group"><span class="autocomplete-group-label">Kategorie</span></div>
+
+        <div class="autocomplete-suggestion" data-index="3">
+            <a class="header__search-suggestion-link" href="./category.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                První kategorie
+            </a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="4">
+            <a class="header__search-suggestion-link" href="./category.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                Druhá kategorie
+            </a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="5">
+            <a class="header__search-suggestion-link" href="./category.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                Třetí kategorie
+            </a>
+        </div>
+
+        <div class="autocomplete-group"><span class="autocomplete-group-label">Produkty</span></div>
+
+        <div class="autocomplete-suggestion" data-index="6">
+            <a class="header__search-suggestion-link" href="./detail.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                Můj modrý produkt
+            </a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="7">
+            <a class="header__search-suggestion-link" href="./detail.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                Můj zelený produkt
+            </a>
+        </div>
+
+        <div class="autocomplete-suggestion" data-index="8">
+            <a class="header__search-suggestion-link" href="./detail.html">
+                <span class="header__search-suggestion-image-container"><span class="header__search-suggestion-image"></span></span>
+                Můj červený produkt
+            </a>
+        </div>
+
+        <a class="autocomplete-remaining-count" href="./category.html">A dalších 38 produktů</a>
+        <div class="autocomplete-loading">Načítám…</div>
+    </div>
+{% endblock %}

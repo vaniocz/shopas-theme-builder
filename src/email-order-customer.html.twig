@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Objednávka č. 20180001</title>
+</head>
+<body>
+    <div class="email">
+        <img class="email__logo" src="./images/content/logo.svg" alt="{{ fixtures().name }}">
+
+        <div class="order-email">
+            <p>Dobrý den,</p>
+            <p>Děkujeme za Vaši objednávku.</p>
+            <p>Vaše objednávka č. 123456789 na {{ fixtures().name }} obsahuje tyto položky:</p>
+
+            <table class="order-email__items">
+                <thead class="order-email__items-header">
+                    <tr>
+                        <th class="order-email__header-product">Produkt</th>
+                        <th class="order-email__header-quantity">Ks</th>
+                        <th class="order-email__header-unit-price">Cena/ks s DPH</th>
+                        <th class="order-email__header-total-price order-email__header-total-price-excluding-vat">Celkem bez DPH</th>
+                        <th class="order-email__header-total-price order-email__header-total-price-including-vat">Celkem s DPH</th>
+                    </tr>
+                </thead>
+
+                <tbody class="order-email__items-body">
+                    {% for product in fixtures().products %}
+                        <tr class="order-email__item">
+                            <td class="order-email__item-product">
+                                <a class="order-email__item-image-link" href="./detail.html.twig">
+                                    {% if product.image %}
+                                        <img class="order-email__item-image" src="./images/content/{{ product.image }}" style="max-width: 75px">
+                                    {% else %}
+                                        <span class="order-email__item-image-placeholder"></span>
+                                    {% endif %}
+                                </a>
+
+                                <div class="order-email__item-info">
+                                    <a class="order-email__item-info-link" href="./detail.html.twig">{{ product.name }}</a>
+
+                                    {% if loop.index % 2 %}
+                                        <div class="order-email__item-properties">
+                                            <div class="order-email__item-property" data-property-id="e2adf0f5-fdb4-4c6b-bd69-e201c5a14079" data-property-name="condition" data-property-type="choice">
+                                                <span class="order-email__item-property-label">Varianta:</span>
+                                                <span class="order-email__item-property-value">malá</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if loop.index % 3 == 0 %}
+                                        <ul class="order-email__item-additions">
+                                            <li class="order-email__item-addition">
+                                                <span class="order-email__item-addition-label">+ Prodloužená záruka o 1 rok</span>
+                                                <span class="order-email__item-addition-price">(+ 50 Kč)</span>
+                                            </li>
+
+                                            <li class="order-email__item-addition">
+                                                <span class="order-email__item-addition-label">+ Další doplněk k produktu</span>
+                                                <span class="order-email__item-addition-price">(+ 2 000 Kč <span class="order-email__item-addition-price-vat-label">bez DPH</span>)</span>
+                                            </li>
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </td>
+
+                            <td class="order-email__item-quantity">{{ loop.index }}</td>
+                            <td class="order-email__item-unit-price">{{ product.price|number_format(2)|replace({',': ' '})|replace({'.': ','}) }}&nbsp;Kč</td>
+                            <td class="order-email__item-total-price order-email__item-total-price-excluding-vat">{{ (loop.index * product.price)|number_format(2)|replace({',': ' '})|replace({'.': ','}) }}&nbsp;Kč</td>
+                            <td class="order-email__item-total-price order-email__item-total-price-including-vat">{{ (loop.index * product.price * 1.21)|number_format(2)|replace({',': ' '})|replace({'.': ','}) }}&nbsp;Kč</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr class="order-email__rounding">
+                        <td class="order-email__rounding-label">Zaokrouhlení</td>
+                        <td></td>
+                        <td></td>
+                        <td class="order-email__rounding-value order-email__rounding-value-including-vat"></td>
+                        <td class="order-email__rounding-value order-email__rounding-value-excluding-vat">-0,50 Kč</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="order-email__summary">
+                <tr class="order-email__summary-item order-email__summary-price">
+                    <td class="order-email__summary-label order-email__summary-price-label">Celkem 1 položka za</td>
+
+                    <td class="order-email__summary-value order-email__summary-price-items">
+                        <div class="order-email__summary-price-item order-email__summary-price-item-including-vat">
+                            <span class="order-email__summary-price-item-value">945 Kč</span>
+                        </div>
+
+                        <div class="order-email__summary-price-item order-email__summary-price-item-excluding-vat">
+                            (<span class="order-email__summary-price-item-value">945 Kč</span> <span class="order-email__summary-price-item-vat-label">bez DPH</span>)
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="order-email__summary-item order-email__summary-delivery-price">
+                    <td class="order-email__summary-label order-email__summary-delivery-price-label">Doprava: Osobní odběr Praha, V Chotejně 15</td>
+                    <td class="order-email__summary-value order-email__summary-delivery-price-value">155 Kč <span class="order-email__summary-vat-label order-email__summary-delivery-price-vat-label">bez DPH</span></td>
+                </tr>
+
+                <tr class="order-email__summary-item order-email__summary-payment-price">
+                    <td class="order-email__summary-label order-email__summary-payment-price-label">Platba: Dobírka</td>
+                    <td class="order-email__summary-value order-email__summary-payment-price-value">50 Kč <span class="order-email__summary-vat-label order-email__summary-payment-price-vat-label">bez DPH</span></td>
+                </tr>
+
+                <tr class="order-email__summary-item order-email__summary-person-discount">
+                    <td class="order-email__summary-label order-email__summary-person-discount-label">Sleva pro zákazníka (5 %)</td>
+                    <td class="order-email__summary-value order-email__summary-person-discount-value">-50 Kč <span class="order-email__summary-vat-label order-email__summary-person-discount-vat-label">bez DPH</span></td>
+                </tr>
+
+                <tr class="order-email__summary-item order-email__summary-discount">
+                    <td class="order-email__summary-label order-email__summary-discount-label">Sleva – vánoční akce</td>
+                    <td class="order-email__summary-value order-email__summary-discount-value">-50 Kč <span class="order-email__summary-vat-label order-email__summary-discount-vat-label">bez DPH</span></td>
+                </tr>
+
+                <tr class="order-email__summary-item order-email__summary-total-price">
+                    <td class="order-email__summary-label order-email__summary-total-price-label">Celková cena</td>
+
+                    <td class="order-email__summary-value order-email__summary-total-price-items">
+                        <div class="order-email__summary-total-price-item order-email__summary-total-price-item-including-vat">
+                            <span class="order-email__summary-total-price-item-value">945 Kč</span>
+                        </div>
+
+                        <div class="order-email__summary-total-price-item order-email__summary-total-price-item-excluding-vat">
+                            (<span class="order-email__summary-total-price-item-value">945 Kč</span> <span class="order-email__summary-total-price-item-vat-label">bez DPH</span>)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <p>Poznámka: <strong>Eveniet consequatur</strong></p>
+            <p>Objednávka byla sjednána podle <a href="http://deltalift.local/dokumenty/obchodni-podminky/98f04971-f49b-4f0a-801a-1076195dc90c">těchto obchodních podmínek</a>.</p>
+            <p>S pozdravem<br>{{ fixtures().name }}</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Potvrzení objednávky'] %}
+
+{% block page %}shop-confirm-order{% endblock %}
+
+{% block content %}
+    <div class="confirm-order">
+        <div class="confirm-order__container">
+            <h1 class="confirm-order__title">Rekapitulace a potvrzení objednávky</h1>
+
+            <div class="confirm-order__data">
+                <div class="confirm-order__personal-data">
+                    <h3 class="confirm-order__personal-data-title">Údaje o nakupujícím</h3>
+
+                    <p>
+                        Jméno a příjmení<br>
+                        Název firmy<br>
+                        IČO: IČO<br>
+                        Ulice 123<br>
+                        100 00 Město<br>
+                    </p>
+
+                    <p>
+                        E-mail: jmeno.prijmeni@example.com<br>
+                        Telefon: +420 123 456 789<br>
+                    </p>
+
+                    <p><strong>Poznámka</strong>:<br>Lorem ipsum dolor sit amet.</p>
+                </div>
+
+                <div class="confirm-order__delivery-and-payment">
+                    <h3 class="confirm-order__delivery-and-payment-title">Doprava a platba</h3>
+
+                    {% include './partials/price.html.twig' with {
+                        price: 39,
+                        class: 'confirm-order__delivery-price',
+                        titleLabel: 'Způsob dopravy',
+                        descriptionLabel: 'Osobní odběr',
+                        pricesSettings: {
+                            isVatPayer: true,
+                            shouldShowPriceExcludingVat: true,
+                            shouldShowPriceIncludingVat: true,
+                        },
+                    } %}
+
+                    {% include './partials/price.html.twig' with {
+                        price: 0,
+                        class: 'confirm-order__payment-price',
+                        titleLabel: 'Způsob platby',
+                        descriptionLabel: 'Kartou online',
+                        pricesSettings: {
+                            isVatPayer: true,
+                            shouldShowPriceExcludingVat: true,
+                            shouldShowPriceIncludingVat: true,
+                        },
+                    } %}
+
+                    <p class="confirm-order__packetery-branch">
+                        <strong class="confirm-order__packetery-branch-label">Pobočka Zásilkovny</strong>
+                        <span class="confirm-order__packetery-branch-value"><a href="//www.zasilkovna.cz/pobocky/2938" target="_blank">Praha 13, Stodůlky (Metro B), Hábova <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+                    </p>
+                </div>
+
+                <div class="confirm-order__delivery-address">
+                    <h3 class="confirm-order__delivery-address-title">Doručovací adresa</h3>
+
+                    <p>
+                        Jméno a příjmení<br>
+                        Ulice Číslo popisné<br>
+                        PSČ Město<br>
+                        Stát
+                    </p>
+                </div>
+            </div>
+
+            <div class="confirm-order__items">
+                <h3 class="confirm-order__items-title">Objednané zboží</h3>
+                <p class="confirm-order__empty" aria-hidden="true">Objednávka neobsahuje žádné produkty.</p>
+
+                <div class="confirm-order__header" aria-hidden="true">
+                    <span class="confirm-order__header-item confirm-order__header-image"><span class="confirm-order__header-item-content confirm-order__header-image-content">Fotografie</span></span>
+                    <span class="confirm-order__header-item confirm-order__header-info"><span class="confirm-order__header-item-content confirm-order__header-info-content">Produkt</span></span>
+                    <span class="confirm-order__header-item confirm-order__header-quantity"><span class="confirm-order__header-item-content confirm-order__header-quantity-content">Počet kusů</span></span>
+                    <span class="confirm-order__header-item confirm-order__header-stock-availability"><span class="confirm-order__header-item-content confirm-order__header-stock-availability-content">Dostupnost</span></span>
+                    <span class="confirm-order__header-item confirm-order__header-price confirm-order__header-price-excluding-vat"><span class="confirm-order__header-item-content confirm-order__header-price-content">Cena <span class="confirm-order__header-price-vat-label">bez DPH</span></span></span>
+                </div>
+
+                {% for product in fixtures().products %}
+                    <div class="confirm-order__item {% if loop.index % 3 == 0 %}confirm-order__item--with-additions{% endif %}">
+                        <div class="confirm-order__item-image-container">
+                            <span class="confirm-order__item-title confirm-order__item-image-title"><span class="confirm-order__item-title-content">Fotografie</span></span>
+
+                            <a class="confirm-order__item-image-link" href="./detail.html">
+                                {% if product.image %}
+                                    <img class="confirm-order__item-image confirm-order__item-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                {% else %}
+                                    <span class="confirm-order__item-image-placeholder"></span>
+                                {% endif %}
+                            </a>
+                        </div>
+
+                        <div class="confirm-order__item-info">
+                            <span class="confirm-order__item-title confirm-order__item-info-title"><span class="confirm-order__item-title-content">Produkt</span></span>
+                            <h3 class="confirm-order__item-name"><a class="confirm-order__item-link" href="./detail.html">{{ product.name }}</a></h3>
+
+                            {% if loop.index % 2 %}
+                                <div class="confirm-order__item-properties">
+                                    <div class="confirm-order__item-property">
+                                        <span class="confirm-order__item-property-label">Velikost</span>
+                                        <span class="confirm-order__item-property-value"><span class="property-value">malá</span></span>
+                                    </div>
+
+                                    <div class="confirm-order__item-property">
+                                        <span class="confirm-order__item-property-label">Potisk</span>
+                                        <span class="confirm-order__item-property-value"><span class="property-value">Bez potisku</span></span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {% if loop.index % 3 == 0 %}
+                            <div class="confirm-order__item-additions">
+                                <div class="confirm-order__item-addition">{{ '' -}}
+                                    <span class="confirm-order__item-addition-label">Prodloužená záruka o 1 rok</span>
+
+                                    {%- include './partials/price.html.twig' with {
+                                        price: 299,
+                                        class: 'confirm-order__item-addition-price',
+                                        pricesSettings: {
+                                            isVatPayer: true,
+                                            shouldInputPricesIncludingVat: false,
+                                            shouldShowPriceExcludingVat: true,
+                                        }
+                                    } -%}
+                                </div>
+
+                                <div class="confirm-order__item-addition">{{ '' -}}
+                                    <span class="confirm-order__item-addition-label">Další doplněk k produktu</span>
+
+                                    {%- include './partials/price.html.twig' with {
+                                        price: 0,
+                                        class: 'confirm-order__item-addition-price',
+                                        pricesSettings: {
+                                            isVatPayer: true,
+                                            shouldInputPricesIncludingVat: false,
+                                            shouldShowPriceExcludingVat: true,
+                                        }
+                                    } -%}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="confirm-order__item-quantity">
+                            <span class="confirm-order__item-title confirm-order__item-quantity-title"><span class="confirm-order__item-title-content">Počet kusů</span></span>
+                            {{ loop.index }} ks
+                        </div>
+
+                        {% if product.stockQuantity %}
+                            <div class="confirm-order__item-stock-availability confirm-order__item-stock-availability--available confirm-order__item-stock-availability--in-stock">
+                                <span class="confirm-order__item-stock-availability-title"><span class="confirm-order__item-title-content">Dostupnost</span></span>
+                                <i class="icon confirm-order__item-stock-availability-icon" aria-hidden="true"></i>
+                                <span class="confirm-order__item-stock-availability-label">Skladem</span>
+
+                                <div class="confirm-order__item-stock-availability-total confirm-order__item-stock-availability-total--available confirm-order__item-stock-availability-total--in-stock">
+                                    <span class="confirm-order__item-stock-availability-total-icon"></span>
+                                    <span class="confirm-order__item-stock-availability-total-label"><span class="confirm-order__item-stock-availability-total-label-content">Skladem</span></span>
+                                    <span class="confirm-order__item-stock-availability-total-quantity">{{ product.stockQuantity }}</span>
+                                    <span class="confirm-order__item-stock-availability-total-unit">ks</span>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="confirm-order__item-stock-availability confirm-order__item-stock-availability--unavailable confirm-order__item-stock-availability--on-the-way-date">
+                                <span class="confirm-order__item-stock-availability-title"><span class="confirm-order__item-title-content">Dostupnost</span></span>
+                                <span class="icon confirm-order__item-stock-availability-icon"></span>
+                                <span class="confirm-order__item-stock-availability-label">Není skladem</span>
+                                <a class="confirm-order__item-stock-availability-watch"><span class="confirm-order__item-stock-availability-watch-content">Hlídat dostupnost</span></a>
+
+                                <div class="confirm-order__item-stock-availability-total confirm-order__item-stock-availability-total--unavailable confirm-order__item-stock-availability-total--on-the-way-date">
+                                    <span class="confirm-order__item-stock-availability-total-icon"></span>
+                                    <span class="confirm-order__item-stock-availability-total-label"><span class="confirm-order__item-stock-availability-total-label-content">Předpokládané naskladnění</span> <span class="confirm-order__item-stock-availability-total-date">15.&nbsp;11.&nbsp;2019</span></span>
+                                    <span class="confirm-order__item-stock-availability-total-name">Praha</span>
+                                    <span class="confirm-order__item-stock-availability-total-quantity">4</span>
+                                    <span class="confirm-order__item-stock-availability-total-unit">ks</span>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if product.pricesSettings %}
+                            {% set pricesSettings = product.pricesSettings|merge({isFrom: false}) %}
+                        {% endif %}
+
+                        {% include './partials/price.html.twig' with {price: product.price, class: 'confirm-order__item-price'} %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="confirm-order__summary">
+                {% include './partials/price.html.twig' with {
+                    price: 200,
+                    class: 'confirm-order__summary-price',
+                    titleLabel: 'Celkem 5 položek za',
+                    itemLabel: 'Celkem',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 155,
+                    class: 'confirm-order__summary-delivery-price',
+                    titleLabel: 'Doprava',
+                    descriptionLabel: 'Dopravce ČESKO – cena dle hmotnosti',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price:
+                    155,
+                    class: 'confirm-order__summary-payment-price',
+                    titleLabel: 'Platba',
+                    descriptionLabel: 'Dopravce – DOBÍRKA (jen ČR)',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: -30,
+                    class: 'confirm-order__summary-person-discount',
+                    titleLabel: 'Sleva pro zákazníka',
+                    itemLabel: 'Sleva',
+                    descriptionLabel: '10 %',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: -50,
+                    class: 'confirm-order__summary-discount',
+                    itemLabel: 'Sleva',
+                    descriptionLabel: 'Super sleva',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 0.5,
+                    class: 'confirm-order__summary-rounding',
+                    itemLabel: 'Zaokrouhlení',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 200,
+                    class: 'confirm-order__summary-total-price',
+                    itemLabel: 'Celková cena',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+            </div>
+
+            <form name="confirm_order" method="POST">
+                <div class="confirm-order__buttons">
+                    <a class="button confirm-order__button confirm-order__button-change" href="./process-order.html">Změnit údaje</a>
+                    <button id="confirm_order_confirm" class="button confirm-order__button confirm-order__button-confirm" type="submit" name="confirm_order[confirm]">Potvrdit objednávku</button>
+                    <input id="confirm_order__token" type="hidden" name="confirm_order[_token]" value="OB1q1lViLMZpNod2qvBZfD85Ui3L-WsCn68Hw5dHhvM">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

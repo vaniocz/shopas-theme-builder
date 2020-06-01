@@ -1,0 +1,5 @@
+.recommend-product {
+    &__button-confirm {
+        @include button-primary;
+    }
+}

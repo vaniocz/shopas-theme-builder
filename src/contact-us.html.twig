@@ -1,0 +1,52 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Kontakt'] %}
+
+{% block page %}fos-user-profile-show{% endblock %}
+
+{% block content %}
+    {% include './partials/contact-us.html.twig' with {
+        phone: '+420702613363',
+        label: '702 613 363',
+        email: 'podpora@shopas.cz',
+        registrationNumber: 123456789,
+        form: '
+            <form action="./contact-us.html" method="POST" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="contactName">Jméno</label>
+
+                    <div class="input-group">
+                        <label class="input-group-addon" for="contactName"><i class="icon icon-user"></i></label>
+                        <input id="contactName" class="form-control" name="name" placeholder="Jméno" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="contactEmail">E-mail</label>
+
+                    <div class="input-group">
+                        <label class="input-group-addon" for="contactEmail"><i class="icon icon-email"></i></label>
+                        <input id="contactEmail" class="form-control" name="email" placeholder="E-mail" type="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="contactPhone">Telefon</label>
+
+                    <div class="input-group">
+                        <label class="input-group-addon" for="contactPhone"><i class="icon icon-phone"></i></label>
+                        <input id="contactPhone" class="form-control" name="phone" placeholder="Telefon" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="message">E-mail</label>
+                    <textarea id="message" class="form-control" name="message" placeholder="Zpráva" type="email" rows="10"></textarea>
+                </div>
+
+                <div class="form-buttons form-group">
+                    <button class="btn btn-primary">Odeslat</button>
+                </div>
+            </form>
+        '
+    } %}
+{% endblock %}

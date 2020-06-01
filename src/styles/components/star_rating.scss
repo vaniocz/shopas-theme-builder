@@ -1,0 +1,23 @@
+.star-rating {
+    font-size: 0;
+
+    &__star {
+        color: $gold;
+        font-size: 12px; font-weight: normal;
+        margin-right: 1px;
+
+        &::before {
+            content: $font-awesome-5-star;
+        }
+    }
+
+    @for $i from 1 through 5 {
+        &[data-rating="#{$i}"] {
+            @for $j from 1 through $i {
+                .star-rating__star:nth-child(#{$j}) {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

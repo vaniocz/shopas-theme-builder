@@ -1,0 +1,12 @@
+/.web-server-pid
+/build/
+/node_modules/
+.DS_Store
+*.swp
+*.swo
+.local.vimrc
+.vimrc.local
+*~
+/.idea
+/nbproject
+/local

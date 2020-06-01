@@ -1,0 +1,9 @@
+.invoice-address {
+    &__company {
+        display: none;
+    }
+
+    &__company-toggle:checked ~ &__company {
+        display: block;
+    }
+}

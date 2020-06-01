@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "newLine": "LF",
+        "noEmit": true,
+        "baseUrl": "",
+        "paths": {
+            "@app/*": ["src/js/*"]
+        },
+        "lib": ["dom", "es6", "scripthost"]
+    },
+    "include": ["src/js/types/*"]
+}

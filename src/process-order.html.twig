@@ -1,0 +1,798 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Dokončení objednávky'] %}
+
+{% block page %}shop-order-process{% endblock %}
+
+{% block content %}
+    <span id="delivery-and-payment"></span>
+    <span id="delivery-info"></span>
+    <span id="delivery-information"></span>
+
+    <form name="process_order" novalidate>
+        <div class="process-order">
+            <div class="process-order__container">
+                <input type="radio" name="process_order[deliveryAndPayment][deliveryMethod]" class="process-order__delivery-and-payment-choice-toggle-placeholder process-order__delivery-method-choice-toggle-placeholder" value="" checked aria-hidden="true">
+                <input type="radio" name="process_order[deliveryAndPayment][paymentMethod]" class="process-order__delivery-and-payment-choice-toggle-placeholder process-order__payment-method-toggle-placeholder" value="" checked aria-hidden="true">
+
+                <div class="order-breadcrumbs process-order__breadcrumbs" aria-hidden="true">
+                    <ul class="order-breadcrumbs__items process-order__breadcrumbs-items">
+                        <li class="order-breadcrumbs__item process-order__breadcrumbs-item"><a class="order-breadcrumbs__link process-order__breadcrumbs-link" href="./shopping-cart.html">Nákupní košík</a></li>
+                        <li class="order-breadcrumbs__item process-order__breadcrumbs-item"><a class="order-breadcrumbs__link process-order__breadcrumbs-link" href="./process-order.html#delivery-and-payment">Doprava a platba</a></li>
+                        <li class="order-breadcrumbs__item process-order__breadcrumbs-item is-active"><a class="order-breadcrumbs__link process-order__breadcrumbs-link">Dodací údaje</a></li>
+                    </ul>
+                </div>
+
+                <h1 class="process-order__title"><span class="process-order__title-content">Dokončení objednávky</span></h1>
+                <p class="process-order__empty">Váš nákupní košík je prázdný.</p>
+
+                <div class="process-order__form">
+                    <div class="process-order__person">
+                        <input id="process_order_shouldRegister" name="process_order[shouldRegister]" class="checkbox-toggle process-order__registration-toggle" data-toggle="processOrder_shouldRegister" type="checkbox">
+                        <span class="checkbox input-group"><label class="checkbox__label" for="process_order_shouldRegister">Chci se zaregistrovat</label></span>
+
+                        <div class="form-group has-error">
+                            <label class="required control-label" for="process_order_name_value">Jméno a příjmení</label>
+                            <input id="process_order_name_value" name="process_order[name][value]" required="required" class="form-control has-error" type="text">
+
+                            <ul class="form-errors">
+                                <li>Vyplňte jméno.</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group has-error">
+                            <label class="required control-label" for="process_order_email_value">E-mail</label>
+
+                            <div class="input-group has-error">
+                                <label class="input-group-addon" for="process_order_email_value"><i class="icon icon-email"></i></label>
+                                <input id="process_order_email_value" name="process_order[email][value]" required="required" class="form-control" type="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required control-label" for="process_order_phone_value">Telefon</label>
+
+                            <div class="input-group">
+                                <label class="input-group-addon" for="process_order_email_value"><i class="icon icon-phone"></i></label>
+                                <input id="process_order_phone_value" name="process_order[phone][value]" required="required" class="form-control" type="text">
+                            </div>
+                        </div>
+
+                        <div class="process-order__registration">
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_user_plainPassword_first">Heslo</label>
+
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="process_order_user_plainPassword_first"><i class="icon icon-password"></i></label>
+                                    <input id="process_order_user_plainPassword_first" name="process_order[user][plainPassword][first]" required="required" autocomplete="new-password" class="form-control" type="password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_user_plainPassword_second">Potvrzení hesla</label>
+
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="process_order_user_plainPassword_second"><i class="icon icon-password"></i></label>
+                                    <input id="process_order_user_plainPassword_second" name="process_order[user][plainPassword][second]" required="required" autocomplete="new-password" class="form-control" type="password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-order__delivery-address">
+                        <h3 class="process-order__delivery-address-title">Fakturační údaje</h3>
+
+                        <div class="form-group">
+                            <input type="checkbox" id="process_order_invoiceAddress_isCompany" name="process_order[invoiceAddress][isCompany]" class="invoice-address__company-toggle checkbox-toggle" value="1">
+                            <span class="checkbox input-group"><label class="checkbox__label" for="process_order_invoiceAddress_isCompany">Objednávám na firmu</label></span>
+
+                            <div class="invoice-address__company">
+                                <div class="form-group">
+                                    <label class="control-label" for="process_order_invoiceAddress_companyName">Název firmy</label>
+                                    <input type="text" id="process_order_invoiceAddress_companyName" name="process_order[invoiceAddress][companyName]" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="process_order_invoiceAddress_registrationNumber">IČO</label>
+                                    <input type="text" id="process_order_invoiceAddress_registrationNumber" name="process_order[invoiceAddress][registrationNumber]" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_invoiceAddress_street">Ulice</label><input type="text" id="process_order_invoiceAddress_street" name="process_order[invoiceAddress][street]" required="required" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_invoiceAddress_houseNumber">Číslo popisné</label>
+                                <input type="text" id="process_order_invoiceAddress_houseNumber" name="process_order[invoiceAddress][houseNumber]" required="required" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_invoiceAddress_city">Město</label>
+                                <input type="text" id="process_order_invoiceAddress_city" name="process_order[invoiceAddress][city]" required="required" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_invoiceAddress_zipCode">PSČ</label>
+                                <input type="text" id="process_order_invoiceAddress_zipCode" name="process_order[invoiceAddress][zipCode]" required="required" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required control-label" for="process_order_invoiceAddress_country">Stát</label>
+
+                                <select id="process_order_invoiceAddress_country" name="process_order[invoiceAddress][country]" required="required" class="select form-control">
+                                    <option selected>Česká republika</option>
+                                    <option>Slovensko</option>
+                                    <option>Polsko</option>
+                                    <option>Německo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="process_order_deliveryAddress" class="form-toggle">
+                                <input type="checkbox" id="process_order_deliveryAddress_isDifferent" name="process_order[deliveryAddress][isDifferent]" class="form-toggle__toggle checkbox-toggle" value="1" checked>
+                                <span class="checkbox input-group"><label class="checkbox__label" for="process_order_deliveryAddress_isDifferent">Doručovací adresa je odlišná od fakturační</label></span>
+
+                                <div class="form-group form-toggle__form">
+                                    <div id="process_order_deliveryAddress_address">
+                                        <div class="form-group">
+                                            <label class="required control-label" for="process_order_deliveryAddress_address_street">Ulice</label>
+                                            <input type="text" id="process_order_deliveryAddress_address_street" name="process_order[deliveryAddress][address][street]" required="required" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required control-label" for="process_order_deliveryAddress_address_houseNumber">Číslo popisné</label>
+                                            <input type="text" id="process_order_deliveryAddress_address_houseNumber" name="process_order[deliveryAddress][address][houseNumber]" required="required" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required control-label" for="process_order_deliveryAddress_address_city">Město</label>
+                                            <input type="text" id="process_order_deliveryAddress_address_city" name="process_order[deliveryAddress][address][city]" required="required" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required control-label" for="process_order_deliveryAddress_address_zipCode">PSČ</label>
+                                            <input type="text" id="process_order_deliveryAddress_address_zipCode" name="process_order[deliveryAddress][address][zipCode]" required="required" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="required control-label" for="process_order_address_country">Stát</label>
+
+                                            <select id="process_order_address_country" name="process_order[address][country]" required="required" class="select form-control">
+                                                <option selected>Česká republika</option>
+                                                <option>Slovensko</option>
+                                                <option>Polsko</option>
+                                                <option>Německo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-order__delivery-and-payment">
+                        <h3 class="process-order__delivery-and-payment-title">Doprava a platba</h3>
+
+                        <div class="delivery-and-payment">
+                            <label class="control-label process-order__delivery-and-payment-label process-order__delivery-method-label"><span class="process-order__delivery-and-payment-label-content process-order__delivery-method-label-content">Způsob dopravy</span></label>
+
+                            <select id="process_order_deliveryAndPayment_deliveryMethod" name="process_order[deliveryAndPayment][deliveryMethod]" required="required" class="select form-control " data-component-descriptive-choice>
+                                <option value="" disabled="disabled" style="display: none" selected="selected">–– Vyberte způsob dopravy ––</option>
+                                <option value="1d9036ba-e4ed-4d79-84ec-dfcf78d53b11" data-delivery-method-price="207" data-name="Česká pošta"">Česká pošta</option>
+                                <option value="d7aa1c24-a94f-43ff-bb7e-411596f07861" data-delivery-method-price="155" data-name="Zásilkovna">Zásilkovna</option>
+                                <option value="64f6185c-5ece-43d8-84c2-411e4e75e7fa" data-delivery-method-price="0" data-name="Osobní odběr">Osobní odběr</option>
+                            </select>
+
+                            <div class="descriptive-choice__description">Popis vybraného způsobu dopravy.</div>
+
+                            <label class="control-label process-order__delivery-and-payment-label process-order__payment-method-label"><span class="process-order__delivery-and-payment-label-content process-order__payment-method-label-content">Způsob platby</span></label>
+
+                            <select id="process_order_deliveryAndPayment_paymentMethod" name="process_order[deliveryAndPayment][paymentMethod]" required="required" class="select form-control " data-component-dependent-choice="#process_order_deliveryAndPayment_deliveryMethod" data-component-descriptive-choice>
+                                <option value="" disabled="disabled" style="display: none" selected="selected">–– Vyberte způsob platby ––</option>
+                                <option value="dcc73b18-6a94-4df4-b4c7-f74c3bb6b9ca" data-payment-method-price="0" data-name="Kartou online">Kartou online</option>
+                                <option value="517c1748-c6f6-47c2-b2b1-2ef82c18d289" data-payment-method-price="40" data-name="Česká pošta - dobírka">Česká pošta - dobírka</option>
+                            </select>
+
+                            <div class="descriptive-choice__description" style="">Popis vybraného způsobu platby.</div>
+                        </div>
+
+                        <div id="process_order_packeteryBranch_row" class="packetery-branch form-group toggle">
+                            <label class="control-label" for="process_order_packeteryBranch">Pobočka Zásilkovny</label>
+                            <span class="delivery-and-payment__current-value">Jablonec nad Nisou, Palackého</span>
+
+                            <div class="packetery-branch-choice" style="padding: 5px 0; overflow-x: hidden">
+                                <label class="control-label">Kraj</label>
+
+                                <select style="width: 100px">
+                                    <option value="" style="display: none;" disabled="disabled">–– Vyberte kraj ––</option>
+
+                                    <optgroup label="Česká republika">
+                                        <option value="Hlavní město Praha">Hlavní město Praha</option>
+                                        <option value="Jihomoravský kraj">Jihomoravský kraj</option>
+                                        <option value="Jihočeský kraj">Jihočeský kraj</option>
+                                        <option value="Karlovarský kraj">Karlovarský kraj</option>
+                                        <option value="Kraj Vysočina">Kraj Vysočina</option>
+                                        <option value="Královéhradecký kraj">Královéhradecký kraj</option>
+                                        <option value="Liberecký kraj">Liberecký kraj</option>
+                                        <option value="Moravskoslezský kraj">Moravskoslezský kraj</option>
+                                        <option value="Olomoucký kraj">Olomoucký kraj</option>
+                                        <option value="Pardubický kraj">Pardubický kraj</option>
+                                        <option value="Plzeňský kraj">Plzeňský kraj</option>
+                                        <option value="Středočeský kraj">Středočeský kraj</option>
+                                        <option value="Zlínský kraj">Zlínský kraj</option>
+                                        <option value="Ústecký kraj">Ústecký kraj</option>
+                                    </optgroup>
+
+                                    <optgroup label="Slovensko">
+                                        <option value="Banskobystrický kraj">Banskobystrický kraj</option>
+                                        <option value="Bratislavský kraj">Bratislavský kraj</option>
+                                        <option value="Košický kraj">Košický kraj</option>
+                                        <option value="Nitriansky kraj">Nitriansky kraj</option>
+                                        <option value="Prešovský kraj">Prešovský kraj</option>
+                                        <option value="Trenčiansky kraj">Trenčiansky kraj</option>
+                                        <option value="Trnavský kraj">Trnavský kraj</option>
+                                        <option value="Žilinský kraj">Žilinský kraj</option>
+                                    </optgroup>
+                                </select>
+
+                                <label class="control-label is-readonly">Místo osobního odběru</label>
+
+                                <select name="pobocka" readonly="readonly" style="width: 275px">
+                                    <option value="" data-branch_id="" style="display: none;" disabled="disabled">–– Vyberte místo osobního odběru ––</option>
+                                    <option value="2508" data-branch-id="2508">ČR, Praha 1, Černá růže, Odorik.cz, Na Příkopě 853/12</option>
+                                    <option value="1019" data-branch-id="1019">ČR, Praha 1, Dlážděná 992/1</option>
+                                    <option value="576" data-branch-id="576">ČR, Praha 1, Dlouhá 24</option>
+                                    <option value="792" data-branch-id="792">ČR, Praha 1, Florenc, Na Poříčí 44</option>
+                                    <option value="138" data-branch-id="138">ČR, Praha 1, Hybernská 1009/24, Centrum Hybernská u Masarykova nádraží</option>
+                                    <option value="2419" data-branch-id="2419">ČR, Praha 1, Jindřišská 29</option>
+                                    <option value="592" data-branch-id="592">ČR, Praha 1, Karolíny Světlé 23</option>
+                                    <option value="1203" data-branch-id="1203">ČR, Praha 1, Masarykovo Nádraží, Hybernská 13</option>
+                                    <option value="1202" data-branch-id="1202">ČR, Praha 1, Masná 696/21 (za OD Kotva)</option>
+                                    <option value="1758" data-branch-id="1758">ČR, Praha 1, Na Příkopě 853/12</option>
+                                    <option value="1597" data-branch-id="1597">ČR, Praha 1, Náměstí Republiky, Na Poříčí 1038/6  (naproti Palladiu)</option>
+                                    <option value="1683" data-branch-id="1683">ČR, Praha 1, Revoluční 13, Trafika</option>
+                                    <option value="227" data-branch-id="227">ČR, Praha 1, Růžová 970/7</option>
+                                    <option value="302" data-branch-id="302">ČR, Praha 1, Senovážné náměstí 24 - vchod z ulice Jeruzalémská</option>
+                                    <option value="2736" data-branch-id="2736">ČR, Praha 1, Soukenická 10</option>
+                                    <option value="2328" data-branch-id="2328">ČR, Praha 1, Újezd, Vítězná 16</option>
+                                    <option value="2568" data-branch-id="2568">ČR, Praha 1, Vodičkova/Školská 34</option>
+                                    <option value="2575" data-branch-id="2575">ČR, Praha 10, 28. pluku 631/42</option>
+                                    <option value="2976" data-branch-id="2976">ČR, Praha 10, Černokostelecká 4/899</option>
+                                    <option value="3266" data-branch-id="3266">ČR, Praha 10, Dolní Měcholupy, Za zahradami 391/9</option>
+                                    <option value="2388" data-branch-id="2388">ČR, Praha 10, Francouzská 427/70</option>
+                                    <option value="1018" data-branch-id="1018">ČR, Praha 10, Charkovská 28</option>
+                                    <option value="2339" data-branch-id="2339">ČR, Praha 10, Malešice, Počernická 91/632</option>
+                                    <option value="2044" data-branch-id="2044">ČR, Praha 10, Moskevská 22</option>
+                                    <option value="2192" data-branch-id="2192">ČR, Praha 10, Na Hroudě 3317/24</option>
+                                    <option value="2562" data-branch-id="2562">ČR, Praha 10, Náměstí Svatopluka Čecha 1348/3</option>
+                                    <option value="331" data-branch-id="331">ČR, Praha 10, OC Skalka, Přetlucká 3295/50</option>
+                                    <option value="1451" data-branch-id="1451">ČR, Praha 10, Ruská 200</option>
+                                    <option value="88" data-branch-id="88">ČR, Praha 10, Starostrašnická 38, Dia-Bio-Racio-Bezlepek</option>
+                                    <option value="1308" data-branch-id="1308">ČR, Praha 10, Starostrašnická 50, Diskontdrogerie</option>
+                                    <option value="2561" data-branch-id="2561">ČR, Praha 10, U polikliniky plaňanská, Počernická 64</option>
+                                    <option value="1613" data-branch-id="1613">ČR, Praha 10, Vršovická 18, Železářství</option>
+                                    <option value="1529" data-branch-id="1529">ČR, Praha 10, Vršovická 58, Elektro</option>
+                                    <option value="1883" data-branch-id="1883">ČR, Praha 10, Záběhlická 134/95, Servatech</option>
+                                    <option value="2206" data-branch-id="2206">ČR, Praha 10, Zahradní Město, Jesenická 58</option>
+                                    <option value="721" data-branch-id="721">ČR, Praha 11, Háje, Doubravická 1310/20</option>
+                                    <option value="1637" data-branch-id="1637">ČR, Praha 11, Háje, Konstantinova 1483/24</option>
+                                    <option value="1978" data-branch-id="1978">ČR, Praha 11, Litochleby, Brandlova 1640/2</option>
+                                    <option value="2068" data-branch-id="2068">ČR, Praha 11, OC Chodov, Roztylská 2321/19 (Metro C)</option>
+                                    <option value="2588" data-branch-id="2588">ČR, Praha 11, Prašná 190/16</option>
+                                    <option value="2372" data-branch-id="2372">ČR, Praha 11, Türkova 20</option>
+                                    <option value="1469" data-branch-id="1469">ČR, Praha 12, Kamýk, Vosátkova 285/1</option>
+                                    <option value="2222" data-branch-id="2222">ČR, Praha 12, Mariánská 38a</option>
+                                    <option value="2254" data-branch-id="2254">ČR, Praha 12, Modřanská 1387/11</option>
+                                    <option value="438" data-branch-id="438">ČR, Praha 12, Modřany, Krouzova 3052/30</option>
+                                    <option value="3216" data-branch-id="3216">ČR, Praha 12, Modřany, Lysinská 1863/44</option>
+                                    <option value="2814" data-branch-id="2814">ČR, Praha 12, Modřany, Nikoly Vapcarova 3270/7</option>
+                                    <option value="1872" data-branch-id="1872">ČR, Praha 12, Modřany, Sofijské náměstí 3404/3, OC Modřany - Domácí potřeby</option>
+                                    <option value="1335" data-branch-id="1335">ČR, Praha 12, Poliklinika Modřany, Soukalova 3355</option>
+                                    <option value="1557" data-branch-id="1557">ČR, Praha 13, Hůrka (metro B), Sluneční náměstí 2588/15</option>
+                                    <option value="204" data-branch-id="204">ČR, Praha 13, Hůrka, Aldig copycentrum, V Hůrkách 2141/9</option>
+                                    <option value="2594" data-branch-id="2594">ČR, Praha 13, Hůrka, Petržílkova 2583/11, 2.patro, eliquidshop</option>
+                                    <option value="1949" data-branch-id="1949">ČR, Praha 13, Jeremiášova/Mukařovského - JEREMI sport</option>
+                                    <option value="3286" data-branch-id="3286">ČR, Praha 13, Nové Butovice, Petržílkova 2835/9, Stoklasa</option>
+                                    <option value="798" data-branch-id="798">ČR, Praha 13, OD Luka, Mukařovského 1986</option>
+                                    <option value="3168" data-branch-id="3168">ČR, Praha 13, Řeporyje, Řeporyjské náměstí 9/13</option>
+                                    <option value="2938" data-branch-id="2938">ČR, Praha 13, Stodůlky (Metro B), Hábova 2345/7</option>
+                                    <option value="1558" data-branch-id="1558">ČR, Praha 14, Černý Most OC CČM</option>
+                                    <option value="2586" data-branch-id="2586">ČR, Praha 14, Hloubětín (Metro B), Automont, Hloubětínská 1/38</option>
+                                    <option value="2252" data-branch-id="2252">ČR, Praha 14, Hloubětín (Metro B), Zdravejmazlik, Poděbradská 489/116</option>
+                                    <option value="1228" data-branch-id="1228">ČR, Praha 14, xHloubětín, Kolbenova 962/27e (průmyslový areál)</option>
+                                    <option value="263" data-branch-id="263">ČR, Praha 15, Dubeč, Za Pavilonem 666</option>
+                                    <option value="485" data-branch-id="485">ČR, Praha 15, Horní Měcholupy, Bolevecká 114</option>
+                                    <option value="2315" data-branch-id="2315">ČR, Praha 15, Hostivař, Hornoměcholupská 576/6</option>
+                                    <option value="1016" data-branch-id="1016">ČR, Praha 15, Hostivař, Průmyslová 12</option>
+                                    <option value="1516" data-branch-id="1516">ČR, Praha 15, OC Europark, Notino</option>
+                                    <option value="2547" data-branch-id="2547">ČR, Praha 15, VIVO Hostivař, Švehlova 1391/32</option>
+                                    <option value="584" data-branch-id="584">ČR, Praha 16, Radotín, Sídliště 1079</option>
+                                    <option value="2175" data-branch-id="2175">ČR, Praha 16, Zbraslav, Elišky Přemyslovny 398</option>
+                                    <option value="1691" data-branch-id="1691">ČR, Praha 17, Řepy, Makovského 1223/23, Botičky, optika</option>
+                                    <option value="55" data-branch-id="55">ČR, Praha 17, Řepy, Makovského 1349/2a, Fotomobil</option>
+                                    <option value="3026" data-branch-id="3026">ČR, Praha 17, Řepy, Slánská, Žalanského 268/2</option>
+                                    <option value="1904" data-branch-id="1904">ČR, Praha 17, Řepy, Španielova 1311/56</option>
+                                    <option value="645" data-branch-id="645">ČR, Praha 17, Řepy, Zrzavého 1080</option>
+                                    <option value="1309" data-branch-id="1309">ČR, Praha 17, Řepy, Žalanského 287/57 (u Penny Marketu)</option>
+                                    <option value="1580" data-branch-id="1580">ČR, Praha 18, Čakovice, Dyjská 845/4</option>
+                                    <option value="144" data-branch-id="144">ČR, Praha 18, Letňany, Rychnovská 408</option>
+                                    <option value="1919" data-branch-id="1919">ČR, Praha 19, Kbely, Žacléřská 1040/1</option>
+                                    <option value="1639" data-branch-id="1639">ČR, Praha 19, Vinoř, MOTO CENTER, Mladoboleslavská 759</option>
+                                    <option value="2864" data-branch-id="2864">ČR, Praha 2, Blanická 27</option>
+                                    <option value="135" data-branch-id="135">ČR, Praha 2, I. P. Pavlova, Vocelova 9</option>
+                                    <option value="577" data-branch-id="577">ČR, Praha 2, Jaromírova 759/13</option>
+                                    <option value="239" data-branch-id="239">ČR, Praha 2, Korunní 1185/45</option>
+                                    <option value="1762" data-branch-id="1762">ČR, Praha 2, Lípová 8/1650</option>
+                                    <option value="1517" data-branch-id="1517">ČR, Praha 2, nám. Jiřího z Poděbrad 1424/5</option>
+                                    <option value="1108" data-branch-id="1108">ČR, Praha 2, nám. Míru, Slezská 6</option>
+                                    <option value="1376" data-branch-id="1376">ČR, Praha 2, Palackého náměstí, Trojanova 337/9</option>
+                                    <option value="637" data-branch-id="637">ČR, Praha 2, Svobodova 11</option>
+                                    <option value="1678" data-branch-id="1678">ČR, Praha 2, Šafaříkova 16</option>
+                                    <option value="2152" data-branch-id="2152">ČR, Praha 2, V Tůních 11</option>
+                                    <option value="1963" data-branch-id="1963">ČR, Praha 20, Horní Počernice, Khodlova 982/16</option>
+                                    <option value="2698" data-branch-id="2698">ČR, Praha 21, Klánovice, Bělečská 36</option>
+                                    <option value="2440" data-branch-id="2440">ČR, Praha 21, Újezd nad Lesy, Chotěnovská 680</option>
+                                    <option value="1701" data-branch-id="1701">ČR, Praha 21, Újezd nad Lesy, Starokolínská 506</option>
+                                    <option value="1774" data-branch-id="1774">ČR, Praha 22, Uhříněves, Přátelství 324/22</option>
+                                    <option value="2335" data-branch-id="2335">ČR, Praha 22, Uhříněves, V Potokách 3/2</option>
+                                    <option value="1877" data-branch-id="1877">ČR, Praha 3, Biskupcova 36</option>
+                                    <option value="1831" data-branch-id="1831">ČR, Praha 3, Flora, Písecká 20</option>
+                                    <option value="122" data-branch-id="122">ČR, Praha 3, Jana Želivského 7</option>
+                                    <option value="758" data-branch-id="758">ČR, Praha 3, Jiřího z Poděbrad, Lucemburská 1496/8</option>
+                                    <option value="1036" data-branch-id="1036">ČR, Praha 3, Koněvova 1162/86, Výcvikové obojky</option>
+                                    <option value="2616" data-branch-id="2616">ČR, Praha 3, Koněvova 169, Obuv (nová)</option>
+                                    <option value="1595" data-branch-id="1595">ČR, Praha 3, Koněvova 1976/230, Optika</option>
+                                    <option value="1903" data-branch-id="1903">ČR, Praha 3, Korunní 1972/121</option>
+                                    <option value="893" data-branch-id="893">ČR, Praha 3, Krásova 680/32</option>
+                                    <option value="1297" data-branch-id="1297">ČR, Praha 3, Kubelíkova 50</option>
+                                    <option value="490" data-branch-id="490">ČR, Praha 3, Seifertova, Sladkovského nám. 2</option>
+                                    <option value="2261" data-branch-id="2261">ČR, Praha 3, U Vodárny 6</option>
+                                    <option value="1657" data-branch-id="1657">ČR, Praha 4, Antala Staška 236/18</option>
+                                    <option value="3224" data-branch-id="3224">ČR, Praha 4, Bělehradská 1051/17</option>
+                                    <option value="583" data-branch-id="583">ČR, Praha 4, Branická 573/11, Braník</option>
+                                    <option value="2498" data-branch-id="2498">ČR, Praha 4, Branická 98</option>
+                                    <option value="2245" data-branch-id="2245">ČR, Praha 4, Brumlovka, Jemnická 355/3</option>
+                                    <option value="2784" data-branch-id="2784">ČR, Praha 4, DBK, Budějovická 1667/64</option>
+                                    <option value="2383" data-branch-id="2383">ČR, Praha 4, K Podjezdu 1447/9</option>
+                                    <option value="1359" data-branch-id="1359">ČR, Praha 4, Kačerov, Jihlavská 508</option>
+                                    <option value="2569" data-branch-id="2569">ČR, Praha 4, Kunratice, Golčova ½</option>
+                                    <option value="2642" data-branch-id="2642">ČR, Praha 4, Kunratice, Krále Václava IV. 2/8</option>
+                                    <option value="1761" data-branch-id="1761">ČR, Praha 4, Libušská 1995/276</option>
+                                    <option value="3144" data-branch-id="3144">ČR, Praha 4, Libušská 319/126, SAPA</option>
+                                    <option value="2306" data-branch-id="2306">ČR, Praha 4, Marie Cibulkové 40 (nová)</option>
+                                    <option value="575" data-branch-id="575">ČR, Praha 4, Mečislavova 11</option>
+                                    <option value="1807" data-branch-id="1807">ČR, Praha 4, Michle, Ohradní 1345/6</option>
+                                    <option value="3068" data-branch-id="3068">ČR, Praha 4, Na Pankráci 69, Kuchyňské potřeby</option>
+                                    <option value="2772" data-branch-id="2772">ČR, Praha 4, Na Zámecké 362/3 (nová)</option>
+                                    <option value="2200" data-branch-id="2200">ČR, Praha 4, Novodvorská 33</option>
+                                    <option value="1852" data-branch-id="1852">ČR, Praha 4, Novodvorská 434</option>
+                                    <option value="2176" data-branch-id="2176">ČR, Praha 4, Novodvorská 994</option>
+                                    <option value="1950" data-branch-id="1950">ČR, Praha 4, Podolská 88</option>
+                                    <option value="79" data-branch-id="79">ČR, Praha 4, Pražského povstání, Na Pankráci 969/97</option>
+                                    <option value="882" data-branch-id="882">ČR, Praha 4, sídliště Pankrác, Pujmanové 1221</option>
+                                    <option value="2159" data-branch-id="2159">ČR, Praha 4, Spořilov, OD Centrum, Hlavní 2459/108</option>
+                                    <option value="536" data-branch-id="536">ČR, Praha 4, Spořilov, Roztylské náměstí 12</option>
+                                    <option value="2618" data-branch-id="2618">ČR, Praha 4, V Podluží 1132/7, (vchod Svatoslavova)</option>
+                                    <option value="1336" data-branch-id="1336">ČR, Praha 5, Anděl, Karla Engliše 3211/3</option>
+                                    <option value="1261" data-branch-id="1261">ČR, Praha 5, Anděl, Lidická 276/36</option>
+                                    <option value="2680" data-branch-id="2680">ČR, Praha 5, Anděl, Na Bělidle 840/22</option>
+                                    <option value="1044" data-branch-id="1044">ČR, Praha 5, Anděl, Vltavská 277/28</option>
+                                    <option value="994" data-branch-id="994">ČR, Praha 5, Arbesovo náměstí 781/14</option>
+                                    <option value="1325" data-branch-id="1325">ČR, Praha 5, Barrandov, Geologická 1225/21</option>
+                                    <option value="2363" data-branch-id="2363">ČR, Praha 5, Barrandov, Högerova 1219/7</option>
+                                    <option value="152" data-branch-id="152">ČR, Praha 5, Barrandov, Chaplinovo nám., Lamačova 14</option>
+                                    <option value="2271" data-branch-id="2271">ČR, Praha 5, Barrandov, Voskovcova 1036/24</option>
+                                    <option value="2334" data-branch-id="2334">ČR, Praha 5, Holyně, U Náhonu 161/2</option>
+                                    <option value="1169" data-branch-id="1169">ČR, Praha 5, Na Václavce 1369/24</option>
+                                    <option value="2108" data-branch-id="2108">ČR, Praha 5, Ostrovského 971/11</option>
+                                    <option value="1900" data-branch-id="1900">ČR, Praha 5, Plzeňská 470/76</option>
+                                    <option value="2062" data-branch-id="2062">ČR, Praha 5, Radlická 2244/108, tram Laurová</option>
+                                    <option value="1770" data-branch-id="1770">ČR, Praha 5, Slivenec, Ke Smíchovu 64/121</option>
+                                    <option value="1424" data-branch-id="1424">ČR, Praha 5, Smíchov, Radlická 462/19</option>
+                                    <option value="1547" data-branch-id="1547">ČR, Praha 5, Smíchovské nádraží, Kotevní 1099/1</option>
+                                    <option value="561" data-branch-id="561">ČR, Praha 6, Bělohorská 1020/64,  Zdravá výživa</option>
+                                    <option value="1346" data-branch-id="1346">ČR, Praha 6, Bělohorská 1404/48, Prink.cz</option>
+                                    <option value="1565" data-branch-id="1565">ČR, Praha 6, Bělohorská 646/12, Malovanka, Dřevobarvy.cz</option>
+                                    <option value="636" data-branch-id="636">ČR, Praha 6, Bořislavka (metro A), Evropská 655/116</option>
+                                    <option value="1942" data-branch-id="1942">ČR, Praha 6, Bořislavka (metro A), Kladenská 562/19</option>
+                                    <option value="1927" data-branch-id="1927">ČR, Praha 6, Hradčanská, Eliášova 279/1</option>
+                                    <option value="1314" data-branch-id="1314">ČR, Praha 6, Hradčanská, Pod kaštany 185/9</option>
+                                    <option value="1095" data-branch-id="1095">ČR, Praha 6, Jugoslávských partyzánů 636/20, U tatínků</option>
+                                    <option value="1905" data-branch-id="1905">ČR, Praha 6, Kladenská, K Lánu 497/4</option>
+                                    <option value="1082" data-branch-id="1082">ČR, Praha 6, Patočkova, ul. Hládkov 686/3</option>
+                                    <option value="1646" data-branch-id="1646">ČR, Praha 6, Petřiny, Na Petřinách/Šantrochova 1883/16</option>
+                                    <option value="1384" data-branch-id="1384">ČR, Praha 6, Puškinovo náměstí, Uralská 771/8</option>
+                                    <option value="378" data-branch-id="378">ČR, Praha 6, Ruzyně-Dědina, Žukovského 887/4</option>
+                                    <option value="3232" data-branch-id="3232">ČR, Praha 6, Ruzyně, Drnovská 968/36, Nejlevnější-Barvy-Laky</option>
+                                    <option value="2954" data-branch-id="2954">ČR, Praha 6, Suchdol, Brandejsovo náměstí 1219/1</option>
+                                    <option value="2104" data-branch-id="2104">ČR, Praha 6, ÚVN Střešovice, U Vojenské nemocnice 1200, Pavilon CH</option>
+                                    <option value="2658" data-branch-id="2658">ČR, Praha 6, Zikova 538/19</option>
+                                    <option value="2744" data-branch-id="2744">ČR, Praha 7, Bubenské nábřeží 306/13, Holešovická tržnice hala 16</option>
+                                    <option value="129" data-branch-id="129">ČR, Praha 7, Jateční 17</option>
+                                    <option value="2734" data-branch-id="2734">ČR, Praha 7, Milady Horákové 452/11, Dance and Jump</option>
+                                    <option value="1106" data-branch-id="1106">ČR, Praha 7, Milady Horákové 49/390, Elektro Letná</option>
+                                    <option value="1134" data-branch-id="1134">ČR, Praha 7, Nádraží Holešovice (metro C), vestibul stanice</option>
+                                    <option value="574" data-branch-id="574">ČR, Praha 7, Ortenovo náměstí, Komunardů 55</option>
+                                    <option value="890" data-branch-id="890">ČR, Praha 8, Bohnice, Lodžská 598/3</option>
+                                    <option value="1440" data-branch-id="1440">ČR, Praha 8, Bohnice, Podhajská pole 771/2</option>
+                                    <option value="1808" data-branch-id="1808">ČR, Praha 8, Bohnice, Poznaňská 446/30</option>
+                                    <option value="1818" data-branch-id="1818">ČR, Praha 8, Bohnice, V Nových Bohnicích 820/29</option>
+                                    <option value="1162" data-branch-id="1162">ČR, Praha 8, Karlín, Vítkova 28</option>
+                                    <option value="2480" data-branch-id="2480">ČR, Praha 8, Kobylisy, Čimická 443/35</option>
+                                    <option value="1327" data-branch-id="1327">ČR, Praha 8, Kobylisy, Zenklova 220/162 (tram Okrouhlická)</option>
+                                    <option value="2495" data-branch-id="2495">ČR, Praha 8, Křižíkova (Metro B), Thámova 132/28</option>
+                                    <option value="2868" data-branch-id="2868">ČR, Praha 8, Křižíkova 45 (u Karlínského nám.)</option>
+                                    <option value="1972" data-branch-id="1972">ČR, Praha 8, Libeň, Vosmíkových 925/2</option>
+                                    <option value="1465" data-branch-id="1465">ČR, Praha 8, Palmovka (metro B), Sokolovská 1464/188</option>
+                                    <option value="3244" data-branch-id="3244">ČR, Praha 8, Sídliště Ďáblice, Šimůnkova 1625</option>
+                                    <option value="1764" data-branch-id="1764">ČR, Praha 8, Střížkov, Bínova 531/6</option>
+                                    <option value="3032" data-branch-id="3032">ČR, Praha 9, Českomoravská (metro B), Coffee-inn, Sokolovská 264</option>
+                                    <option value="907" data-branch-id="907">ČR, Praha 9, Českomoravská (metro B), VM-SPORT, U Svobodárny 1110/12</option>
+                                    <option value="1667" data-branch-id="1667">ČR, Praha 9, K Žižkovu 3/379</option>
+                                    <option value="2033" data-branch-id="2033">ČR, Praha 9, Kolbenova (metro B), Kolbenova 38a/609</option>
+                                    <option value="1227" data-branch-id="1227">ČR, Praha 9, Nádr. Praha-Libeň, Českomoravská 199/37, ŠAFRÁNKA reality</option>
+                                    <option value="1751" data-branch-id="1751">ČR, Praha 9, OC Harfa, Českomoravská 2420/15a</option>
+                                    <option value="1013" data-branch-id="1013">ČR, Praha 9, Sídliště Prosek, Jablonecká 712</option>
+                                    <option value="2978" data-branch-id="2978">ČR, Praha 9, Sídliště Prosek, Veltruská 559/31</option>
+                                    <option value="825" data-branch-id="825">ČR, Praha 9, Vysočanská (Metro B), Bratří Dohalských 171/6</option>
+                                    <option value="2916" data-branch-id="2916">ČR, Praha 9, Vysočanská (Metro B), Pod Pekárnami 258/13</option>
+                                    <option value="1038" data-branch-id="1038">ČR, Technická pobočka pro vnitřní potřeby Zásilkovny</option>
+                                </select>
+
+                                <span style="display: inline-block">&nbsp;</span>
+                                <a href="#" class="packetery-info-link" style="display: inline">informace o pobočce »</a>
+                                <a class="packetery-branch-choice__info-link" target="_blank" href="//www.zasilkovna.cz/pobocky/227">Informace o pobočce</a>
+
+                                <div class="packetery-branch-choice__loading">
+                                    <i class="packetery-branch-choice__loading-icon icon icon-loading" aria-hidden="true"></i>
+                                    Načítám seznam poboček…
+                                </div>
+                            </div>
+
+                            <input id="process_order_packeteryBranch" class="packetery-branch-choice__value" name="process_order[packeteryBranch]" placeholder="" value="[Zásilkovna; 227; Praha 1, Růžová]" type="hidden">
+
+                            <ul class="form-errors">
+                                <li class="form-error-process-order-packeteryBranch">Vyberte místo osobního odběru.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-order__delivery-and-payment">
+                        <h3 class="process-order__delivery-and-payment-title">Doprava a platba</h3>
+
+                        <div class="delivery-and-payment">
+                            <label class="control-label process-order__delivery-and-payment-label process-order__delivery-method-label"><span class="process-order__delivery-and-payment-label-content process-order__delivery-method-label-content">Způsob dopravy</span></label>
+
+                            <div id="process_order_deliveryAndPayment_deliveryMethod" class="process-order__delivery-and-payment-choice process-order__delivery-method-choice">
+                                <div class="process-order__delivery-and-payment-choice-options process-order__delivery-method-choice-options">
+                                    <input id="process_order_deliveryAndPayment_deliveryMethod_0" type="radio" name="process_order[deliveryAndPayment][deliveryMethod]" class="process-order__delivery-and-payment-choice-toggle process-order__delivery-method-choice-toggle radio__toggle" value="54881969-bf90-4b24-97d2-82ebb58ef4a0">
+
+                                    <label class="process-order__delivery-and-payment-choice-option process-order__delivery-method-choice-option" for="process_order_deliveryAndPayment_deliveryMethod_0" data-name="Osobní odběr">
+                                        <span class="process-order__delivery-and-payment-choice-switch process-order__delivery-method-choice-switch"></span>
+                                        <span class="process-order__delivery-and-payment-choice-image process-order__delivery-method-choice-image" aria-hidden="true"></span>
+                                        <span class="process-order__delivery-and-payment-choice-name process-order__delivery-method-choice-name">Osobní odběr</span>
+                                        <span class="process-order__delivery-and-payment-choice-description process-order__delivery-method-choice-description">Popis vybraného způsobu dopravy.</span>
+
+                                        {% include './partials/price.html.twig' with {
+                                            price: 0,
+                                            class: 'process-order__delivery-method-choice-price',
+                                            tag: 'span',
+                                            titleLabel: false,
+                                        } %}
+                                    </label>
+
+                                    <input id="process_order_deliveryAndPayment_deliveryMethod_1" type="radio" name="process_order[deliveryAndPayment][deliveryMethod]" class="process-order__delivery-and-payment-choice-toggle process-order__delivery-method-choice-toggle radio__toggle" value="a5701659-d953-43e0-9f66-f7c1c7dddc77">
+
+                                    <label class="process-order__delivery-and-payment-choice-option process-order__delivery-method-choice-option" for="process_order_deliveryAndPayment_deliveryMethod_1" data-name="Česká pošta">
+                                        <span class="process-order__delivery-and-payment-choice-switch process-order__delivery-method-choice-switch"></span>
+                                        <span class="process-order__delivery-and-payment-choice-image process-order__delivery-method-choice-image" aria-hidden="true"></span>
+                                        <span class="process-order__delivery-and-payment-choice-name process-order__delivery-method-choice-name">Česká pošta</span>
+                                        <span class="process-order__delivery-and-payment-choice-description process-order__delivery-method-choice-description">Popis vybraného způsobu dopravy.</span>
+
+                                        {% include './partials/price.html.twig' with {
+                                            price: 780,
+                                            pricesSettings: {
+                                                isVatPayer: true,
+                                                shouldInputPricesIncludingVat: false,
+                                                shouldShowPriceExcludingVat: true,
+                                                shouldShowPriceIncludingVat: true,
+                                            },
+                                            class: 'process-order__delivery-method-choice-price',
+                                            tag: 'span',
+                                            titleLabel: false,
+                                        } %}
+                                    </label>
+                                </div>
+
+                                <ul class="form-errors">
+                                    <li>Vyberte způsob dopravy.</li>
+                                </ul>
+                            </div>
+
+                            <label class="control-label process-order__delivery-and-payment-label process-order__payment-method-label"><span class="process-order__delivery-and-payment-label-content process-order__payment-method-label-content">Způsob platby</span></label>
+
+                            <div id="process_order_deliveryAndPayment_paymentMethod" class="process-order__delivery-and-payment-choice process-order__payment-method-choice" data-component-dependent-choice="#process_order_deliveryAndPayment_deliveryMethod">
+                                <div class="process-order__delivery-and-payment-choice-options process-order__payment-method-choice-options">
+                                    <input id="process_order_deliveryAndPayment_paymentMethod_0" type="radio" name="process_order[deliveryAndPayment][paymentMethod]" class="process-order__delivery-and-payment-choice-toggle process-order__payment-method-choice-toggle radio__toggle" value="bba91d89-1f53-45f9-9fcf-b4a6a07f7e02" data-parent-values="[&quot;bde5daf5-0480-4e58-b479-9c74f92b32d8&quot;,&quot;a5701659-d953-43e0-9f66-f7c1c7dddc77&quot;,&quot;54881969-bf90-4b24-97d2-82ebb58ef4a0&quot;]">
+
+                                    <label class="process-order__delivery-and-payment-choice-option process-order__payment-method-choice-option" for="process_order_deliveryAndPayment_paymentMethod_0" data-name="Bankovní převod" data-price="0">
+                                        <span class="process-order__delivery-and-payment-choice-switch process-order__payment-method-choice-switch"></span>
+                                        <span class="process-order__delivery-and-payment-choice-image process-order__payment-method-choice-image" aria-hidden="true"></span>
+                                        <span class="process-order__delivery-and-payment-choice-name process-order__payment-method-choice-name">Bankovní převod</span>
+                                        <span class="process-order__delivery-and-payment-choice-description process-order__payment-method-choice-description">Popis vybraného způsobu platby.</span>
+
+                                        {% include './partials/price.html.twig' with {
+                                            price: 0,
+                                            class: 'process-order__payment-method-choice-price',
+                                            tag: 'span',
+                                            titleLabel: false,
+                                        } %}
+                                    </label>
+
+                                    <input id="process_order_deliveryAndPayment_paymentMethod_1" type="radio" name="process_order[deliveryAndPayment][paymentMethod]" class="process-order__delivery-and-payment-choice-toggle process-order__payment-method-choice-toggle radio__toggle" value="db6a12ce-16e3-4668-abcc-a8eb7a8c7981" data-parent-values="[&quot;bde5daf5-0480-4e58-b479-9c74f92b32d8&quot;,&quot;a5701659-d953-43e0-9f66-f7c1c7dddc77&quot;,&quot;54881969-bf90-4b24-97d2-82ebb58ef4a0&quot;]">
+
+                                    <label class="process-order__delivery-and-payment-choice-option process-order__payment-method-choice-option" for="process_order_deliveryAndPayment_paymentMethod_1" data-name="Kartou online" data-price="0">
+                                        <span class="process-order__delivery-and-payment-choice-switch process-order__payment-method-choice-switch"></span>
+                                        <span class="process-order__delivery-and-payment-choice-image process-order__payment-method-choice-image" aria-hidden="true"></span>
+                                        <span class="process-order__delivery-and-payment-choice-name process-order__payment-method-choice-name">Kartou online</span>
+                                        <span class="process-order__delivery-and-payment-choice-description process-order__payment-method-choice-description">Popis vybraného způsobu platby.</span>
+
+                                        {% include './partials/price.html.twig' with {
+                                            price: 0,
+                                            class: 'process-order__payment-method-choice-price',
+                                            tag: 'span',
+                                            titleLabel: false,
+                                        } %}
+                                    </label>
+
+                                    <input id="process_order_deliveryAndPayment_paymentMethod_2" type="radio" name="process_order[deliveryAndPayment][paymentMethod]" class="process-order__delivery-and-payment-choice-toggle process-order__payment-method-choice-toggle radio__toggle" value="fcf4f8cd-3411-46a1-905e-a42935554463" data-parent-values="[&quot;bde5daf5-0480-4e58-b479-9c74f92b32d8&quot;,&quot;a5701659-d953-43e0-9f66-f7c1c7dddc77&quot;,&quot;54881969-bf90-4b24-97d2-82ebb58ef4a0&quot;]">
+
+                                    <label class="process-order__delivery-and-payment-choice-option process-order__payment-method-choice-option" for="process_order_deliveryAndPayment_paymentMethod_2" data-name="Dobírka" data-price="40">
+                                        <span class="process-order__delivery-and-payment-choice-switch process-order__payment-method-choice-switch"></span>
+                                        <span class="process-order__delivery-and-payment-choice-image process-order__payment-method-choice-image" aria-hidden="true"></span>
+                                        <span class="process-order__delivery-and-payment-choice-name process-order__payment-method-choice-name">Dobírka</span>
+                                        <span class="process-order__delivery-and-payment-choice-description process-order__payment-method-choice-description">Popis vybraného způsobu platby.</span>
+
+                                        {% include './partials/price.html.twig' with {
+                                            price: 40,
+                                            pricesSettings: {
+                                                isVatPayer: true,
+                                                shouldInputPricesIncludingVat: false,
+                                                shouldShowPriceExcludingVat: true,
+                                                shouldShowPriceIncludingVat: true,
+                                            },
+                                            class: 'process-order__payment-method-choice-price',
+                                            tag: 'span',
+                                            titleLabel: false,
+                                        } %}
+                                    </label>
+                                </div>
+
+                                <ul class="form-errors">
+                                    <li>Vyberte způsob platby.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-order__note">
+                        <div class="form-group">
+                            <label class="control-label" for="process_order_note">Poznámka</label>
+                            <textarea id="process_order_note" name="process_order[note]" cols="40" rows="4" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="process-order__discount-code">
+                        <div class="form-group">
+                            <label class="control-label" for="process_order_discountCode_value">Slevový kód (sleva bude odečtena v dalším kroku objednávky)</label>
+                            <input type="text" id="process_order_discountCode_value" name="process_order[discountCode][value]" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="process-order__agreement">
+                        <div class="form-group">
+                            <input id="process_order_terms" class="checkbox-toggle" type="checkbox" name="process_order[terms]" value="1" required>
+                            <span class="checkbox input-group"><label class="checkbox__label required" for="process_order_terms">Souhlasím s <a href="./document.html" target="_blank">obchodními podmínkami</a></label></span>
+
+                            <ul class="form-errors">
+                                <li>Musíte souhlasit s obchodními podmínkami.</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="process_order_personalData" class="checkbox-toggle" type="checkbox" name="process_order[personalData]" value="1" required>
+                            <span class="checkbox input-group"><label class="checkbox__label required" for="process_order_personalData">Souhlasím se <a href="./document.html" target="_blank">zpracováním osobních údajů</a></label></span>
+
+                            <ul class="form-errors">
+                                <li>Musíte souhlasit  se zpracováním osobních údajů.</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="process_order_newsletter" class="checkbox-toggle" type="checkbox" name="process_order[personalData]" value="1">
+                            <span class="checkbox input-group"><label class="checkbox__label required" for="process_order_newsletter">Souhlasím se zasíláním obchodních sdělení</label></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="process_order_heurekaDisagreement" class="checkbox-toggle" type="checkbox" name="process_order[heurekaDisagreement]" value="1">
+                            <span class="checkbox input-group"><label class="checkbox__label" for="process_order_heurekaDisagreement">Nesouhlasím se zasláním dotazníku spokojenosti v rámci programu Heureka Ověřeno zákazníky</label></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-order__summary">
+                    <div class="process-order-summary-container">
+                        <h4 class="process-order__summary-title"><span class="process-order__summary-title-content">Váš nákup</span></h4>
+
+                        <div class="process-order__summary-products">
+                            {% for product in fixtures().products %}
+                                <div class="process-order__summary-product">
+                                    <div class="process-order__summary-product-image-container">
+                                        <a class="process-order__summary-product-image-link" href="./detail.html">
+                                            {% if product.image %}
+                                                <img class="process-order__summary-product-image process-order__summary-product-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                            {% else %}
+                                                <span class="process-order__summary-product-image-placeholder"></span>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+
+                                    <div class="process-order__summary-product-info">
+                                        <h3 class="process-order__summary-product-name"><a class="process-order__summary-product-link" href="./detail.html">{{ product.name }}</a></h3>
+
+                                        {% if loop.index % 3 == 0 %}
+                                            <div class="process-order__summary-product-additions">
+                                                <div class="process-order__summary-product-addition">
+                                                    <span class="process-order__summary-product-addition-label">Prodloužená záruka o 1 rok</span>
+
+                                                    {%- include './partials/price.html.twig' with {
+                                                        price: 299,
+                                                        class: 'process-order__summary-product-addition-price',
+                                                        pricesSettings: {
+                                                            isVatPayer: true,
+                                                            shouldInputPricesIncludingVat: false,
+                                                            shouldShowPriceExcludingVat: true,
+                                                        }
+                                                    } -%}
+                                                </div>
+
+                                                <div class="process-order__summary-product-addition">
+                                                    <span class="process-order__summary-product-addition-label">Další doplněk k produktu</span>
+
+                                                    {%- include './partials/price.html.twig' with {
+                                                        price: 0,
+                                                        class: 'process-order__summary-product-addition-price',
+                                                        pricesSettings: {
+                                                            isVatPayer: true,
+                                                            shouldInputPricesIncludingVat: false,
+                                                            shouldShowPriceExcludingVat: true,
+                                                        }
+                                                    } -%}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if loop.index % 2 %}
+                                            <ul class="process-order__summary-product-properties">
+                                                <li class="process-order__summary-product-property">
+                                                    <span class="process-order__summary-product-property-label">Velikost</span>
+                                                    <span class="process-order__summary-product-property-value"><span data-property-value>malá</span></span>
+                                                </li>
+
+                                                <li class="process-order__summary-product-property">
+                                                    <span class="process-order__summary-product-property-label">Potisk</span>
+                                                    <span class="process-order__summary-product-property-value"><span data-property-value>Bez potisku</span></span>
+                                                </li>
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="process-order__summary-product-quantity">
+                                        <span class="process-order__summary-product-quantity-value">{{ loop.index }}</span>
+                                        <span class="process-order__summary-product-quantity-unit">ks</span>
+                                    </div>
+
+                                    {% if product.pricesSettings %}
+                                        {% set pricesSettings = product.pricesSettings|merge({isFrom: false}) %}
+                                    {% endif %}
+
+                                    {% include './partials/price.html.twig' with {price: product.price, class: 'process-order__summary-product-price'} %}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% include './partials/price.html.twig' with {
+                            price: 200,
+                            class: 'process-order__summary-price',
+                            titleLabel: 'Celkem 2 položky za',
+                            itemLabel: 'Celkem',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true,
+                            },
+                        } %}
+
+                        {% include './partials/price.html.twig' with {
+                            price: 0,
+                            class: 'process-order__summary-delivery-price',
+                            titleLabel: 'Doprava',
+                            descriptionLabel: 'Osobní odběr',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true,
+                            },
+                        } %}
+
+                        {% include './partials/price.html.twig' with {
+                            price: 155,
+                            class: 'process-order__summary-payment-price',
+                            titleLabel: 'Platba',
+                            descriptionLabel: 'Bankovní převod',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true,
+                            },
+                        } %}
+
+                        {% include './partials/price.html.twig' with {
+                            price: 1500,
+                            class: 'process-order__summary-free-delivery-additional-price',
+                            titleLabel: 'Do dopravy zdarma vám zbývá',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true,
+                            },
+                        } %}
+
+                        {% include './partials/price.html.twig' with {
+                            price: 200,
+                            class: 'process-order__summary-total-price',
+                            titleLabel: 'Celkem',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true,
+                            },
+                        } %}
+                    </div>
+                </div>
+
+                <div class="process-order__contact" aria-hidden="true">
+                    <h4 class="process-order__contact-title"><span class="process-order__contact-title-content">Potřebujete poradit?</span></h4>
+
+                    <div class="process-order__contact-phone">
+                        <h5 class="process-order__contact-label"><span class="process-order__contact-label-content">Telefon</span></h5>
+
+                        <a class="process-order__contact-link" href="tel:+420734201275">
+                            <i class="icon icon-phone process-order__contact-icon"></i>
+                            +420 734 201 275
+                        </a>
+                    </div>
+
+                    <div class="process-order__contact-email">
+                        <h5 class="process-order__contact-label"><span class="process-order__contact-label-content">E-mail</span></h5>
+
+                        <a class="process-order__contact-link" href="mailto:info@vas-eshop.cz">
+                            <i class="icon icon-email process-order__contact-icon"></i>
+                            info@vas-eshop.cz
+                        </a>
+                    </div>
+
+                    <span class="process-order__contact-photo"></span>
+                </div>
+
+                <p class="process-order__buttons">
+                    <a class="button process-order__button process-order__button-shopping-cart" href="./shopping-cart.html">Zpět do košíku</a>
+                    <a class="button process-order__button process-order__button-delivery-and-payment" href="./process-order.html#delivery-and-payment">Zpět na dopravu </a>
+                    <a class="button process-order__button process-order__button-delivery-info" href="./process-order.html#delivery-info">K doručovacím údajům</a>
+                    <button id="process_order_save" class="button process-order__button process-order__button-complete" name="process_order[save]" type="submit">Dokončit objednávku</button>
+                </p>
+            </div>
+        </div>
+    </form>
+{% endblock %}

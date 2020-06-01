@@ -1,0 +1,21 @@
+.addition {
+    &__image {
+        float: left;
+        margin-right: 25px;
+        width: 33.33%;
+    }
+
+    &__description {
+        line-height: 1.2;
+    }
+
+    &__button-add {
+        @include button-primary;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__image {
+            margin-right: 15px;
+        }
+    }
+}

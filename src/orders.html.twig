@@ -1,0 +1,111 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Objednávky'] %}
+
+{% block page %}shop-profile-orders{% endblock %}
+
+{% block content %}
+    <div class="orders">
+        <div class="orders__container">
+            <h1 class="orders__title">Moje objednávky</h1>
+
+            <table class="orders__items" data-component-responsive-table>
+                <thead class="orders__header">
+                    <tr>
+                        <th class="orders__header-number"><span class="orders__header-number-content">Číslo objednávky</span></th>
+                        <th class="orders__header-date"><span class="orders__header-date-content">Datum a čas objednávky</span></th>
+                        <th class="orders__header-quantity"><span class="orders__header-quantity-content">Počet položek</span></th>
+                        <th class="orders__header-total-price orders__header-total-price-excluding-vat"><span class="orders__header-total-price-content">Celková cena <span class="orders__header-total-price-vat-label">bez DPH</span></span></th>
+                        <th class="orders__header-actions"></th>
+                    </tr>
+                </thead>
+
+                <tbody class="orders__body">
+                    <tr class="orders__item">
+                        <td class="orders__item-number">123450001</td>
+                        <td class="orders__item-date">17. 7. 2018 18:37</td>
+                        <td class="orders__item-quantity">1</td>
+                        {% include './partials/price.html.twig' with {price: 299, tag: 'td', class: 'orders__item-total-price'} %}
+                        <td class="orders__item-actions"><a class="button orders__item-action" href="./order-detail.html">Zobrazit detail</a></td>
+                    </tr>
+
+                    <tr class="orders__item">
+                        <td class="orders__item-number">123450001</td>
+                        <td class="orders__item-date">17. 7. 2018 18:37</td>
+                        <td class="orders__item-quantity">1</td>
+
+                        {% include './partials/price.html.twig' with {
+                            price: 299,
+                            tag: 'td',
+                            class: 'orders__item-total-price',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceIncludingVat: true
+                            }
+                        } %}
+
+                        <td class="orders__item-actions"><a class="button orders__item-action" href="./order-detail.html">Zobrazit detail</a></td>
+                    </tr>
+
+                    <tr class="orders__item">
+                        <td class="orders__item-number">123450001</td>
+                        <td class="orders__item-date">17. 7. 2018 18:37</td>
+                        <td class="orders__item-quantity">1</td>
+
+                        {% include './partials/price.html.twig' with {
+                            price: 299,
+                            tag: 'td',
+                            class: 'orders__item-total-price',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true
+                            }
+                        } %}
+
+                        <td class="orders__item-actions"><a class="button orders__item-action" href="./order-detail.html">Zobrazit detail</a></td>
+                    </tr>
+
+                    <tr class="orders__item">
+                        <td class="orders__item-number">123450001</td>
+                        <td class="orders__item-date">17. 7. 2018 18:37</td>
+                        <td class="orders__item-quantity">1</td>
+
+                        {% include './partials/price.html.twig' with {
+                            price: 299,
+                            tag: 'td',
+                            class: 'orders__item-total-price',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldInputPricesIncludingVat: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true
+                            }
+                        } %}
+
+                        <td class="orders__item-actions"><a class="button orders__item-action" href="./order-detail.html">Zobrazit detail</a></td>
+                    </tr>
+
+                    <tr class="orders__item">
+                        <td class="orders__item-number">123450001</td>
+                        <td class="orders__item-date">17. 7. 2018 18:37</td>
+                        <td class="orders__item-quantity">1</td>
+
+                        {% include './partials/price.html.twig' with {
+                            price: 299,
+                            tag: 'td',
+                            class: 'orders__item-total-price',
+                            pricesSettings: {
+                                isVatPayer: true,
+                                shouldShowPriceExcludingVat: true,
+                                shouldShowPriceIncludingVat: true
+                            }
+                        } %}
+
+                        <td class="orders__item-actions"><a class="button orders__item-action" href="./order-detail.html">Zobrazit detail</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="orders__empty">Prozatím nemáte žádné objednávky.</p>
+        </div>
+    </div>
+{% endblock %}

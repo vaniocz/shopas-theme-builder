@@ -1,0 +1,58 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Statická stránka'] %}
+
+{% block page %}shop-static-page-page{% endblock %}
+
+{% block content %}
+    <div class="static-page">
+        <div class="static-page__container">
+            <h1 class="static-page__title">Nadpis statické stránky</h1>
+            <p>Toto je statická stránka se základní typografií.</p>
+
+            <h2>Nadpis druhé úrovně</h2>
+            <h3>Nadpis třetí úrovně</h3>
+            <h4>Nadpis čtvrté úrovně</h4>
+            <h5>Nadpis páté úrovně</h5>
+            <h6>Nadpis šesté úrovně</h6>
+
+            <p>
+                Odstavec se <strong>zvýrazněným textem</strong>, zvýrazněným <em>různými způsoby</em>, ve kterém je také
+                <a href="index.html">odkaz na úvodní stránku</a> a za kterým následuje horizontální čára:
+            </p>
+
+            <hr>
+
+            <ol>
+                <li>číslovaný</li>
+                <li>seznam</li>
+                <li>bodů</li>
+            </ol>
+
+            <ul>
+                <li>odrážkový</li>
+                <li>seznam</li>
+                <li>bodů</li>
+            </ul>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Tabulka</th>
+                    <th>S údaji</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Údaj první</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>Údaj druhý</td>
+                    <td>2000</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Obsah statické stránky.</p>
+        </div>
+    </div>
+{% endblock %}

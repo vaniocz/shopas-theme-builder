@@ -1,0 +1,282 @@
+.product-filter {
+    border: 1px solid darken(white, 10%);
+    height: 50px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    --collapse-dimensions: height;
+
+    &.collapse--active {
+        height: auto;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__title {
+        @include h4;
+        cursor: default;
+        line-height: 20px;
+        margin: 0;
+        padding: 15px 45px 15px 15px;
+        position: relative;
+
+        &::after {
+            color: $primary;
+            font-icon: url("../../images/icon_angle_down.svg");
+            font-size: 16px;
+            position: absolute; top: 15px; right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &__property {
+        border-top: 1px solid darken(white, 10%);
+    }
+
+    &__property-container {
+        position: relative;
+    }
+
+    .form-control {
+        height: 37px;
+        padding: 0 10px;
+    }
+
+    &__property-title {
+        font-size: 0;
+        margin: 0;
+        overflow: hidden;
+        padding: 15px;
+    }
+
+    &__property-title-content {
+        @include h4;
+        margin: 0 -16px 0 0;
+        padding-right: 20px;
+    }
+
+    &__property-toggle {
+        display: inline-block;
+        line-height: 1px;
+        margin: -999px;
+        padding: 999px;
+        position: relative; top: 1px;
+        vertical-align: top;
+
+        &::after {
+            color: $primary;
+            display: inline-block;
+            font-icon: url("../../images/icon_angle_down.svg");
+            font-size: 16px;
+            transition: transform 0.3s ease;
+            width: 1em; line-height: 1em;
+        }
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &__property-content {
+        height: 0;
+        margin-top: -2px;
+        overflow: hidden;
+        padding: 0 15px;
+        transition: height 0.3s ease;
+        --collapse-dimensions: height;
+
+        &.collapse--active {
+            height: auto;
+        }
+
+        > :first-child {
+            margin-top: 3px;
+        }
+
+        > :last-child {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__toggle-all-properties,
+    .js &__submit {
+        display: none;
+    }
+
+    &__submit-button {
+        @include button-secondary;
+        @include button-small;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        height: 47px;
+
+        &__title {
+            line-height: 15px;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        border: none;
+        height: auto !important;
+        overflow: visible;
+
+        &__title {
+            display: none;
+        }
+
+        &__property {
+            padding: 5px 0;
+        }
+
+        &__property-title {
+            margin: 0;
+            padding: 15px 0;
+        }
+
+        &__property-toggle {
+            &::after,
+            &[aria-expanded="true"]::after {
+                transform: rotate(-180deg);
+            }
+
+            &[aria-expanded="false"]::after {
+                transform: none;
+            }
+        }
+
+        &__property-content {
+            --collapse-state: inversed;
+            height: auto;
+            margin: 0 -15px;
+
+            &.collapse--active {
+                height: 0;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        &__property-toggle {
+            top: 3px;
+        }
+    }
+}
+
+.boolean-filter,
+.choice-filter,
+.description-filter,
+.enum-filter,
+.expression-filter,
+.number-filter,
+.stock-filter {
+    &__value {
+        line-height: 1;
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__value-count {
+        opacity: 0.5;
+        vertical-align: middle;
+    }
+
+    &__value--disabled &__value-count {
+        display: none;
+    }
+
+    .checkbox__label-content {
+        color: inherit;
+        text-decoration: inherit;
+    }
+}
+
+.product-filter__property[data-property-name="variant_stock"] {
+    margin-top: 0;
+    order: -1;
+}
+
+.product-filter__property[data-property-type="number"][data-filter-type="range"],
+.product-filter__property[data-property-type="number"][data-filter-type="slider"],
+.product-filter__property[data-property-type="expression"][data-filter-type="range"],
+.product-filter__property[data-property-type="expression"][data-filter-type="slider"] {
+    position: relative;
+
+    .product-filter__property-title {
+        padding-left: 40px;
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        .product-filter__property-title {
+            padding-left: 25px;
+        }
+    }
+}
+
+.product-filter__property[data-property-name="price"] .range-slider__group--minimum::after {
+    content: "Kč –";
+}
+
+.product-filter__property[data-property-name="price"] .range-slider__group--maximum::after,
+.product-filter__property[data-property-name="price"] .range__group--maximum::after {
+    content: "Kč";
+}
+
+.number-filter--range,
+.number-filter--slider,
+.expression-filter--range,
+.expression-filter--slider {
+    .number-filter__toggle + .checkbox,
+    .expression-filter__toggle + .checkbox {
+        height: 20px;
+        line-height: 1.3;
+        position: absolute; top: 16px; left: 15px;
+        z-index: 1;
+
+        @media (min-width: $breakpoint-medium) {
+            left: 0;
+        }
+    }
+
+    .range__value {
+        border: 1px solid darken(white, 10%);
+    }
+}
+
+.product-filter {
+    .products-filter {
+        border-top: 1px solid darken(white, 10%);
+        padding: 15px;
+
+        &__item {
+            margin-bottom: 15px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__label {
+            color: darken(white, 85%);
+            font-size: 14px;
+        }
+
+        &__control {
+            border-color: darken(white, 10%);
+            max-width: none; height: 40px;
+        }
+
+        @media (min-width: $breakpoint-medium) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,95 @@
+.number-input {
+    border: 1px solid darken(white, 10%);
+    display: inline-flex;
+    padding: 0;
+    width: auto;
+
+    html:not(.no-js) & {
+        &__input {
+            -moz-appearance: textfield;
+        }
+
+        &__input::-webkit-inner-spin-button, &__input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+
+    &__input {
+        border: none;
+        color: inherit;
+        font-weight: 500;
+        width: 3ch;
+        padding: 0;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            width: 1.85em;
+        }
+    }
+
+    &.has-error {
+        border-color: $danger;
+    }
+
+    &.has-error &__input {
+        color: $danger;
+    }
+
+    &__input::-webkit-inner-spin-button, &__input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+
+    &__decrement, &__increment {
+        @include icon;
+        align-items: center;
+        color: darken(white, 85%);
+        cursor: pointer;
+        display: flex;
+        text-align: center;
+        transition: color 0.3s ease;
+        user-select: none;
+        width: 40px;
+
+        &:hover {
+            color: darken(white, 40%);
+        }
+
+        &::before {
+            flex-grow: 1;
+            font-family: "Font Awesome 5";
+            font-weight: bold;
+            top: 0;
+        }
+    }
+
+    &__decrement {
+        order: -1;
+
+        &::before {
+            content: $font-awesome-5-minus;
+        }
+    }
+
+    &__increment {
+        order: 1;
+
+        &::before {
+            content: $font-awesome-5-plus;
+        }
+    }
+
+    &--max &__increment, &--min &__decrement {
+        color: darken(white, 15%);
+        cursor: default;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__decrement, &__increment {
+            width: 35px;
+        }
+    }
+}

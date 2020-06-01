@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    color-adjust: exact;
+    margin: 0;
+    padding: 0;
+
+    &::before, &::after {
+        box-sizing: border-box;
+    }
+}
+
+@page {
+    margin: 0.5in;
+}

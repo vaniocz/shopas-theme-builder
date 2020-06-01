@@ -1,0 +1,81 @@
+.profile {
+    &__data {
+        @include clearfix;
+    }
+
+    &__personal-data {
+        display: table;
+        margin: 0 20px 20px 0;
+    }
+
+    &__personal-data-item {
+        display: table-row;
+    }
+
+    &__personal-data-label {
+        display: table-cell;
+        padding-right: 5px;
+        white-space: nowrap;
+        width: 0;
+
+        &::before {
+            font-size: 16px;
+            margin-right: 10px;
+            vertical-align: top;
+            position: relative; top: -1px;
+        }
+    }
+
+    &__personal-data-icon {
+        color: darken(white, 40%);
+        margin-right: 5px;
+    }
+
+    &__personal-data-value {
+        display: table-cell;
+    }
+
+    &__invoice-address,
+    &__delivery-address {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+
+    &__invoice-address-title,
+    &__delivery-address-title {
+        @include h4;
+    }
+
+//
+//    &__invoice-address-title,
+//    &__delivery-address-title {
+//        margin-bottom: 15px;
+//    }
+//
+//    &__buttons.profile__buttons {
+//        margin-bottom: -5px;
+//    }
+//
+//    &__button {
+//        margin-bottom: 5px;
+//    }
+//
+//    @media (max-width: $breakpoint-small) {
+//        &__invoice-address,
+//        &__delivery-address {
+//            float: none;
+//            margin-right: 0;
+//        }
+//    }
+//
+    @media (min-width: $breakpoint-medium) {
+        &__personal-data {
+            margin: 0 30px 30px 0;
+        }
+
+        &__invoice-address,
+        &__delivery-address {
+            margin: 0 30px 30px 0;
+        }
+    }
+}

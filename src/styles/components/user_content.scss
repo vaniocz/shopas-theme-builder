@@ -1,0 +1,173 @@
+.user-content {
+    margin-bottom: 20px;
+
+    &__container {
+        @include container;
+    }
+
+    .alert {
+        margin-bottom: 15px;
+    }
+
+    .checkbox > label {
+        > input {
+            clip: rect(0, 0, 0, 0);
+            position: fixed;
+        }
+
+        > span {
+            @include icon;
+            cursor: pointer;
+            padding-left: 23px;
+
+            &::before {
+                color: darken(white, 30%);
+                content: $font-awesome-5-square;
+                font-family: "Font Awesome 5";
+                font-size: 18px;
+                line-height: 0;
+                margin: 0 5px 0 -23px;
+                min-height: auto;
+                top: 1px;
+            }
+        }
+
+        > input:checked + span:before {
+            color: $primary;
+            content: $font-awesome-5-check-square;
+            font-weight: bold;
+        }
+
+        > input:disabled + span:before {
+            color: darken(white, 30%);
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+
+        &__title {
+            margin-bottom: 30px;
+
+            &::after {
+                height: 3px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+    }
+}
+
+.fos_user_resetting_request, .fos_user_security_login {
+    .control-label {
+        display: none;
+    }
+}
+
+.fos_user_user_show {
+    display: table;
+    margin-bottom: 15px;
+
+    .name, .email {
+        display: table-row;
+
+        .term {
+            display: table-cell;
+            padding-right: 5px;
+
+            &::before {
+                color: darken(white, 30%);
+                display: inline-block;
+                font-family: "Font Awesome 5";
+                font-weight: bold;
+                margin-right: 5px;
+                padding-left: 1px;
+                width: 18px;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+            }
+        }
+
+        .description {
+            display: table-cell;
+        }
+    }
+
+    .name .term::before {
+        content: $font-awesome-5-user;
+    }
+
+    .email .term::before {
+        content: $font-awesome-5-envelope;
+    }
+}
+
+.profile-links {
+    font-size: 0;
+    padding-top: 25px;
+
+    .btn {
+        margin: 5px 5px 0 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.social-account {
+    @include clearfix;
+    margin-bottom: 5px;
+    width: 250px;
+
+    .btn {
+        float: right;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        width: 200px;
+    }
+}
+
+.social-account-icon {
+    @include icon;
+    color: white;
+    font-family: "Font Awesome 5 Brands";
+    font-size: 18px;
+    line-height: 42px;
+    margin-right: 5px;
+    min-width: 42px;
+    text-align: center;
+
+    &.fa-facebook {
+        background-color: $facebook;
+
+        &::before {
+            content: $font-awesome-5-facebook-f;
+        }
+    }
+
+    &.fa-google {
+        background-color: $google-plus;
+
+        &::before {
+            content: $font-awesome-5-google;
+        }
+    }
+
+    &.fa-twitter {
+        background-color: $twitter;
+
+        &::before {
+            content: $font-awesome-5-twitter;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        line-height: 37px;
+        min-width: 37px;
+    }
+}

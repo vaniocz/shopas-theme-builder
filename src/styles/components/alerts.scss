@@ -1,0 +1,27 @@
+.alerts {
+    margin-bottom: 20px;
+
+    &__container {
+        @include container;
+    }
+
+    &__alert {
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+    }
+
+    @media print {
+        display: none;
+    }
+}

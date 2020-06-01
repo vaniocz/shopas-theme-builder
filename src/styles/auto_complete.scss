@@ -1,0 +1,60 @@
+.auto-complete {
+    display: inline-block;
+    width: 100%;
+}
+
+.autocomplete-suggestions {
+    background: #FFF;
+    border: 1px solid #999;
+    margin-top: 1px;
+    overflow: auto;
+}
+
+.autocomplete-group,
+.autocomplete-no-suggestion,
+.autocomplete-loading {
+    cursor: default;
+    padding: 10px;
+}
+
+.autocomplete-suggestion {
+    cursor: pointer;
+    padding: 10px;
+
+    .autocomplete-group ~ & {
+        padding-left: 20px;
+    }
+
+    strong {
+        font-weight: normal;
+        text-decoration: underline;
+    }
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+.autocomplete-remaining-count {
+    float: right;
+    padding: 10px;
+
+    &:not(a[href]) {
+        cursor: default;
+    }
+}
+
+.autocomplete-loading {
+    display: none;
+    position: relative;
+}
+
+.autocomplete-suggestions.is-loading {
+    .autocomplete-loading {
+        display: block;
+    }
+
+    .autocomplete-group, .autocomplete-suggestion, .autocomplete-no-suggestion, .autocomplete-remaining-count {
+        display: none;
+    }
+}

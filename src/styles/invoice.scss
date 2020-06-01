@@ -1,0 +1,137 @@
+@import "index";
+@import "components/number_format";
+
+html {
+    margin: 20px;
+
+    @media print {
+        margin: 0;
+    }
+}
+
+body {
+    color: black;
+}
+
+strong {
+    font-weight: 600;
+}
+
+tfoot {
+    display: table-row-group;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+th {
+    font-weight: 500;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.invoice {
+    &__title {
+        font-size: 30px; font-weight: 500;
+        letter-spacing: -1px;
+        margin-bottom: 30px;
+    }
+
+    &__info {
+        @include clearfix;
+        margin-bottom: 30px;
+    }
+
+    &__info-title {
+        font-size: 16px; font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    &__info-seller {
+        float: left;
+        margin-right: 50px;
+    }
+
+    &__info-customer {
+        float: left;
+    }
+
+    &__info-order {
+        float: right;
+    }
+
+    &__info-order-items {
+        display: table;
+    }
+
+    &__info-order-item {
+        display: table-row;
+    }
+
+    &__info-order-label {
+        display: table-cell;
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    &__info-order-value {
+        display: table-cell;
+    }
+
+    &__info-order-item {
+        display: table-row;
+    }
+
+    &__info-business {
+        clear: both;
+        padding-top: 15px;
+    }
+
+    &__items {
+        border-collapse: collapse;
+    }
+
+    &__items-header {
+        border-bottom: 2px solid darken(white, 20%);
+    }
+
+    &__header-quantity,
+    &__header-unit-price,
+    &__header-total-price {
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    &__header-unit-price,
+    &__header-total-price,
+    &__item-unit-price,
+    &__item-total-price {
+        text-align: right;
+    }
+
+    &__item {
+        border-bottom: 1px solid darken(white, 10%);
+    }
+
+    &__item-name {
+        font-weight: 500;
+        text-align: left;
+    }
+
+    &__items-footer td {
+        text-align: right;
+    }
+
+    &__total-price {
+        font-size: 20px;
+    }
+
+    &__total-price-value {
+        font-size: 30px; font-weight: 500;
+    }
+}

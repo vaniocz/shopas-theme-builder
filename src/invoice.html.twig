@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Faktura 12345678</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="invoice">
+    <h1 class="invoice__title">Faktura č. 123456789</h1>
+
+    <div class="invoice__info">
+        <div class="invoice__info-seller">
+            <h3 class="invoice__info-title">Prodávající</h3>
+
+            <p>
+                Můj E-shop<br>
+                Moje ulice 16/1<br>
+                123 45 Moje Město<br>
+                č.účtu: 1234567890/0000<br>
+                Nejsme plátci DPH.
+            </p>
+        </div>
+
+        <div class="invoice__info-customer">
+            <h3 class="invoice__info-title">Kupující</h3>
+            Jan Novák<br>
+            Krátká 12<br>
+            123 45 Město<br>
+        </div>
+
+        <div class="invoice__info-order">
+            <div class="invoice__info-order-items">
+                <div class="invoice__info-order-item"><span class="invoice__info-order-label">Datum vystavení:</span> <span class="invoice__info-order-value">19. 11. 2021</span></div>
+                <div class="invoice__info-order-item"><span class="invoice__info-order-label">Datum splatnosti:</span> <span class="invoice__info-order-value">3. 12. 2021</span></div>
+                <div class="invoice__info-order-item"><span class="invoice__info-order-label">Variabilní symbol:</span> <span class="invoice__info-order-value">1234567890</span></div>
+            </div>
+        </div>
+    </div>
+
+    <table class="invoice__items">
+        <thead class="invoice__items-header">
+            <tr>
+                <th class="invoice__header-name">Název</th>
+                <th class="invoice__header-quantity">Počet</th>
+                <th class="invoice__header-unit-price">Cena/kus</th>
+                <th class="invoice__header-total-price">Cena celkem</th>
+            </tr>
+        </thead>
+
+        <tbody class="invoice__items-body">
+            {% for product in fixtures().products %}
+                <tr class="invoice__item">
+                    <td class="invoice__item-name">{{ product.name }}</td>
+                    <td class="invoice__item-quantity">{{ loop.index }}</td>
+                    <td class="invoice__item-unit-price">{{ product.price|html_number_format('Kč') }}</td>
+                    <td class="invoice__item-total-price">{{ (loop.index * product.price)|html_number_format('Kč') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <tfoot class="invoice__items-footer">
+            <tr class="invoice__total-price">
+                <td></td>
+
+                <td colspan="3">
+                    Celkem:
+                    <strong class="invoice__total-price-value">{{ 400|html_number_format('Kč') }}</strong>
+                </td>
+            </tr>
+            <tr class="invoice__paid">
+                <td></td>
+
+                <td colspan="3">
+                    Uhrazeno:
+                    <strong class="invoice__paid-value">{{ 400|html_number_format('Kč') }}</strong>
+                </td>
+            </tr>
+            <tr class="invoice__to-pay">
+                <td></td>
+
+                <td colspan="3">
+                    Zbývá k úhradě:
+                    <strong class="invoice__to-pay-value">{{ 400|html_number_format('Kč') }}</strong>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>

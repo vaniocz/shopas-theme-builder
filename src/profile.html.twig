@@ -1,0 +1,61 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil'] %}
+
+{% block page %}fos-user-profile-show{% endblock %}
+
+{% block content %}
+    <div class="user-content">
+        <div class="user-content__container">
+            <div class="profile">
+                <h1 class="profile__title">Můj profil</h1>
+
+                <div class="profile__data">
+                    <div class="profile__personal-data">
+                        <p class="profile__personal-data-item profile__personal-data-name">
+                            <span class="profile__personal-data-label"><i class="icon icon-user profile__personal-data-icon" aria-hidden="true"></i>Jméno:</span>
+                            <span class="profile__personal-data-value">Jméno a Příjmení</span>
+                        </p>
+
+                        <p class="profile__personal-data-item profile__personal-data-email">
+                            <span class="profile__personal-data-label"><i class="icon icon-email profile__personal-data-icon" aria-hidden="true"></i>E-mail:</span>
+                            <span class="profile__personal-data-value">jmeno.prijmeni@example.com</span>
+                        </p>
+
+                        <p class="profile__personal-data-item profile__personal-data-phone">
+                            <span class="profile__personal-data-label"><i class="icon icon-phone profile__personal-data-icon" aria-hidden="true"></i>Telefon:</span>
+                            <span class="profile__personal-data-value">+420 123 456 789</span>
+                        </p>
+                    </div>
+
+                    <div class="profile__invoice-address">
+                        <h3 class="profile__invoice-address-title">Fakturační adresa</h3>
+
+                        <p class="profile__invoice-address-content">
+                            Jackson and Rowland Associates<br>
+                            IČ: 924<br>
+                            Non et assumenda inc 490<br>
+                            83041 Repellendus Anim ex
+                        </p>
+                    </div>
+
+                    <div class="profile__delivery-address">
+                        <h3 class="profile__delivery-address-title">Doručovací adresa</h3>
+
+                        <p class="profile__delivery-address-content">
+                            Voluptatem facilis o 36<br>
+                            35392 Nesciunt incidunt
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-buttons profile__buttons">
+                    <a class="button profile__button profile__button-orders" href="./orders.html">Moje objednávky</a>
+                    <a class="button profile__button profile__button-product-watches" href="./watch-availability.html">Hlídání dostupnosti</a>
+                    <a class="button button--primary profile__button profile__button-edit-profile" href="./edit-profile.html">Upravit profil</a>
+                    <a class="button button--primary profile__button profile__button-change-password" href="./profile.html">Změnit heslo</a>
+                    <a class="button button--danger profile__button profile__button-unregister" href="./profile.html">Zrušit registraci</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

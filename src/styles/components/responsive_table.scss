@@ -1,0 +1,58 @@
+@media (max-width: $breakpoint-small) {
+    table[data-component-responsive-table] {
+        tr {
+            border-bottom: 2px solid darken(white, 15%);
+            display: block;
+        }
+
+        thead > tr:first-child {
+            display: none;
+        }
+
+        th, td {
+            border-bottom: 1px solid darken(white, 5%);
+            display: block;
+            padding: 10px 0 !important;
+            text-align: right !important;
+            width: 100% !important;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &.desktop-only {
+                display: none;
+            }
+
+            &.table__actions {
+                padding-bottom: 5px !important;
+                white-space: normal !important;
+
+                .button {
+                    margin-bottom: 5px;
+                }
+            }
+
+            &[data-label] {
+                &::before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: 500;
+                    max-width: 40%;
+                    padding-right: 15px;
+                    text-align: left;
+                }
+
+                &::after {
+                    clear: both;
+                    content: "";
+                    display: block;
+                }
+            }
+
+            &:empty {
+                display: none;
+            }
+        }
+    }
+}

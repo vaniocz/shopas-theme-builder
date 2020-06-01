@@ -1,0 +1,307 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, fixtures().categories|first.name, fixtures().products|first.name] %}
+
+{% block page %}shop-product-detail{% endblock %}
+
+{% block content %}
+    <div class="alerts product-alerts">
+        <div class="alerts__container">
+            <div class="alerts__alert-container product-alerts__alert-container">
+                <div class="alert alert--success alert--dismissable alerts__alert product-alerts__alert">
+                    <button type="button" class="alert__close" aria-label="Zavřít" data-dismiss="alert"></button>
+                    <p class="alert-message">Produkt byl přidán do košíku. <a href="./shopping-cart.html">Nákupní košík</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-detail">
+        <div class="product-detail__container">
+            <div class="gallery product-detail__gallery" data-component-gallery>
+                {% set product = fixtures().products|first %}
+
+                <p class="product-detail__gallery-image-container">
+                    <strong class="product-detail__gallery-image-tag product-detail__gallery-image-tag--primary"><i class="icon product-detail__gallery-image-tag-icon" aria-hidden="true"></i>Použité</strong>
+
+                    {% if product.image %}
+                        <img class="gallery__image product-detail__gallery-image gallery__image--portrait" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px">
+                    {% else %}
+                        <span class="product-detail__gallery-image-placeholder"></span>
+                    {% endif %}
+                </p>
+
+                {% if product.image %}
+                    <p id="galleryThumbnails" class="product-detail__gallery-thumbnails">
+                        {% for product in fixtures().products if product.image and loop.index <= 3 %}
+                            <span class="gallery__thumbnail product-detail__gallery-thumbnail {% if loop.first %}is-active{% endif %}">
+                                <a class="gallery__thumbnail-link product-detail__gallery-thumbnail-link" href="./images/content/{{ product.image }}" data-size="{{ product.imageWidth }}x{{ product.imageHeight }}">
+                                    <img class="product-detail__gallery-thumbnail-image product-detail__gallery-thumbnail-image--portrait" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                </a>
+                            </span>
+                        {% endfor %}
+
+                        <span class="product-detail__gallery-thumbnails-toggle" data-component-collapse="#galleryThumbnails"></span>
+                    </p>
+                {% endif %}
+            </div>
+
+            <h1 class="product-detail__title">{{ fixtures().products|first.name }}</h1>
+
+            {% if fixtures().products|first.subtitle %}
+                <div class="product-detail__subtitle"><p>{{ fixtures().products|first.subtitle }}</p></div>
+            {% endif %}
+
+            <div id="product_detail_variant" class="product-detail__content" data-property-discount_valid_until="2020-04-25" data-property-vat_rate="high" data-property-price_before_discount="50" data-property-price="20" data-discount="30">
+                <input id="productDetailContentToggle1" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+                <input id="productDetailContentToggle2" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+                <input id="productDetailContentToggle3" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+                <div id="product_detail_variant_description" class="product-detail__description">Popis mého modrého produktu. Jedná se o usměvavou taštičku Shopasu, která je vyvedena v moderní modré barvě. Tento produkt si nemůžete koupit, je zde jen na ukázku.</div>
+                <span class="product-detail__description-toggle" data-component-collapse="#product_detail_variant_description"></span>
+
+                <div id="product_detail_variant_vlastnost-typu-obrazek" class="property" data-property-type="images" data-property-id="bcf46a67-d9a9-4f28-ba74-58499404951b" data-property-name="vlastnost-typu-obrazek" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Jiná vlastnost typu obrázek</span></label>
+
+                    <div id="product_detail_variant_vlastnost-typu-obrazek_value">
+                        <div class="images-value" data-property-value="[&quot;eb22b020-f48e-4051-9d11-0bed9b5462c2&quot;,&quot;ce29e956-de50-4492-b774-47a9af7e6325&quot;]">
+                            <img class="images-value__image images-value__image--landscape" src="./images/content/menu_2.png" style="max-width: 250px">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product_detail_variant_dulezita-vlastnost" class="property" data-property-type="description" data-property-id="2faeafc1-b172-4d1f-9c58-4adfc70d3bd0" data-property-name="dulezita-vlastnost" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Důležitá vlastnost</span></label>
+
+                    <span id="product_detail_variant_dulezita-vlastnost_value">
+                        <span data-property-value="Hodnota důležité vlastnosti">Hodnota důležité vlastnosti</span>
+                    </span>
+                </div>
+
+                <div id="product_detail_variant_vlastnost_produktu" class="property" data-property-type="description" data-property-id="ac4457db-4e27-4e53-a52f-61b9d066d6cc" data-property-name="vlastnost_produktu" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Vlastnost produktu</span></label>
+
+                    <span id="product_detail_variant_vlastnost_produktu_value">
+                        <span data-property-value="Hodnota vlastnosti">Hodnota vlastnosti</span>
+                    </span>
+                </div>
+
+                <div id="product_detail_variant_numeric_property" class="property" data-property-type="number" data-property-id="11278528-ebd6-4840-b811-28d077fa8b35" data-property-name="numeric_property" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Číselná vlastnost</span></label>
+
+                    <span id="product_detail_variant_numeric_property_value">
+                        <span data-property-value="2020"><span class="number-format">2<span class="number-format__thousands-separator"></span>020<span class="number-format__decimals number-format__decimals--zerofill" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit"></span></span></span>
+                    </span>
+                </div>
+
+                <div id="product_detail_variant_external_id" class="property" data-property-type="description" data-property-id="d58b079f-1335-4587-ba23-e1cf2efbfb9b" data-property-name="external_id" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Externí ID</span></label>
+
+                    <span id="product_detail_variant_external_id_value">
+                        <span data-property-value="20">20</span>
+                    </span>
+                </div>
+
+                <div id="product_detail_variant_property" class="property" data-property-type="choice" data-property-id="22aa12cd-b8fd-4c0e-ac96-fa947aaabb45" data-property-name="property" data-is-configurable="" data-property-value-count="2">
+                    <label class="property-label "><span class="property-label-content">Varianta</span></label>
+
+                    <div id="product_detail_variant_property_value" class="choice-value ">
+                        <div class="property-value choice-value__choice">
+                            <input type="radio" id="product_detail_variant_property_value_value_0" name="property" required="required" data-choice-value="damaged" value="poskozena">
+                            <label for="product_detail_variant_property_value_value_0">velká</label>
+                        </div>
+
+                        <div class="property-value choice-value__choice">
+                            <input type="radio" id="product_detail_variant_property_value_value_1" name="stav" required="required" data-choice-value="broken" value="na-odpis" checked="checked">
+                            <label for="product_detail_variant_property_value_value_1">malá</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product_detail_variant_property_description" class="property" data-property-type="constant" data-property-id="51528c14-cdce-4f7b-b425-68c02f5479cb" data-property-name="property_description" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Vlastnost varianty</span></label>
+
+                    <span id="product_detail_variant_property_description_value">
+                        <span data-property-value="damaged" class="property-value--hidden" aria-hidden="true">Jedná se o malou taštičku.</span>
+                        <span data-property-value="broken" class="">Jedná se o velkou taštičku.</span>
+                    </span>
+                </div>
+
+                <div id="product_detail_variant_variant_stock" class="property" data-property-type="stock" data-property-id="0a502c8d-5e3c-46c8-afc1-a29267b27aea" data-property-name="variant_stock" data-property-value-count="1">
+                    <div id="product_detail_variant_variant_stock_value">
+                        <div data-property-value='{"1550b8cb-9eb8-4859-8f5a-486c79e7b42e":{"type":"In stock","quantity":5},"total":{"type":"In stock","quantity":5}}'>
+                            <div class="stock-availability-value stock-availability-value--available stock-availability-value--in-stock">
+                                <span class="stock-availability-value__title"><span class="stock-availability-value__title-content">Dostupnost</span></span>
+                                <span class="icon stock-availability-value__icon"></span>
+                                <span class="stock-availability-value__label">Skladem</span>
+
+                                <div class="stock-availability-value__total stock-availability-value__total--available stock-availability-value__total--in-stock">
+                                    <span class="stock-availability-value__total-icon"></span>
+                                    <span class="stock-availability-value__total-label"><span class="stock-availability-value__total-label-content">Skladem</span></span>
+                                    <span class="stock-availability-value__total-quantity">5</span><span class="stock-availability-value__total-unit">ks</span>
+                                </div>
+                            </div>
+
+                            <div data-property-value='{"a3b51c28-f36a-4e3d-91ae-0d59a083f3c7":{"type":"In stock","quantity":0},"total":{"type":"In stock","quantity":0}}' class="">
+                                <div class="stock-availability-value stock-availability-value--unavailable stock-availability-value--out-of-stock">
+                                    <span class="stock-availability-value__title"><span class="stock-availability-value__title-content">Dostupnost</span></span>
+                                    <span class="icon stock-availability-value__icon"></span>
+                                    <span class="stock-availability-value__label">Není skladem</span>
+                                    <a class="stock-availability-value__watch" data-toggle="modal" data-target="#watchProductModal"><span class="stock-availability-value__watch-content">Hlídat dostupnost</span></a>
+
+                                    <div class="stock-availability-value__total stock-availability-value__total--unavailable stock-availability-value__total--out-of-stock">
+                                        <span class="stock-availability-value__total-icon"></span>
+                                        <span class="stock-availability-value__total-label"><span class="stock-availability-value__total-label-content">Není skladem</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product_detail_variant_vat_rate" class="property" data-property-type="enum" data-property-id="a19c6ac3-1eff-41c3-90db-fb3ee19a46a1" data-property-name="vat_rate" data-property-value-count="1">
+                    <label class="property-label "><span class="property-label-content">Sazba DPH</span></label>
+
+                    <div id="product_detail_variant_vat_rate_value" class="enum-value ">
+                        <p data-property-value="high">
+                            <span class="enum-value__value">Základní</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-detail__prices">
+                    <div id="product_detail_variant_price_before_discount" class="property " data-property-type="expression" data-property-id="e2b9882f-ddc0-403d-9794-4154b1a30304" data-property-name="price_before_discount">
+                        <label class="property-label"><span class="property-label-content">Cena před slevou</span></label>
+
+                        <span id="product_detail_variant_price_before_discount_value">
+                            <span data-property-value="50">
+                                {% include './partials/price.html.twig' with {
+                                    price: 50,
+                                    class: 'product-detail__price-before-discount',
+                                    pricesSettings: {
+                                        isVatPayer: true,
+                                        shouldShowPriceExcludingVat: true,
+                                        shouldShowPriceIncludingVat: true
+                                    },
+                                    titleLabel: false,
+                                } %}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div id="product_detail_variant_discount_valid_until" class="property" data-property-type="description" data-property-id="f10247c0-c606-4052-918f-d325cf62dc88" data-property-name="discount_valid_until" data-property-value-count="1">
+                        <label class="property-label"><span class="property-label-content">Datum platnosti slevy</span></label>
+
+                        <div id="product_detail_variant_discount_valid_until_value">
+                            <div data-property-value="2020-04-25">25.&nbsp;4.&nbsp;2020</div>
+                        </div>
+                    </div>
+
+                    <div id="product_detail_variant_price" class="property " data-property-type="expression" data-property-id="1b06bd0c-a380-4a74-9202-533bc5512973" data-property-name="price">
+                        <label class="property-label "><span class="property-label-content">Cena</span></label>
+
+                        <span id="product_detail_variant_price_value">
+                            <span data-property-value="50">
+                                {% include './partials/price.html.twig' with {
+                                    price: 50,
+                                    class: 'product-detail__price',
+                                    pricesSettings: {
+                                        isVatPayer: true,
+                                        shouldInputPricesIncludingVat: false,
+                                        shouldShowPriceExcludingVat: true,
+                                        shouldShowPriceIncludingVat: true
+                                    },
+                                    titleLabel: false,
+                                } %}
+                            </span>
+                        </span>
+                    </div>
+
+                    {% include './partials/price.html.twig' with {
+                        price: 0,
+                        class: 'product-detail__delivery-price',
+                        pricesSettings: {
+                            isVatPayer: true,
+                            shouldShowPriceExcludingVat: true,
+                            shouldShowPriceIncludingVat: true
+                        },
+                        titleLabel: 'Cena dopravy',
+                    } %}
+                </div>
+
+                <div class="product-detail__add-to-cart">
+                    <p class="product-detail__quantity">
+                        <label class="product-detail__quantity-label required control-label" for="product_detail_quantity">
+                            Množství
+                        </label>
+
+                        <span class="product-detail__quantity-input number-input form-control number-input--min" data-component-number-input="">
+                            <input class="number-input__input" type="number" id="product_detail_quantity" name="_quantity" required="required" min="1" value="1" max="5">
+                            <span class="number-input__decrement"></span>
+                            <span class="number-input__increment"></span>
+                        </span>
+                    </p>
+
+                    <button class="button product-detail__add-to-cart-button" data-component-add-to-shopping-cart-button='{"totalCountSelector":"#shoppingCartTotalCount","successfulMessageSelector":"#successfulShoppingCartMessage","unsuccessfulMessageSelector":"#unsuccessfulShoppingCartMessage","eventObject":{"content_name":"Tabulky pro z\u00e1kladn\u00ed \u0161kolu","content_type":"product","currency":"CZK"}}'>
+                        <span class="product-detail__add-to-cart-button-content">Vložit do košíku</span>
+                    </button>
+                </div>
+
+                <div class="product-detail__out-of-stock" aria-hidden="true" style="display: none"><p class="product-detail__out-of-stock-content">Tento produkt není k dispozici.</p></div>
+                <div class="product-detail__missing-price" aria-hidden="true" style="display: none"><p class="product-detail__missing-price-content">Tento produkt není k dispozici.</p></div>
+
+                <div class="compare product-detail__action product-detail__compare" data-component-compare='{"variantsInComparisonIds":[],"totalCountSelector":"#comparisonTotalCount","addedToComparisonMessageSelector":"#addedToComparisonMessage","removedFromComparisonMessageSelector":"#removedFromComparisonMessage","unsuccessfulMessageSelector":"#unsuccessfulCompareProductMessage"}'>
+                    <button type="button" id="product_detail_compare" name="compare" class="compare__button product-detail__compare-button"><i class="icon icon-comparison compare__icon product-detail__compare-icon" aria-hidden="true"></i>
+                        Porovnat
+                    </button>
+
+                    <p class="compare__in-comparison product-detail__compare-in-comparison">
+                        <span class="compare__in-comparison-content product-detail__compare-in-comparison-content">Produkt je již v porovnání.</span>
+                        <a class="compare__in-comparison-link product-detail__compare-in-comparison-link" href="/porovnani-produktu">Zobrazit porovnání</a>
+                    </p>
+                </div>
+
+                <div class="product-detail__action product-detail__print">
+                    <a class="product-detail__action-link" href="javascript:window.print()"><i class="icon icon-print product-detail__action-icon" aria-hidden="true"></i>Vytisknout</a>
+                </div>
+
+                <div class="product-detail__action product-detail__send-question">
+                    <a class="product-detail__action-link" href="#" data-toggle="modal" data-target="#sendQuestionModal"><i class="icon icon-envelope product-detail__action-icon" aria-hidden="true"></i>Odeslat dotaz</a>
+                </div>
+
+                <div class="product-detail__action product-detail__recommend">
+                    <a class="product-detail__action-link" href="#" data-toggle="modal" data-target="#recommendProductModal"><i class="icon icon-thumbs-up product-detail__action-icon" aria-hidden="true"></i>Doporučit</a>
+                </div>
+
+                <label class="product-detail__content-toggle product-detail__content-toggle-1" for="productDetailContentToggle1"></label>
+                <label class="product-detail__content-toggle product-detail__content-toggle-2" for="productDetailContentToggle2"></label>
+                <label class="product-detail__content-toggle product-detail__content-toggle-3" for="productDetailContentToggle3"></label>
+            </div>
+        </div>
+    </div>
+
+    <section class="related-products site__related-products">
+        <div class="related-products__container">
+            <h2 class="related-products__title"><span class="related-products__title-content">Související produkty</span></h2>
+
+            <div class="related-products__content">
+                <div class="related-products__items">
+                    {% for product in fixtures().products %}
+                        <div class="products__item">
+                            {% include './partials/product.html.twig' with {class: 'related-products__item', isLoading: loop.first} %}
+                        </div>
+                    {% endfor %}
+
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                    <span class="related-products__item-placeholder" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

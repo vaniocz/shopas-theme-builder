@@ -1,0 +1,122 @@
+.orders {
+    margin-bottom: 20px;
+
+    &__container {
+        @include container;
+    }
+
+    &__items {
+        border-collapse: collapse;
+    }
+
+    &__items th,
+    &__items td {
+        text-align: center;
+        vertical-align: middle;
+
+        &:first-child {
+            text-align: left;
+        }
+    }
+
+    &__header th {
+        border-bottom: 2px solid darken(white, 10%);
+        line-height: 1.2;
+    }
+
+    &__header-total-price-vat-label {
+        display: none;
+    }
+
+    &__item {
+        border-bottom: 1px solid darken(white, 5%);
+    }
+
+    &__item-actions.orders__item-actions {
+        padding: 0;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    &__item-action {
+        @include button-small;
+    }
+
+    &__empty {
+        background-color: rgba(darken(white, 10%), 0.8);
+        display: inline-block;
+        padding: 15px;
+    }
+
+    &__item-total-price {
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    &__item-total-price-items {
+        display: block;
+        line-height: 1;
+    }
+
+    &__item-total-price-title,
+    &__item-total-price-item-label {
+        display: none;
+    }
+
+    &__item-total-price-item {
+        display: block;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    &__item-total-price-item-including-vat ~ &__item-total-price-item-excluding-vat,
+    &__item-total-price-item-excluding-vat ~ &__item-total-price-item-including-vat {
+        color: darken(white, 30%);
+        font-size: 11px;
+        display: inline-flex;
+        vertical-align: top;
+
+        &::before {
+            content: "(";
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__item-total-price-item-value {
+        font-weight: 600;
+    }
+
+    &__item-total-price-item-vat-label {
+        display: none;
+        font-size: 12px;
+    }
+
+    &__item-total-price-excluding-vat &__item-total-price-item-vat-label {
+        display: inline;
+    }
+
+    &__item-total-price-item-including-vat ~ &__item-total-price-item-excluding-vat &__item-total-price-item-vat-label,
+    &__item-total-price-item-excluding-vat ~ &__item-total-price-item-including-vat &__item-total-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+
+        &__item-total-price-item {
+            font-size: 16px;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+    }
+}

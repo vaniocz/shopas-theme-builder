@@ -1,0 +1,29 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Propojení účtu'] %}
+
+{% block page %}hwi-oauth-connections{% endblock %}
+
+{% block content %}
+    <div class="user-content">
+        <div class="user-content__container">
+            <h1 class="user-content__title">Propojení účtu</h1>
+
+            <div class="account-connections">
+                <div class="social-account">
+                    <i class="social-account-icon fa fa-facebook" aria-hidden="true"></i> Facebook
+                    <a class="btn btn-primary" href="http://carshracky.local/prihlaseni/facebook">Propojit</a>
+                </div>
+
+                <div class="social-account">
+                    <i class="social-account-icon fa fa-google" aria-hidden="true"></i> Google+
+                    <a class="btn btn-primary" href="http://carshracky.local/prihlaseni/google">Propojit</a>
+                </div>
+
+                <div class="social-account">
+                    <i class="social-account-icon fa fa-twitter" aria-hidden="true"></i> Twitter
+                    <a class="btn btn-primary" href="http://carshracky.local/prihlaseni/twitter">Propojit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

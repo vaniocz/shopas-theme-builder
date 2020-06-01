@@ -1,0 +1,485 @@
+.process-order {
+    margin-bottom: 20px;
+
+    &__container {
+        @include container;
+    }
+
+    &__delivery-and-payment-choice-toggle-placeholder,
+    &__registration {
+        display: none;
+    }
+
+    &__registration-toggle:checked ~ &__registration {
+        display: block;
+    }
+
+    &__delivery-and-payment {
+        margin-bottom: 15px;
+    }
+
+    &__buttons {
+        margin-bottom: 10px;
+    }
+
+    &__delivery-and-payment-title {
+        display: none;
+    }
+
+    &__button-delivery-and-payment,
+    &__button-delivery-info {
+        display: none;
+    }
+
+    &__button-complete {
+        @include button-primary;
+        margin-bottom: 5px;
+    }
+
+    &__edit-button {
+        margin-bottom: 5px;
+    }
+
+    &__empty {
+        background-color: rgba(darken(white, 10%), 0.8);
+        display: inline-block;
+        padding: 15px;
+    }
+
+    &:not(.is-empty) &__empty {
+        display: none;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .delivery-and-payment__current-value {
+        display: none;
+    }
+
+    &__delivery-and-payment-label {
+        margin-bottom: 5px;
+    }
+
+    &__delivery-address-title {
+        display: none;
+    }
+
+    &__payment-method-label,
+    .packetery-branch {
+        margin-top: 15px;
+    }
+
+    &__delivery-and-payment-choice-label {
+        margin-bottom: 5px;
+    }
+
+    &__delivery-and-payment-choice-option {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+    }
+
+    &__delivery-method-choice-price-items,
+    &__payment-method-choice-price-items {
+        display: inline-flex;
+        margin-left: 5px;
+
+        &::before {
+            content: "(";
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__delivery-method-choice-price-item-label,
+    &__payment-method-choice-price-item-label,
+    &__delivery-method-choice-price--null &__delivery-method-choice-price-item-value,
+    &__payment-method-choice-price--null &__payment-method-choice-price-item-value {
+        display: none;
+    }
+
+    &__delivery-method-choice-price-item,
+    &__payment-method-choice-price-item {
+        display: none;
+        font-weight: normal;
+        white-space: nowrap;
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__delivery-method-choice-price--null &__delivery-method-choice-price-item::before,
+    &__payment-method-choice-price--null &__payment-method-choice-price-item::before {
+        content: "zdarma";
+        font-weight: 500;
+    }
+
+    &__delivery-method-choice-price-item-vat-label,
+    &__payment-method-choice-price-item-vat-label {
+        display: none;
+        font-size: 11px;
+    }
+
+    &__delivery-method-choice-price-item-excluding-vat &__delivery-method-choice-price-item-vat-label,
+    &__payment-method-choice-price-item-excluding-vat &__payment-method-choice-price-item-vat-label {
+        display: inline;
+    }
+
+    &__delivery-method-choice-price-item-value,
+    &__payment-method-choice-price-item-value {
+        font-weight: 500;
+    }
+
+    &__delivery-and-payment-choice-switch {
+        position: relative;
+
+        &::before {
+            content: "";
+            border: 1px solid darken(white, 30%);
+            border-radius: 50%;
+            display: inline-block;
+            width: 16px; height: 16px;
+            margin-right: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        &::after {
+            content: "";
+            background-color: $primary;
+            border-radius: 50%;
+            position: absolute; top: 5px; left: 3px;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            width: 10px; height: 10px;
+        }
+    }
+
+    &__delivery-and-payment-choice-toggle:checked + &__delivery-and-payment-choice-option &__delivery-and-payment-choice-switch::after {
+        transform: scale(1);
+    }
+
+    &__delivery-and-payment-choice-description {
+        display: block;
+        order: 999;
+        width: 100%;
+    }
+
+    &__summary-title,
+    &__summary-products,
+    &__contact {
+        display: none;
+    }
+
+    &__summary {
+        padding-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    &__summary-price {
+        display: table;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    &__summary-price-title {
+        margin-right: 2px;
+    }
+
+    &__summary-price-title-vat-label,
+    &__summary-delivery-price-title-vat-label,
+    &__summary-payment-price-title-vat-label,
+    &__summary-free-delivery-additional-price-title-vat-label,
+    &__summary-total-price-title-vat-label {
+        display: none;
+    }
+
+    &__summary-price-item {
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+
+    &__summary-price-item,
+    &__summary-delivery-price-item,
+    &__summary-payment-price-item,
+    &__summary-free-delivery-additional-price-item,
+    &__summary-total-price-item {
+        white-space: nowrap;
+    }
+
+    &__summary-price-item-including-vat ~ &__summary-price-item-excluding-vat,
+    &__summary-price-item-excluding-vat ~ &__summary-price-item-including-vat {
+        color: darken(white, 30%);
+        display: flex;
+        font-size: 11px;
+
+        &::before {
+            content: "(";
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__summary-price-item-label,
+    &__summary-delivery-price-item-label,
+    &__summary-payment-price-item-label,
+    &__summary-free-delivery-additional-price-item-label {
+        display: none;
+    }
+
+    &__summary-price-item-value {
+        font-weight: 600;
+    }
+
+    &__summary-price-item-vat-label,
+    &__summary-delivery-price-item-vat-label,
+    &__summary-payment-price-item-vat-label {
+        display: none;
+        font-size: 12px;
+    }
+
+    &__summary-free-delivery-additional-price-item-vat-label {
+        display: none;
+        font-size: 11px;
+    }
+
+    &__summary-price-excluding-vat &__summary-price-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-price-item-including-vat ~ &__summary-price-item-excluding-vat &__summary-price-item-vat-label,
+    &__summary-price-item-excluding-vat ~ &__summary-price-item-including-vat &__summary-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__summary-delivery-price,
+    &__summary-payment-price {
+        align-items: baseline;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__summary-delivery-price-title::after,
+    &__summary-payment-price-title::after {
+        content: ": ";
+        margin-right: 5px;
+    }
+
+    &__summary-delivery-price--null &__summary-delivery-price-title {
+        font-size: 16px;
+        font-weight: 600;
+
+        &::after {
+            content: " zdarma";
+            margin-right: 0;
+        }
+    }
+
+    &__summary-delivery-price--null.process-order__summary-delivery-price--personal,
+    &__summary-payment-price--null {
+        display: none;
+    }
+
+    &__summary-delivery-price-description,
+    &__summary-payment-price-description {
+        order: 999;
+        width: 100%;
+    }
+
+    &__summary-delivery-price-description,
+    &__summary-payment-price-description,
+    &__summary-free-delivery-additional-price {
+        color: darken(white, 50%);
+        font-size: 12px;
+    }
+
+    &__summary-free-delivery-additional-price {
+        margin-top: 15px;
+    }
+
+    &__summary-delivery-price-item,
+    &__summary-payment-price-item,
+    &__summary-free-delivery-additional-price-item {
+        display: none;
+        font-weight: normal;
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__summary-delivery-price-item-value,
+    &__summary-payment-price-item-value {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    &__summary-delivery-price-item-excluding-vat &__summary-delivery-price-item-vat-label,
+    &__summary-payment-price-item-excluding-vat &__summary-payment-price-item-vat-label,
+    &__summary-free-delivery-additional-price-item-excluding-vat &__summary-free-delivery-additional-price-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-delivery-price--null &__summary-delivery-price-items {
+        display: none;
+    }
+
+    &__summary-free-delivery-additional-price-item-value,
+    &__summary-total-price-item-value {
+        font-weight: 600;
+    }
+
+    &__summary-total-price {
+        display: table;
+        line-height: 1.2;
+        margin-top: 15px;
+    }
+
+    &__summary-total-price-title {
+        font-size: 20px;
+        margin-right: 3px;
+
+        &::after {
+            content: ":";
+        }
+    }
+
+    &__summary-total-price-item {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: normal;
+    }
+
+    &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat,
+    &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat {
+        color: darken(white, 30%);
+        font-size: 12px;
+        display: flex;
+
+        &::before {
+            content: "(";
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__summary-total-price-item-label {
+        display: none;
+    }
+
+    &__summary-total-price-item-vat-label {
+        display: none;
+        font-size: 13px;
+    }
+
+    &__summary-total-price-excluding-vat &__summary-total-price-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat &__summary-total-price-item-vat-label,
+    &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat &__summary-total-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__buttons {
+        padding-top: 15px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__summary-price-item,
+        &__summary-delivery-price-item-value,
+        &__summary-payment-price-item-value {
+            font-size: 16px;
+        }
+
+        &__summary-delivery-price--null &__summary-delivery-price-title {
+            font-size: 14px;
+        }
+
+        &__summary-price-item-vat-label,
+        &__summary-delivery-price-item-vat-label,
+        &__summary-payment-price-item-vat-label {
+            font-size: 11px;
+        }
+
+        &__summary-total-price-item {
+            font-size: 20px;
+        }
+
+        &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat,
+        &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        .form-control,
+        .input-group,
+        .packetery-branch-choice.packetery-branch-choice {
+            max-width: none;
+        }
+
+        &__person {
+            float: left;
+            padding-right: 15px;
+            width: 50%;
+        }
+
+        &__person {
+            margin-top: 36px;
+        }
+
+        &__registration-toggle + .checkbox {
+            margin-top: -36px;
+        }
+
+        &__delivery-address {
+            float: right;
+            padding-left: 15px;
+            width: 50%;
+        }
+
+        &__delivery-and-payment {
+            clear: right;
+            float: right;
+            padding-left: 15px;
+            width: 50%;
+        }
+
+        &__note,
+        &__discount-code,
+        &__agreement {
+            padding-right: 15px;
+            width: 50%;
+        }
+
+        &__summary {
+            padding-right: 15px;
+            width: 50%;
+        }
+
+        &__buttons.process-order__buttons {
+            clear: both;
+            margin-bottom: 0;
+            text-align: right;
+        }
+    }
+}

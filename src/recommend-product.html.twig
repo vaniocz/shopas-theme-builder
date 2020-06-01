@@ -1,0 +1,64 @@
+{% extends './detail.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div id="recommendProductModal" class="recommend-product modal fade" role="dialog" style="display: block">
+        <div class="modal-dialog" style="top: 25%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title recommend-product__title">Doporučit produkt</h3>
+                    <button class="close button" data-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label" for="recommend_product_name_value">Vaše jméno</label>
+                        <input type="text" id="recommend_product_name_value" name="recommend_product[name][value]" placeholder="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required control-label" for="recommend_product_emailFrom_value">Váš e-mail</label>
+
+                        <div class="input-group">
+                            <label class="input-group-addon" for="recommend_product_emailFrom_value"><i class="icon icon-email"></i></label>
+                            <input type="email" id="recommend_product_emailFrom_value" name="recommend_product[emailFrom][value]" required="required" placeholder="" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required control-label" for="recommend_product_emailTo_value">E-mail příjemce</label>
+
+                        <div class="input-group">
+                            <label class="input-group-addon" for="recommend_product_emailTo_value"><i class="icon icon-email"></i></label>
+                            <input type="email" id="recommend_product_emailTo_value" name="recommend_product[emailTo][value]" required="required" placeholder="" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required control-label" for="recommend_product_message">Zpráva</label>
+                        <textarea id="recommend_product_message" name="recommend_product[message]" required="required" placeholder="" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group has-error">
+                        <input type="checkbox" id="contact_personalData" name="contact[personalData]" required="required" class=" checkbox-toggle" value="1">
+                        <span class="checkbox input-group has-error"><label for="contact_personalData" class=" checkbox__label required">Souhlasím se <a href="/dokumenty/ochrana-osobnich-udaju" target="_blank">zpracováním osobních údajů</a></label></span>
+
+                        <ul class="form-errors">
+                            <li class="form-error-contact-personalData">Musíte souhlasit se zpracováním osobních údajů.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="button recommend-product__button recommend-product__button-cancel" data-dismiss="modal">Zavřít</a>
+                    <button type="submit" id="recommend_product_send" name="recommend_product[send]" class="recommend-product__button recommend-product__button-confirm btn">Doporučit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="modal-backdrop fade in"></div>
+{% endblock %}

@@ -1,0 +1,25 @@
+.paginated-list {
+    &-top-pagination {
+        .btn {
+            margin-bottom: 25px;
+        }
+
+        .paginator-info, .paginator-next {
+            display: none;
+        }
+    }
+
+    &-bottom-pagination {
+        .paginator-info {
+            margin-top: 15px;
+        }
+
+        .paginator-previous {
+            display: none;
+        }
+    }
+
+    .sibling-paginator {
+        text-align: center;
+    }
+}

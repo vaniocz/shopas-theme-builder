@@ -1,0 +1,77 @@
+@mixin open-sans-src($name) {
+    src:
+        url("open_sans/#{$name}.woff2") format('woff2'),
+        url("open_sans/#{$name}.woff") format('woff'),
+        url("open_sans/#{$name}.ttf") format('truetype'),
+        url("open_sans/#{$name}.svg#open-sans") format('svg');
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 300;
+    font-style: normal;
+    @include open-sans-src("open_sans_light");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 300;
+    font-style: italic;
+    @include open-sans-src("open_sans_light_italic");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-style: normal;
+    @include open-sans-src("open_sans_regular");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-style: italic;
+    @include open-sans-src("open_sans_italic");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-style: normal;
+    @include open-sans-src("open_sans_semibold");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-style: italic;
+    @include open-sans-src("open_sans_semibold_italic");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: normal;
+    @include open-sans-src("open_sans_bold");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: italic;
+    @include open-sans-src("open_sans_bold_italic");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 800;
+    font-style: normal;
+    @include open-sans-src("open_sans_extrabold");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 800;
+    font-style: italic;
+    @include open-sans-src("open_sans_extrabold_italic");
+}

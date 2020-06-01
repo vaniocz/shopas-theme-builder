@@ -1,0 +1,14 @@
+.send-question {
+    .control-label[for="contact_email_value"] {
+        text-transform: lowercase;
+
+        &::before {
+            content: "Váš ";
+            text-transform: none;
+        }
+    }
+
+    &__button-confirm {
+        @include button-primary;
+    }
+}

@@ -1,0 +1,91 @@
+@mixin roboto-src($name) {
+    src:
+        url("roboto/#{$name}.woff2") format('woff2'),
+        url("roboto/#{$name}.woff") format('woff'),
+        url("roboto/#{$name}.ttf") format('truetype'),
+        url("roboto/#{$name}.svg#roboto") format('svg');
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 100;
+    font-style: normal;
+    @include roboto-src("roboto_thin");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 100;
+    font-style: italic;
+    @include roboto-src("roboto_thin_italic");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 300;
+    font-style: normal;
+    @include roboto-src("roboto_light");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 300;
+    font-style: italic;
+    @include roboto-src("roboto_light_italic");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: normal;
+    font-style: normal;
+    @include roboto-src("roboto_regular");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: normal;
+    font-style: italic;
+    @include roboto-src("roboto_italic");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-style: normal;
+    @include roboto-src("roboto_medium");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-style: italic;
+    @include roboto-src("roboto_medium_italic");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: normal;
+    @include roboto-src("roboto_bold");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    @include roboto-src("roboto_bold_italic");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 900;
+    font-style: normal;
+    @include roboto-src("roboto_black");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 900;
+    font-style: italic;
+    @include roboto-src("roboto_black_italic");
+}

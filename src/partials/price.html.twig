@@ -1,0 +1,76 @@
+{% if currencySymbol is not defined %}
+    {% set currencySymbol = 'Kč' %}
+{% endif %}
+
+{% if itemLabel is not defined %}
+    {% set itemLabel = 'Cena' %}
+{% endif %}
+
+<{{ tag ?? 'div' }} class="
+    {{ class }}
+    {% set class = class|split(' ')[0] %}
+
+    {% if pricesSettings.isVatPayer and price != 0 %}
+        {{ class }}
+        {%- if pricesSettings.shouldShowPriceIncludingVat %}-including{% endif %}
+        {%- if pricesSettings.shouldShowPriceExcludingVat %}-excluding{% endif -%}
+        -vat
+    {% endif %}
+
+    {% if price == 0 %}{{ class }}--null{% endif %}
+">
+    {% if titleLabel is not same as(false) %}
+        <span class="{{ class }}-title">
+            <span class="{{ class }}-title-content">
+                {{ titleLabel ?? itemLabel -}}
+
+                {% if pricesSettings.isVatPayer and price != 0 -%}
+                    {% if pricesSettings.shouldShowPriceIncludingVat and not pricesSettings.shouldShowPriceExcludingVat %} <span class="{{ class }}-title-vat-label">s DPH</span>{% endif -%}
+                    {% if pricesSettings.shouldShowPriceExcludingVat and not pricesSettings.shouldShowPriceIncludingVat %} <span class="{{ class }}-title-vat-label">bez DPH</span>{% endif -%}
+                {% endif -%}
+            </span>{{ '' -}}
+        </span>
+    {% endif %}
+
+    {% if descriptionLabel is defined %}
+        <span class="{{ class }}-description"><span class="{{ class }}-description-content">{{ descriptionLabel }}</span></span>
+    {% endif %}
+
+    <span class="{{ class }}-items">
+        {% if pricesSettings.isVatPayer and price != 0 %}
+            {% set priceExcludingVat %}
+                {% if pricesSettings.shouldShowPriceExcludingVat %}
+                    <strong class="{{ class }}-item {{ class }}-item-excluding-vat">
+                        <span class="{{ class }}-item-label" aria-hidden="true">{{ itemExcludingVatLabel ?? itemLabel ~ ' bez DPH' }}</span>
+                        {% if pricesSettings.isFrom %}<span class="{{ class }}-item-from">od</span>{% endif %}
+                        <span class="{{ class }}-item-value" data-property-value="{{ price }}" data-currency="{{ currencySymbol }}">{{ price|html_number_format(currencySymbol) }}</span>
+                        <span class="{{ class }}-item-vat-label">bez DPH</span>
+                    </strong>
+                {% endif %}
+            {% endset %}
+
+            {% if not pricesSettings.shouldInputPricesIncludingVat %}
+                {{ priceExcludingVat }}
+            {% endif %}
+
+            {% if pricesSettings.shouldShowPriceIncludingVat %}
+                <strong class="{{ class }}-item {{ class }}-item-including-vat">
+                    <span class="{{ class }}-item-label" aria-hidden="true">{{ itemIncludingVatLabel ?? itemLabel ~ ' s DPH' }}</span>
+                    {% if pricesSettings.isFrom %}<span class="{{ class }}-item-from">od</span>{% endif %}
+                    <span class="{{ class }}-item-value" data-property-value="{{ price }}" data-currency="{{ currencySymbol }}">{{ price|html_number_format(currencySymbol) }}</span>
+                    <span class="{{ class }}-item-vat-label">s DPH</span>
+                </strong>
+            {% endif %}
+
+            {% if pricesSettings.shouldInputPricesIncludingVat %}
+                {{ priceExcludingVat }}
+            {% endif %}
+        {% else %}
+            <strong class="{{ class }}-item">
+                <span class="{{ class }}-item-label" aria-hidden="true">{{ itemLabel }}</span>
+                {% if pricesSettings.isFrom %}<span class="{{ class }}-item-from">od</span>{% endif %}
+                <span class="{{ class }}-item-value" data-property-value="{{ price }}" data-currency="{{ currencySymbol }}">{{ price|html_number_format(currencySymbol) }}</span>
+            </strong>
+        {% endif %}
+    </span>
+</{{ tag ?? 'div' }}>

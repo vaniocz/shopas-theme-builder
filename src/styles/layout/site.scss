@@ -1,0 +1,125 @@
+.site {
+    overflow-x: hidden;
+
+    &__content {
+        @include clearfix;
+        flex-grow: 1;
+        margin: 0 auto;
+        width: 100%; max-width: $container-max-width;
+    }
+
+    &__filter {
+        margin: 0 20px 20px;
+    }
+
+    &__filter-categories {
+        border: 1px solid darken(white, 10%);
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__filter-categories-title {
+        @include h4;
+        cursor: default;
+        line-height: 20px;
+        margin: 0;
+        padding: 15px 45px 15px 15px;
+        position: relative;
+
+        &::after {
+            color: $primary;
+            font-icon: url("../../images/icon_angle_down.svg");
+            font-size: 16px;
+            position: absolute; top: 15px; right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(-180deg);
+        }
+    }
+
+    .products + * {
+        clear: both;
+    }
+
+    #mobileMenuToggle:checked ~ & {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__filter-categories-title {
+            line-height: 15px;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        &__filter {
+            float: left;
+            margin: 0;
+            padding: 0 20px 20px;
+            width: 28%; min-width: 260px;
+        }
+
+        &__filter-categories {
+            border: none;
+        }
+
+        &__filter-categories-title {
+            margin-bottom: 15px;
+            padding: 0;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &__filter ~ &__headline,
+        &__filter ~ .products,
+        &__filter ~ .wizzard {
+            float: right;
+            width: 72%; max-width: calc(100% - 260px);
+        }
+
+        &__filter ~ &__headline {
+            text-align: center;
+        }
+
+        &__filter ~ .products ~ &__headline,
+        &__filter ~ .products ~ .products {
+            clear: right;
+            float: none;
+            width: auto; max-width: none;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        &__filter {
+            padding: 0 30px 30px;
+        }
+    }
+}
+
+#page__shop-homepage {
+    .site__breadcrumbs {
+        display: none;
+
+        + :not(.alerts):not(.site__showcase),
+        + .alerts + :not(.site__showcase),
+        + .alerts + .alerts + :not(.site__showcase) {
+            margin-top: 20px;
+
+            @media (max-width: $breakpoint-small) {
+                margin-top: 15px;
+            }
+
+            @media (min-width: $breakpoint-large) {
+                margin-top: 30px;
+            }
+        }
+    }
+}

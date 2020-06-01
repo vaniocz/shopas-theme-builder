@@ -1,0 +1,78 @@
+.icon-menu {
+    margin-bottom: 40px;
+
+    &__container {
+        @include container;
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__item {
+        background-color: darken(white, 5%);
+        display: flex;
+        flex: 1 0 0;
+        margin: 0 1px 1px 0;
+        padding: 20px;
+        min-width: 200px;
+    }
+
+    &__item-link {
+        display: flex;
+        margin: -20px;
+        padding: 20px;
+        width: calc(100% + 40px);
+    }
+
+    &__icon {
+        align-self: center;
+        color: $primary;
+        font-size: 30px;
+        margin-right: 20px;
+        text-align: center;
+        width: 35px;
+    }
+
+    &__content {
+        color: darken(white, 65%);
+    }
+
+    &__item-title {
+        @include h5;
+        margin-bottom: 0;
+        text-transform: uppercase;
+
+        a & {
+            text-decoration: underline;
+        }
+
+        a:hover & {
+            text-decoration: none;
+        }
+    }
+
+    &__item-text {
+        font-size: 12px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 30px;
+
+        &__item {
+            padding: 15px;
+        }
+
+        &__icon {
+            font-size: 24px;
+            width: 30px;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 60px;
+    }
+}

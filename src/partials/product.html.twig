@@ -1,0 +1,70 @@
+{% if class is not defined %}
+    {% set class = 'products__item' %}
+{% endif %}
+
+<a class="{{ class }}-link" href="./detail.html">
+    <h3 class="{{ class }}-title">{{ product.name }}</h3>
+
+    {% if product.subtitle %}
+        <h4 class="products__item-subtitle">{{ product.subtitle }}</h4>
+    {% endif %}
+
+    {% if product.content %}
+        <div class="{{ class }}-content">{{ product.content }}</div>
+    {% endif %}
+
+    {% if product.stockQuantity %}
+        <p class="{{ class }}-tag {{ class }}-tag--secondary {{ class }}-tag--in-stock">
+            <span class="{{ class }}-tag-content">
+                <i class="icon {{ class }}-tag-icon" aria-hidden="true"></i>
+                skladem
+            </span>
+        </p>
+    {% endif %}
+
+    {% if product.primaryTag %}
+        <p class="{{ class }}-tag {{ class }}-tag--primary">
+            <span class="{{ class }}-tag-content">
+                <i class="icon {{ class }}-tag-icon" aria-hidden="true"></i>
+                {{ product.primaryTag }}
+            </span>
+        </p>
+    {% endif %}
+
+    {% if product.secondaryTag %}
+        <p class="{{ class }}-tag {{ class }}-tag--secondary">
+            <span class="{{ class }}-tag-content">
+                <i class="icon {{ class }}-tag-icon" aria-hidden="true"></i>
+                {{ product.secondaryTag }}
+            </span>
+        </p>
+    {% endif %}
+
+    <p class="{{ class }}-image-container">
+        {% if product.image %}
+            <img class="{{ class }}-image {{ class }}-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" {{ 's' }}rc="images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+        {% else %}
+            <span class="{{ class }}-image-placeholder"></span>
+        {% endif %}
+    </p>
+
+    {% set pricesSettings = product.pricesSettings %}
+
+    {% if pricesSettings and not isPriceFrom %}
+        {% set pricesSettings = pricesSettings|merge({isFrom: false}) %}
+    {% endif %}
+
+    <div class="{{ class }}-prices">
+        {% if product.priceBeforeDiscount %}
+            {% include './price.html.twig' with {
+                price: product.priceBeforeDiscount,
+                class: class ~ '-price-before-discount',
+                titleLabel: 'Cena před slevou'
+            } %}
+        {% endif %}
+
+        {% include './price.html.twig' with {price: product.price, class: class ~ '-price'} %}
+    </div>
+</a>
+
+<a class="{{ class }}-add-to-cart-button button {% if isLoading %}is-loading{% endif %}" href="./detail.html"><span class="{{ class }}-add-to-cart-button-content">Vložit do košíku</span></a>

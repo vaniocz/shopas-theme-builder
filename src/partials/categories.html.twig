@@ -1,0 +1,53 @@
+{% macro categories_tree(categories, isFirstCategoryActive = false, class, id, useList, depth, level = 1) %}
+    {% set classPrefix = '__' in class ? class ~ '-' : class ~ '__'%}
+
+    <div id="{{ id }}_items" class="{{ class }} {{ class }}--level-{{ level }}">
+        <{{ useList ? 'ul' : 'div' }} class="{{ classPrefix }}items">
+            <{{ useList ? 'li' : 'div' }} id="{{ id }}_all" class="{{ classPrefix }}item {{ classPrefix }}item--all">
+                <a class="{{ classPrefix }}link" href="./category.html">
+                    <span class="{{ classPrefix }}image-container"></span>
+                    <span class="{{ classPrefix }}name">Všechny kategorie</span>
+                </a>
+            <{{ useList ? '/li' : '/div' }}>
+
+            {% for category in categories %}
+                {% set slug = slug(category.name) %}
+
+                <{{ useList ? 'li' : 'div' }} id="{{ id }}_{{ slug }}" class="
+                    {{ classPrefix }}item
+                    {% if isFirstCategoryActive and loop.first %}is-active{% endif %}
+                    {% if category.children and depth > level %}{{ classPrefix }}item--is-parent{% endif %}
+                ">
+                    {% if category.children and depth > level %}
+                        <span class="{{ classPrefix }}toggle" data-component-collapse="#{{ id }}_{{ slug }}_items"></span>
+                    {% endif %}
+
+                    <a class="{{ classPrefix }}link" href="./category.html">
+                        <span class="{{ classPrefix }}image-container"></span>
+                        <span class="{{ classPrefix }}name">{{ category.name }}</span>
+                    </a>
+
+                    {% if category.children and depth > level %}
+                        {{ _self.categories_tree(category.children, isFirstCategoryActive and loop.first, class, id ~ '_' ~ slug, useList, depth, level + 1) }}
+                    {% endif %}
+                <{{ useList ? '/li' : '/div' }}>
+            {% endfor %}
+
+            {% if not useList and level == 1 %}
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+                <span class="{{ classPrefix }}item-placeholder"></span>
+            {% endif %}
+        <{{ useList ? '/ul' : '/div' }}>
+    </div>
+{% endmacro %}
+
+{% from _self import categories_tree %}
+{{ categories_tree(categories, isFirstCategoryActive, class ?? 'categories', id ?? 'categories', useList ?? true, depth ?? 999) }}

@@ -1,0 +1,52 @@
+<div class="contact-us">
+    <div class="contact-us__container">
+        <div class="contact-us__info">
+            <h1 class="contact-us__info-title">Kontaktujte nás</h1>
+
+            <p class="contact-us__address">
+                Můj E-shop<br>
+                Moje ulice
+                16/1<br>
+                Moje Město<br>
+                123 45
+            </p>
+
+            <div class="contact-us__contact">
+                <div class="contact-us__contact-phone">
+                    <h3 class="contact-us__contact-label">Telefon</h3>
+
+                    <a class="contact-us__contact-link" href="tel:{{ phone }}">
+                        <i class="icon icon-phone contact-us__contact-icon"></i>
+                        {{ label }}
+                    </a>
+                </div>
+
+                <div class="contact-us__contact-email">
+                    <h3 class="contact-us__contact-label">E-mail</h3>
+
+                    <a class="contact-us__contact-link" href="mailto:{{ email }}">
+                        <i class="icon icon-email contact-us__contact-icon"></i>
+                        {{ email }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-us__content">
+            <div><b>IČO</b>: {{ registrationNumber }}</div>
+
+            <div>
+                {% if vatId %}
+                    <b>DIČ</b>: {{ vatId }}
+                {% else %}
+                    nejsme plátci DPH
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="contact-us__form">
+            <h2 class="contact-us__form-title">Napište nám</h2>
+            {{ form }}
+        </div>
+    </div>
+</div>

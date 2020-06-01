@@ -1,0 +1,427 @@
+@mixin select {
+    appearance: none;
+    background: url("../images/icon_angle_down.svg") calc(100% - 10px) no-repeat;
+    background-size: 16px;
+    border: 1px solid darken(white, 30%);
+    color: darken(white, 85%);
+    display: inline-block;
+    height: 46px;
+    padding: 0 36px 0 13px;
+    vertical-align: middle;
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    &:disabled {
+        border-color: darken(white, 10%);
+        color: darken(white, 30%);
+    }
+
+    &[readonly] {
+        background-image: none;
+        border-color: darken(white, 10%);
+        color: darken(white, 50%);
+        pointer-events: none;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+@mixin buttons-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    .button {
+        margin-right: -1px;
+        margin-bottom: -1px;
+    }
+}
+
+@mixin button {
+    background-color: white;
+    border: 1px solid darken(white, 10%);
+    border-radius: 3px;
+    color: darken(white, 85%);
+    display: inline-block;
+    font-size: 1rem; font-weight: 500;
+    line-height: 40px;
+    min-width: 42px;
+    padding: 0 23px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &:not(:disabled):hover {
+        color: darken(white, 40%);
+    }
+
+    &.is-active, .button-toggle:checked + & {
+        @include button-primary;
+        position: relative;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        line-height: 35px;
+        min-width: 37px;
+        padding: 0 20px;
+    }
+}
+
+@mixin button-small {
+    line-height: 30px;
+    padding: 0 10px;
+    min-width: 32px;
+}
+
+@mixin button-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: white;
+
+    &:not(:disabled):hover {
+        background-color: darken($primary, 20%);
+        border-color: darken($primary, 20%);
+        color: white;
+    }
+}
+
+@mixin button-secondary {
+    background-color: darken(white, 85%);
+    border-color: darken(white, 85%);
+    color: white;
+    font-size: 12px;
+
+    &:not(:disabled):hover {
+        background-color: darken(white, 65%);
+        border-color: darken(white, 65%);
+        color: white;
+    }
+}
+
+@mixin button-danger {
+    border-color: $danger;
+    color: $danger;
+
+    &:not(:disabled):hover {
+        border-color: lighten($danger, 10%);
+        color: darken($danger, 20%);
+    }
+}
+
+@mixin form-control {
+    border: 1px solid darken(white, 30%);
+    display: block;
+    font-size: 1rem;
+    height: 46px;
+    padding: 0 15px;
+    width: 100%;
+
+    @media (max-width: $breakpoint-small) {
+        height: 40px;
+    }
+}
+
+.form-control {
+    @include form-control;
+    box-shadow: none;
+    min-width: 0; max-width: 500px;
+
+    &.has-error {
+        border-color: $danger;
+    }
+}
+
+textarea.form-control {
+    height: auto; min-height: 46px;
+    padding: 15px;
+}
+
+.control-label {
+    display: block;
+
+    &.is-disabled {
+        color: darken(white, 30%);
+    }
+}
+
+.button, .btn {
+    @include button;
+
+    &--primary, &-primary {
+        @include button-primary;
+    }
+
+    &--danger, &-danger {
+        @include button-danger;
+    }
+}
+
+.button-toggle {
+    clip: rect(0, 0, 0, 0);
+    position: fixed;
+}
+
+.form-group {
+    margin-bottom: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.input-group {
+    border: 1px solid darken(white, 30%);
+    align-items: stretch;
+    display: flex;
+    max-width: 500px;
+
+    &.has-error {
+        border-color: $danger;
+    }
+
+    .form-control {
+        border: none;
+        flex-grow: 1;
+        height: 44px;
+    }
+}
+
+.input-group-addon {
+    align-items: center;
+    background-color: darken(white, 5%);
+    border-right: 1px solid darken(white, 30%);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-width: 45px;
+
+    @media (max-width: $breakpoint-small) {
+        min-width: 40px;
+    }
+}
+
+.checkbox {
+    border: none;
+    display: block;
+    margin-bottom: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__toggle, &-toggle {
+        clip: rect(0, 0, 0, 0);
+        position: fixed;
+    }
+
+    &__label {
+        @include icon;
+        cursor: pointer;
+
+        &::before {
+            color: darken(white, 30%);
+            content: $font-awesome-5-square;
+            font-family: "Font Awesome 5";
+            font-size: 18px;
+            line-height: 14px;
+            margin-right: 5px;
+            min-height: 0;
+        }
+    }
+
+    &__toggle:disabled + &__label,
+    &-toggle:disabled + & > &__label {
+        cursor: default;
+        opacity: 0.3;
+    }
+
+    &__toggle:checked + &__label::before,
+    &-toggle:checked + & > &__label::before {
+        color: $primary;
+        content: $font-awesome-5-check-square;
+        font-weight: bold;
+    }
+}
+
+.checkbox + .form-errors {
+    margin-top: -15px;
+}
+
+.radio {
+    display: inline-block;
+
+    &__toggle {
+        clip: rect(0, 0, 0, 0);
+        position: fixed;
+    }
+
+    &__label {
+        cursor: pointer;
+        margin-right: 5px;
+        position: relative;
+
+        &::before {
+            content: "";
+            border: 1px solid darken(white, 30%);
+            border-radius: 50%;
+            display: inline-block;
+            width: 16px; height: 16px;
+            margin-right: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        &::after {
+            content: "";
+            background-color: $primary;
+            border-radius: 50%;
+            position: absolute; top: 4px; left: 3px;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            width: 10px; height: 10px;
+        }
+    }
+
+    &__toggle:checked + &__label::after {
+        transform: scale(1);
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &__label::after {
+            top: 2px;
+        }
+    }
+}
+
+.select {
+    @include select;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    select option:disabled {
+        background-color: white;
+    }
+}
+
+.form-errors {
+    color: $danger;
+    list-style-type: none;
+    padding: 0;
+}
+
+.form-buttons {
+    margin-bottom: 15px;
+    padding-top: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.form-footer {
+    padding-top: 15px;
+}
+
+.noUi {
+    &-horizontal {
+        height: auto;
+    }
+
+    &-target {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    &-base {
+        height: 12px;
+    }
+
+    &-connects {
+        background-color: darken(white, 10%);
+        height: 2px;
+        position: relative; top: 5px;
+    }
+
+    &-horizontal &-handle, &-vertical &-handle {
+        background-color: $primary;
+        border: none;
+        border-radius: 100%;
+        box-shadow: none;
+        cursor: pointer;
+        width: 12px; height: 12px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::before, &::after {
+            display: none;
+        }
+    }
+
+    &-target[disabled] &-handle {
+        background-color: darken(white, 20%);
+        cursor: inherit;
+    }
+
+    &-horizontal &-handle {
+        top: 0; right: -6px !important;
+    }
+
+    &-connect {
+        background-color: $primary;
+    }
+}
+
+.is-loading {
+    opacity: 0.5 !important;
+    position: relative;
+
+    &::before {
+        content: "";
+        opacity: 0;
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+        z-index: 999;
+    }
+
+    &.button, &.btn, .button, .btn {
+        padding: 0 32px 0 14px;
+
+        &::after {
+            @include icon-spin;
+            content: $font-awesome-5-spinner;
+            display: inline-block;
+            font-family: "Font Awesome 5";
+            font-weight: bold;
+            line-height: 1;
+            margin: auto 0 auto 7px;
+            position: absolute; top: 0; right: 12px; bottom: 0;
+            width: 1rem; height: 1em;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        &.button, &.btn, .button, .btn {
+            padding: 0 27px 0 13px;
+
+            &::after {
+                right: 10px;
+            }
+        }
+    }
+}
+
+a.is-loading, button.is-loading {
+    pointer-events: none;
+}

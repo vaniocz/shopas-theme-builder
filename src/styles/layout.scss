@@ -1,0 +1,33 @@
+@import "layout/breadcrumbs";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/site";
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.checkbox-toggle {
+    clip: rect(0, 0, 0, 0);
+    position: fixed;
+}
+
+.form-toggle {
+    &__form {
+        display: none;
+    }
+
+    &__toggle:checked ~ &__form {
+        display: block;
+    }
+}

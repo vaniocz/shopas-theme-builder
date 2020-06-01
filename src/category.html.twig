@@ -1,0 +1,475 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, fixtures().categories|first.name] %}
+
+{% block page %}shop-product-category{% endblock %}
+
+{% block content %}
+    <div class="alerts product-alerts">
+        <div class="alerts__container">
+            <div class="alerts__alert-container product-alerts__alert-container">
+                <div class="alert alert--success alert--dismissable alerts__alert product-alerts__alert">
+                    <button type="button" class="alert__close" aria-label="Close"></button>
+                    <p>Produkt byl přidán do košíku.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site__filter">
+        <div id="categories" class="site__filter-categories">
+            <h3 class="site__filter-categories-title" data-component-collapse="#categories_items"><span class="site__filter-categories-title-content">Kategorie</span></h3>
+            {% include './partials/categories.html.twig' with {categories: fixtures().categories, isFirstCategoryActive: true} %}
+        </div>
+
+        <div id="properties" class="product-filter">
+            <input id="toggle-all-properties" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+            <h3 class="product-filter__title" data-component-collapse="#properties"><span class="product-filter__title-content">Filtrovat</span></h3>
+
+            <div class="product-filter__property" data-property-name="variant_stock" data-property-type="stock" data-filter-type="default">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Skladová dostupnost</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-variant_stock"></span>
+                    </h4>
+
+                    <div id="filter-variant_stock" class="product-filter__property-content">
+                        <div data-property-id="1586b7eb-be6d-42e5-86b3-a3abce6fce44" data-property-name="variant_stock" data-property-type="stock" data-filter-type="default">
+                            <div id="filter_properties_1586b7eb-be6d-42e5-86b3-a3abce6fce44_value" class="stock-filter">
+                                <div class="stock-filter__value">
+                                    <input type="checkbox" id="filter_properties_1586b7eb-be6d-42e5-86b3-a3abce6fce44_value_value" name="filter[properties][1586b7eb-be6d-42e5-86b3-a3abce6fce44][value][value]" required="required" class="checkbox-toggle" value="1">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_1586b7eb-be6d-42e5-86b3-a3abce6fce44_value_value" class="checkbox__label"><a class="checkbox__label-content" href="#">Pouze skladem</a></label>
+                                        <span class="stock-filter__value-count">(1)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-name="price" data-property-type="expression" data-filter-type="slider">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Cena</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-price"></span>
+                    </h4>
+
+                    <div id="filter-price" class="product-filter__property-content">
+                        <div data-property-name="price" data-property-type="expression" data-filter-type="slider">
+                            <div id="filter_properties_price_value" class="expression-filter expression-filter--slider">
+                                <input type="checkbox" id="filter_properties_price_value_toggle" name="filter[properties][price][value][toggle]" required="required" class="checkbox-toggle expression-filter__toggle">
+                                <span class="checkbox input-group"><label class="checkbox__label required" for="filter_properties_price_value_toggle"></label></span>
+
+                                <div class="expression-filter__value">
+                                    <div id="filter_properties_price_value_value" class="range-slider" data-component-range-slider='{"start": [0, 99999], "range": {"min": 0, "max": 99999}, "step": 1, "connect": true}'>
+                                        <div class="form-group range-slider__group range-slider__group--minimum">
+                                            <label class="range-slider__label range-slider__label--minimum required control-label" for="filter_price_minimum">minimum</label>
+                                            <input type="number" id="filter_price_minimum" name="filter[price][minimum]" required="required" placeholder="" class="range-slider__value range-slider__value--minimum form-control">
+                                        </div>
+
+                                        <div class="form-group range-slider__group range-slider__group--maximum" data-unit="Kč">
+                                            <label class=" range-slider__label range-slider__label--maximum required control-label" for="filter_price_maximum">maximum</label>
+                                            <input type="number" id="filter_price_maximum" name="filter[price][maximum]" required="required" placeholder="" class="range-slider__value range-slider__value--maximum form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-name="is_stock_limited" data-property-type="boolean" data-filter-type="default">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Je nabídka tohoto produktu omezená či neomezená?</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-is_stock_limited"></span>
+                    </h4>
+
+                    <div id="filter-is_stock_limited" class="product-filter__property-content">
+                        <div data-property-id="26d62ffb-9ebe-414c-a271-94803ba01756" data-property-name="is_stock_limited" data-property-type="boolean" data-filter-type="default">
+
+                            <div id="filter_properties_26d62ffb-9ebe-414c-a271-94803ba01756_value" class="boolean-filter">
+                                <div class="boolean-filter__value">
+                                    <input type="checkbox" id="filter_properties_26d62ffb-9ebe-414c-a271-94803ba01756_value_value_0" name="filter[properties][26d62ffb-9ebe-414c-a271-94803ba01756][value][value][]" class="checkbox-toggle" value="1">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_26d62ffb-9ebe-414c-a271-94803ba01756_value_value_0" class="checkbox__label"><a class="checkbox__label-content" href="#">Ano</a></label>
+                                        <span class="boolean-filter__value-count">(7)</span>
+                                    </span>
+                                </div>
+
+                                <div class="boolean-filter__value">
+                                    <input type="checkbox" id="filter_properties_26d62ffb-9ebe-414c-a271-94803ba01756_value_value_1" name="filter[properties][26d62ffb-9ebe-414c-a271-94803ba01756][value][value][]" class="checkbox-toggle" value="2">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_26d62ffb-9ebe-414c-a271-94803ba01756_value_value_1" class="checkbox__label"><a class="checkbox__label-content" href="#">Ne</a></label>
+                                        <span class="boolean-filter__value-count">(5)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-id="b81929c6-3444-4377-9ef5-c9216b23273e" data-property-name="stroke" data-property-type="description" data-filter-type="default">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Barva</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-stroke"></span>
+                    </h4>
+
+                    <div id="filter-stroke" class="product-filter__property-content">
+                        <div data-property-id="b81929c6-3444-4377-9ef5-c9216b23273e" data-property-name="stroke" data-property-type="description" data-filter-type="default">
+                            <div id="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value" class="description-filter">
+                                <div class="description-filter__value">
+                                    <input type="checkbox" id="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_0" name="filter[properties][b81929c6-3444-4377-9ef5-c9216b23273e][value][value][]" class="checkbox-toggle" value="0">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_0" class="checkbox__label"><a class="checkbox__label-content" href="#">modrá</a></label>
+                                        <span class="description-filter__value-count">(1)</span>
+                                    </span>
+                                </div>
+
+                                <div class="description-filter__value">
+                                    <input type="checkbox" id="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_1" name="filter[properties][b81929c6-3444-4377-9ef5-c9216b23273e][value][value][]" class="checkbox-toggle" value="1">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_1" class="checkbox__label"><a class="checkbox__label-content" href="#">zelená</a></label>
+                                        <span class="description-filter__value-count">(2)</span>
+                                    </span>
+                                </div>
+
+                                <div class="description-filter__value">
+                                    <input type="checkbox" id="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_2" name="filter[properties][b81929c6-3444-4377-9ef5-c9216b23273e][value][value][]" class="checkbox-toggle" value="2">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_2" class="checkbox__label"><a class="checkbox__label-content" href="#">červená</a></label>
+                                        <span class="description-filter__value-count">(2)</span>
+                                    </span>
+                                </div>
+
+                                <div class="description-filter__value">
+                                    <input type="checkbox" id="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_3" name="filter[properties][b81929c6-3444-4377-9ef5-c9216b23273e][value][value][]" class="checkbox-toggle" value="3">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_b81929c6-3444-4377-9ef5-c9216b23273e_value_value_3" class="checkbox__label"><a class="checkbox__label-content" href="#">černá</a></label>
+                                        <span class="description-filter__value-count">(27)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-name="price" data-property-type="expression" data-filter-type="range">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Cena</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-price2"></span>
+                    </h4>
+
+                    <div id="filter-price2" class="product-filter__property-content">
+                        <div data-property-id="0cea5b57-3ebe-4016-afec-2486cb35ed72" data-property-name="price" data-property-type="expression" data-filter-type="range">
+                            <div id="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value" class="expression-filter expression-filter--range">
+                                <input type="checkbox" id="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_toggle" name="filter[properties][0cea5b57-3ebe-4016-afec-2486cb35ed72][value][toggle]" required="required" class="checkbox-toggle expression-filter__toggle">
+                                <span class="checkbox input-group"><label class="checkbox__label required" for="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_toggle"></label></span>
+
+                                <div class="expression-filter__value">
+                                    <div id="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_value" class="range">
+                                        <div class="form-group range__group range__group--minimum">
+                                            <label class="range__label range__label--minimum required control-label" for="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_value_minimum">minimum</label>
+                                            <input type="text" id="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_value_minimum" name="filter[properties][0cea5b57-3ebe-4016-afec-2486cb35ed72][value][value][minimum]" required="required" class="range__value range__value--minimum form-control" value="0">
+                                        </div>
+
+                                        <div class="form-group range__group range__group--maximum" data-unit="Kč">
+                                            <label class="range__label range__label--maximum required control-label" for="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_value_maximum">maximum</label>
+                                            <input type="text" id="filter_properties_0cea5b57-3ebe-4016-afec-2486cb35ed72_value_value_maximum" name="filter[properties][0cea5b57-3ebe-4016-afec-2486cb35ed72][value][value][maximum]" required="required" class="range__value range__value--maximum form-control" value="99999">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-id="e3845292-56e7-43e6-8062-211a4084bfbe" data-property-name="price" data-property-type="expression" data-filter-type="default">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Cena</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-price3"></span>
+                    </h4>
+
+                    <div id="filter-price3" class="product-filter__property-content">
+                        <div data-property-id="e3845292-56e7-43e6-8062-211a4084bfbe" data-property-name="price" data-property-type="expression" data-filter-type="default">
+                            <div id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value" class="expression-filter expression-filter--default">
+                                <div class="expression-filter__value">
+                                    <input type="checkbox" id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_0" name="filter[properties][e3845292-56e7-43e6-8062-211a4084bfbe][value][value][]" class="checkbox-toggle" value="<7240">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_0" class="checkbox__label">
+                                            <a class="checkbox__label-content" href="#">
+                                                &lt; <span class="number-format">7<span class="number-format__thousands-separator"></span>240<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit">Kč</span></span>
+                                            </a>
+                                        </label>
+
+                                        <span class="expression-filter__value-count">(1)</span>
+                                    </span>
+                                </div>
+
+                                <div class="expression-filter__value">
+                                    <input type="checkbox" id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_1" name="filter[properties][e3845292-56e7-43e6-8062-211a4084bfbe][value][value][]" class="checkbox-toggle" value="7240-10990">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_1" class="checkbox__label">
+                                            <a class="checkbox__label-content" href="#">
+                                                <span class="number-format">7<span class="number-format__thousands-separator"></span>240<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span></span>&nbsp;–&nbsp;<span class="number-format">10<span class="number-format__thousands-separator"></span>990<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit">Kč</span></span>
+                                            </a>
+                                        </label>
+
+                                        <span class="expression-filter__value-count">(2)</span>
+                                    </span>
+                                </div>
+
+                                <div class="expression-filter__value">
+                                    <input type="checkbox" id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_2" name="filter[properties][e3845292-56e7-43e6-8062-211a4084bfbe][value][value][]" class="checkbox-toggle" value="10990-20900">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_2" class="checkbox__label">
+                                            <a class="checkbox__label-content" href="#">
+                                                <span class="number-format">10<span class="number-format__thousands-separator"></span>990<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span></span>&nbsp;–&nbsp;<span class="number-format">20<span class="number-format__thousands-separator"></span>900<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit">Kč</span></span>
+                                            </a>
+                                        </label>
+
+                                        <span class="expression-filter__value-count">(1)</span>
+                                    </span>
+                                </div>
+
+                                <div class="expression-filter__value expression-filter__value--disabled">
+                                    <input type="checkbox" id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_3" name="filter[properties][e3845292-56e7-43e6-8062-211a4084bfbe][value][value][]" class="checkbox-toggle" disabled="disabled" value="20900-31900">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_3" class="checkbox__label">
+                                            <a class="checkbox__label-content" href="#">
+                                                <span class="number-format">20<span class="number-format__thousands-separator"></span>900<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span></span>&nbsp;–&nbsp;<span class="number-format">31<span class="number-format__thousands-separator"></span>900<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit">Kč</span></span>
+                                            </a>
+                                        </label>
+
+                                        <span class="expression-filter__value-count">(0)</span>
+                                    </span>
+                                </div>
+
+                                <div class="expression-filter__value expression-filter__value--disabled">
+                                    <input type="checkbox" id="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_4" name="filter[properties][e3845292-56e7-43e6-8062-211a4084bfbe][value][value][]" class="checkbox-toggle" disabled="disabled" value=">49900">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_e3845292-56e7-43e6-8062-211a4084bfbe_value_value_4" class="checkbox__label">
+                                            <a class="checkbox__label-content" href="#">
+                                                > <span class="number-format">31<span class="number-format__thousands-separator"></span>900<span class="number-format__decimals" data-decimals-length="0"><span class="number-format__decimals-separator"></span></span><span class="number-format__unit">Kč</span></span>
+                                            </a>
+                                        </label>
+
+                                        <span class="expression-filter__value-count">(0)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__property" data-property-name="condition" data-property-type="enum" data-filter-type="default">
+                <div class="product-filter__property-container">
+                    <h4 class="product-filter__property-title">
+                        <span class="product-filter__property-title-content">Parametr typu Enum</span>
+                        <span class="product-filter__property-toggle" data-component-collapse="#filter-condition"></span>
+                    </h4>
+
+                    <div id="filter-condition" class="product-filter__property-content">
+                        <div data-property-id="cbbf3f2a-517e-467b-bdc5-740015e3ea9e" data-property-name="condition" data-property-type="enum" data-filter-type="default">
+
+                            <div id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value" class="choice-filter">
+                                <div class="choice-filter__value">
+                                    <input type="checkbox" id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_0" name="filter[properties][cbbf3f2a-517e-467b-bdc5-740015e3ea9e][value][value][]" class="checkbox-toggle" value="new" checked>
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_0" class="checkbox__label"><a class="checkbox__label-content" href="#">hodnota 1</a></label>
+                                        <span class="choice-filter__value-count">(1)</span>
+                                    </span>
+                                </div>
+
+                                <div class="choice-filter__value">
+                                    <input type="checkbox" id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_1" name="filter[properties][cbbf3f2a-517e-467b-bdc5-740015e3ea9e][value][value][]" class="checkbox-toggle" value="like_new">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_1" class="checkbox__label"><a class="checkbox__label-content" href="#">hodnota 2</a></label>
+                                        <span class="choice-filter__value-count">(2)</span>
+                                    </span>
+                                </div>
+
+                                <div class="choice-filter__value">
+                                    <input type="checkbox" id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_2" name="filter[properties][cbbf3f2a-517e-467b-bdc5-740015e3ea9e][value][value][]" class="checkbox-toggle" value="used">
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_2" class="checkbox__label"><a class="checkbox__label-content" href="#">hodnota 3</a></label>
+                                        <span class="choice-filter__value-count">(3)</span>
+                                    </span>
+                                </div>
+
+                                <div class="choice-filter__value choice-filter__value--disabled">
+                                    <input type="checkbox" id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_3" name="filter[properties][cbbf3f2a-517e-467b-bdc5-740015e3ea9e][value][value][]" class="checkbox-toggle" value="damaged" disabled>
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_3" class="checkbox__label"><a class="checkbox__label-content" href="#">hodnota 4</a></label>
+                                        <span class="choice-filter__value-count">(0)</span>
+                                    </span>
+                                </div>
+
+                                <div class="choice-filter__value choice-filter__value--disabled">
+                                    <input type="checkbox" id="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_4" name="filter[properties][cbbf3f2a-517e-467b-bdc5-740015e3ea9e][value][value][]" class="checkbox-toggle" value="broken" disabled>
+
+                                    <span class="checkbox input-group">
+                                        <label for="filter_properties_cbbf3f2a-517e-467b-bdc5-740015e3ea9e_value_value_4" class="checkbox__label"><a class="checkbox__label-content" href="#">hodnota 5</a></label>
+                                        <span class="choice-filter__value-count">(0)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__toggle-all-properties">
+                <label class="product-filter__toggle-all-properties-toggle" for="toggle-all-properties">Zobrazit vše</label>
+            </div>
+
+            <div class="products-filter">
+                <div class="products-filter__items">
+                    <div class="products-filter__item">
+                        <div class="form-group">
+                            <label class="products-filter__label control-label" for="product_filter_orderBy">Řadit</label>
+
+                            <select id="product_filter_orderBy" name="radit" required="required" class="select form-control products-filter__control" autocomplete="off">
+                                <option value="podle-poradi" data-value="position">Podle pořadí</option>
+                                <option value="podle-relevance" data-value="rank" disabled="">Podle relevance</option>
+                                <option value="od-nejnovejsiho" data-value="created_at_desc">Od nejnovějšího</option>
+                                <option value="od-nejlevnejsiho" data-value="price_asc">Od nejlevnějšího</option>
+                                <option value="od-nejdrazsiho" data-value="price_desc">Od nejdražšího</option>
+                                <option value="od-a-do-z" data-value="name_asc">Od A do Z</option>
+                                <option value="od-z-do-a" data-value="name_desc" selected="selected">Od Z do A</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="products-filter__item">
+                        <div class="form-group">
+                            <label class="products-filter__label control-label" for="product_filter_recordsPerPage">Záznamů na stránku</label>
+
+                            <select id="product_filter_recordsPerPage" name="zaznamu-na-stranku" required="required" class="select form-control  products-filter__control">
+                                <option value="12" selected="selected">12</option>
+                                <option value="24">24</option>
+                                <option value="36">36</option>
+                                <option value="48">48</option>
+                                <option value="60">60</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-filter__submit">
+                <button class="button product-filter__submit-button">Filtrovat</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="products site__products is-loading">
+        <div class="products__container">
+            <h1 class="products__title">Moje kategorie</h1>
+
+            <div class="products__description">
+                <p>Popis kategorie. Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <div class="products__content">
+                <div class="products-filter">
+                    <div class="products-filter__items">
+                        <div class="products-filter__item">
+                            <div class="form-group">
+                                <label class="products-filter__label control-label" for="product_filter_orderBy">Řadit</label>
+
+                                <select id="product_filter_orderBy" name="radit" required="required" class="select form-control products-filter__control" autocomplete="off">
+                                    <option value="podle-poradi" data-value="position">Podle pořadí</option>
+                                    <option value="podle-relevance" data-value="rank" disabled="">Podle relevance</option>
+                                    <option value="od-nejnovejsiho" data-value="created_at_desc">Od nejnovějšího</option>
+                                    <option value="od-nejlevnejsiho" data-value="price_asc">Od nejlevnějšího</option>
+                                    <option value="od-nejdrazsiho" data-value="price_desc">Od nejdražšího</option>
+                                    <option value="od-a-do-z" data-value="name_asc">Od A do Z</option>
+                                    <option value="od-z-do-a" data-value="name_desc" selected="selected">Od Z do A</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="products-filter__item">
+                            <div class="form-group">
+                                <label class="products-filter__label control-label" for="product_filter_recordsPerPage">Záznamů na stránku</label>
+
+                                <select id="product_filter_recordsPerPage" name="zaznamu-na-stranku" required="required" class="select form-control  products-filter__control">
+                                    <option value="12" selected="selected">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+                                    <option value="48">48</option>
+                                    <option value="60">60</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products__empty">
+                    <p>Vašim kritériím neodpovídají žádné produkty.</p>
+                </div>
+
+                <div class="products__items">
+                    <div class="paginated-list">
+                        <div class="paginated-list-top-pagination">
+                            <div class="sibling-paginator">
+                                <p class="paginator-info">Zobrazuji <span class="paginator-info-count">0</span> záznamů z 2391.</p>
+                                <a class="btn btn-primary paginator-previous" href="./category.html">Zobrazit předchozích 9</a>
+                                <a class="btn btn-primary paginator-next" href="./category.html">Zobrazit dalších 9</a>
+                            </div>
+                        </div>
+
+                        <div class="paginated-list-list">
+                            {% for product in fixtures().products %}
+                                <div class="products__item paginated-list-record">
+                                    {% include './partials/product.html.twig' with {isLoading: loop.first} %}
+                                </div>
+                            {% endfor %}
+
+                            {% for i in 1..10 %}
+                                <span class="products__item-placeholder"></span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="paginated-list-bottom-pagination">
+                            <div class="sibling-paginator">
+                                <p class="paginator-info">Zobrazuji <span class="paginator-info-count">0</span> záznamů z 2391.</p>
+                                <a class="btn btn-primary paginator-next active is-active" href="./category.html">Zobrazit dalších 9</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products__description">
+                <p>Popis kategorie pod seznamem produktů. Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends './index.html.twig' %}
+
+{% block body_class %}modal-open{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div class="multiple-shopping-carts modal fade" role="dialog" style="display: block">
+        <div class="modal-dialog" style="top: 30%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title multiple-shopping-carts__title">Chcete přidat zboží z předchozí návštěvy?</h3>
+                    <button class="close button" data-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="multiple-shopping-carts__items">
+                        <div class="multiple-shopping-carts__header" aria-hidden="true">
+                            <span class="multiple-shopping-carts__header-item multiple-shopping-carts__header-image"><span class="multiple-shopping-carts__header-item-content multiple-shopping-carts__header-image-content">Fotografie</span></span>
+                            <span class="multiple-shopping-carts__header-item multiple-shopping-carts__header-info"><span class="multiple-shopping-carts__header-item-content multiple-shopping-carts__header-info-content">Produkt</span></span>
+                            <span class="multiple-shopping-carts__header-item multiple-shopping-carts__header-quantity"><span class="multiple-shopping-carts__header-item-content multiple-shopping-carts__header-quantity-content">Počet kusů</span></span>
+                            <span class="multiple-shopping-carts__header-item multiple-shopping-carts__header-stock-availability"><span class="multiple-shopping-carts__header-item-content multiple-shopping-carts__header-stock-availability-content">Dostupnost</span></span>
+                            <span class="multiple-shopping-carts__header-item multiple-shopping-carts__header-price"><span class="multiple-shopping-carts__header-item-content multiple-shopping-carts__header-price-content">Cena <span class="multiple-shopping-carts__header-price-excluding-vat-label">bez DPH</span></span></span>
+                        </div>
+
+                        {% for product in fixtures().products %}
+                            <div class="multiple-shopping-carts__item {% if loop.index % 3 == 0 %}multiple-shopping-carts__item--with-additions{% endif %}" data-item-id="6a43b46c-568e-4a5d-8891-9a01e5f7a0e1">
+                                <div class="multiple-shopping-carts__item-image-container">
+                                    <span class="multiple-shopping-carts__item-title multiple-shopping-carts__item-image-title"><span class="multiple-shopping-carts__item-title-content">Fotografie</span></span>
+
+                                    <a class="multiple-shopping-carts__item-image-link" href="./detail.html">
+                                        {% if product.image %}
+                                            <img class="multiple-shopping-carts__item-image multiple-shopping-carts__item-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                        {% else %}
+                                            <span class="multiple-shopping-carts__item-image-placeholder"></span>
+                                        {% endif %}
+                                    </a>
+                                </div>
+
+                                <div class="multiple-shopping-carts__item-info">
+                                    <span class="multiple-shopping-carts__item-title multiple-shopping-carts__item-info-title"><span class="multiple-shopping-carts__item-title-content">Produkt</span></span>
+                                    <h3 class="multiple-shopping-carts__item-name"><a class="multiple-shopping-carts__item-link" href="./detail.html">{{ product.name }}</a></h3>
+
+                                    {% if loop.index % 2 %}
+                                        <div class="multiple-shopping-carts__item-properties">
+                                            <div class="multiple-shopping-carts__item-property">
+                                                <span class="multiple-shopping-carts__item-property-label">Varianta</span>
+                                                <span class="multiple-shopping-carts__item-property-value"><span class="property-value">malá</span></span>
+                                            </div>
+
+                                            <div class="multiple-shopping-carts__item-property">
+                                                <span class="multiple-shopping-carts__item-property-label">Potisk</span>
+                                                <span class="multiple-shopping-carts__item-property-value"><span class="property-value">Bez potisku</span></span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% if loop.index % 3 == 0 %}
+                                    <div class="multiple-shopping-carts__item-additions">
+                                        <div class="multiple-shopping-carts__item-addition">{{ '' -}}
+                                            <span class="multiple-shopping-carts__item-addition-label">Prodloužená záruka o 1 rok</span>
+
+                                            {%- include './partials/price.html.twig' with {
+                                                price: 299,
+                                                class: 'multiple-shopping-carts__item-addition-price',
+                                                pricesSettings: {
+                                                    isVatPayer: true,
+                                                    shouldInputPricesIncludingVat: false,
+                                                    shouldShowPriceExcludingVat: true,
+                                                }
+                                            } -%}
+                                        </div>
+
+                                        <div class="multiple-shopping-carts__item-addition">{{ '' -}}
+                                            <span class="multiple-shopping-carts__item-addition-label">Další doplněk k produktu</span>
+
+                                            {%- include './partials/price.html.twig' with {
+                                                price: 0,
+                                                class: 'multiple-shopping-carts__item-addition-price',
+                                                pricesSettings: {
+                                                    isVatPayer: true,
+                                                    shouldInputPricesIncludingVat: false,
+                                                    shouldShowPriceExcludingVat: true,
+                                                }
+                                            } -%}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <div class="multiple-shopping-carts__item-quantity">
+                                    <span class="multiple-shopping-carts__item-title multiple-shopping-carts__item-quantity-title"><span class="multiple-shopping-carts__item-title-content">Počet kusů</span></span>
+                                    {{ loop.index }} ks
+                                </div>
+
+                                {% if product.stockQuantity %}
+                                    <div class="multiple-shopping-carts__item-stock-availability multiple-shopping-carts__item-stock-availability--available multiple-shopping-carts__item-stock-availability--in-stock">
+                                        <span class="multiple-shopping-carts__item-stock-availability-title"><span class="multiple-shopping-carts__item-title-content">Dostupnost</span></span>
+                                        <i class="icon multiple-shopping-carts__item-stock-availability-icon" aria-hidden="true"></i>
+                                        <span class="multiple-shopping-carts__item-stock-availability-label">Skladem</span>
+
+                                        <div class="multiple-shopping-carts__item-stock-availability-total multiple-shopping-carts__item-stock-availability-total--available multiple-shopping-carts__item-stock-availability-total--in-stock">
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-icon"></span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-label"><span class="multiple-shopping-carts__item-stock-availability-total-label-content">Skladem</span></span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-quantity">{{ product.stockQuantity }}</span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-unit">ks</span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="multiple-shopping-carts__item-stock-availability multiple-shopping-carts__item-stock-availability--unavailable multiple-shopping-carts__item-stock-availability--on-the-way-date">
+                                        <span class="multiple-shopping-carts__item-stock-availability-title"><span class="multiple-shopping-carts__item-title-content">Dostupnost</span></span>
+                                        <span class="icon multiple-shopping-carts__item-stock-availability-icon"></span>
+                                        <span class="multiple-shopping-carts__item-stock-availability-label">Není skladem</span>
+                                        <a class="multiple-shopping-carts__item-stock-availability-watch"><span class="multiple-shopping-carts__item-stock-availability-watch-content">Hlídat dostupnost</span></a>
+
+                                        <div class="multiple-shopping-carts__item-stock-availability-total multiple-shopping-carts__item-stock-availability-total--unavailable multiple-shopping-carts__item-stock-availability-total--on-the-way-date">
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-icon"></span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-label"><span class="multiple-shopping-carts__item-stock-availability-total-label-content">Předpokládané naskladnění</span> <span class="multiple-shopping-carts__item-stock-availability-total-date">15. 11. 2019</span></span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-name">Praha</span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-quantity">4</span>
+                                            <span class="multiple-shopping-carts__item-stock-availability-total-unit">ks</span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if product.pricesSettings %}
+                                    {% set pricesSettings = product.pricesSettings|merge({isFrom: false}) %}
+                                {% endif %}
+
+                                {% include './partials/price.html.twig' with {price: product.price, class: 'multiple-shopping-carts__item-price'} %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="/" class="button multiple-shopping-carts__button">Přidat zboží do košíku</a>
+                    <a href="/" class="button multiple-shopping-carts__button multiple-shopping-carts__button--default">Nic nepřidávat</a>
+                    <a href="/" class="button multiple-shopping-carts__button">Nechat v košíku pouze toto zboží</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="modal-backdrop fade in"></div>
+{% endblock %}

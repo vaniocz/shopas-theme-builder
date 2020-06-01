@@ -1,0 +1,234 @@
+.footer {
+    background-color: darken(white, 5%);
+    padding: 20px 0;
+
+    &__container {
+        @include container;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__navigation-menu {
+        margin: 0 auto 20px 0;
+        padding-right: 20px;
+        overflow: hidden;
+        position: relative;
+        transition: height 0.3s ease;
+        --collapse-dimensions: height;
+
+        &.collapse--active {
+            height: auto;
+        }
+    }
+
+    &__navigation-menu-title {
+        line-height: 1.5;
+        pointer-events: none;
+    }
+
+    &__navigation-menu-items {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__navigation-menu-link {
+        color: darken(white, 65%);
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    &__contact-title {
+        line-height: 1.5;
+    }
+
+    &__contact-info,
+    &__contact-address {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+
+    &__contact-label {
+        display: none;
+    }
+
+    &__contact-icon {
+        margin-right: 3px;
+    }
+
+    &__contact-email {
+        margin-bottom: 15px;
+    }
+
+    &__contact-seller.footer__contact-seller {
+        float: left;
+        margin-bottom: 20px;
+    }
+
+    &__contact-seller-label {
+        font-weight: normal;
+    }
+
+    &__content {
+        margin-bottom: 20px;
+        text-align: right;
+        width: 100%;
+
+        &:empty {
+            margin-bottom: 0;
+        }
+    }
+
+    &__newsletter {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    &__newsletter-title {
+        line-height: 44px;
+        margin: 0 15px 0 0;
+    }
+
+    &__newsletter-form {
+        display: flex;
+    }
+
+    &__newsletter-label {
+        display: none;
+    }
+
+    &__newsletter-email-addon {
+        background-color: white;
+        border-right-color: darken(white, 10%);
+        color: darken(white, 50%);
+    }
+
+    &__newsletter-email-group {
+        border: none;
+        max-width: 400px;
+    }
+
+    &__newsletter-button {
+        @include button-primary;
+        min-width: auto;
+    }
+
+    &__copyright-link:hover {
+        color: darken(white, 85%);
+
+        .footer__copyright-link-text {
+            color: darken(white, 40%);
+        }
+    }
+
+    &__copyright-link-text {
+        color: $primary;
+        transition: color 0.3s ease;
+    }
+
+    &__social {
+        order: 1;
+    }
+
+    &__social-title {
+        display: none;
+    }
+
+    &__social-items {
+        @include clearfix;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__social-item {
+        float: left;
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__social-link {
+        color: darken(white, 65%);
+        display: block;
+        padding: 5px;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    &__social-icon {
+        display: block;
+    }
+
+    &__social-item-content {
+        display: none;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        padding: 15px 0;
+
+        &__navigation-menu {
+            margin-bottom: 15px;
+            padding-right: 15px;
+        }
+
+        &__contact-info,
+        &__contact-address {
+            margin: 0 15px 15px 0;
+        }
+
+        &__contact-seller.footer__contact-seller {
+            margin-bottom: 15px;
+        }
+
+        &__content {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        &__contact-seller {
+            margin-bottom: 15px;
+        }
+
+        &__newsletter {
+            margin-bottom: 15px;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        padding: 30px 0;
+
+        &__navigation-menu {
+            margin-bottom: 30px;
+            padding-right: 30px;
+        }
+
+        &__contact-info,
+        &__contact-address {
+            margin: 0 30px 30px 0;
+        }
+
+        &__content {
+            margin-bottom: 30px;
+        }
+
+        &__contact-seller.footer__contact-seller {
+            margin-bottom: 30px;
+        }
+
+        &__newsletter {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media print {
+        display: none;
+    }
+}

@@ -1,0 +1,10 @@
+.error {
+    &__container {
+        @include container;
+    }
+
+    &__code {
+        color: darken(white, 50%);
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,794 @@
+.confirm-order {
+    margin-bottom: 20px;
+
+    &__container {
+        @include container;
+    }
+
+    &__personal-data,
+    &__delivery-and-payment,
+    &__delivery-address {
+        margin-bottom: 20px;
+    }
+
+    &__delivery-price-title,
+    &__payment-price-title,
+    &__packetery-branch-label {
+        font-weight: 500;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    &__delivery-price-items,
+    &__payment-price-items {
+        display: inline-flex;
+
+        &::before {
+            content: "(";
+        }
+
+        &:after {
+            content: ")";
+        }
+    }
+
+    &__delivery-price-item,
+    &__payment-price-item {
+        display: none;
+        font-weight: normal;
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__delivery-price--null &__delivery-price-item::before,
+    &__payment-price--null &__payment-price-item::before {
+        content: "zdarma";
+    }
+
+    &__delivery-price-item-label,
+    &__delivery-price-item-vat-label,
+    &__payment-price-item-label,
+    &__payment-price-item-vat-label,
+    &__delivery-price--null &__delivery-price-item-value,
+    &__payment-price--null &__payment-price-item-value {
+        display: none;
+    }
+
+    &__delivery-price-item-excluding-vat &__delivery-price-item-vat-label,
+    &__payment-price-item-excluding-vat &__payment-price-item-vat-label {
+        display: inline;
+        font-size: 11px;
+    }
+
+    &__header {
+        display: none;
+    }
+
+    &__item {
+        align-content: flex-start;
+        align-items: center;
+        border-bottom: solid 1px darken(white, 10%);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        position: relative;
+    }
+
+    &__item-image-container {
+        @include aspect-ratio(1);
+        position: absolute; top: 0; left: 0;
+        width: 50px;
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            overflow: hidden;
+        }
+    }
+
+    &__item-title,
+    &__item-price-title {
+        display: none;
+    }
+
+    &__item-image {
+        font-size: 1rem;
+        object-fit: contain;
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        vertical-align: middle;
+        width: 100%; height: 100%;
+
+        &--landscape {
+            height: auto;
+        }
+
+        &--portrait {
+            width: auto;
+        }
+    }
+
+    &__item-image-placeholder {
+        background: url("../../images/image_placeholder.png") center no-repeat;
+        background-size: contain;
+        margin: auto;
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+    }
+
+    &__item-info {
+        margin: 7px 0 15px 65px;
+        min-height: 45px;
+        order: -1;
+        width: 100%;
+    }
+
+    &__item--with-additions &__item-info {
+        min-height: auto;
+    }
+
+    &__item-name {
+        @include h5;
+        margin-bottom: 5px;
+    }
+
+    &__item-link {
+        color: darken(white, 85%);
+    }
+
+    &__item-properties {
+        line-height: 1.2;
+    }
+
+    &__item-property {
+        display: inline;
+    }
+
+    &__item-property-label::after {
+        content: ":";
+    }
+
+    &__item-property-value::after {
+        content: ",";
+    }
+
+    &__item-property:last-child &__item-property-value::after {
+        display: none;
+    }
+
+    &__item-quantity {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    &__item-quantity-label {
+        display: none;
+    }
+
+    &__item-quantity-input {
+        font-size: 1rem;
+        height: 42px;
+    }
+
+    &__item-quantity-unit {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+
+    &__item-stock-availability {
+        margin-left: 15px;
+        white-space: nowrap;
+
+        &--available {
+            color: $success;
+        }
+
+        &--unavailable {
+            color: $danger;
+        }
+    }
+
+    &__item-stock-availability-icon,
+    &__item-stock-availability-title,
+    &__item-stock-availability-watch,
+    &__item-stock-availability-total,
+    &__item-stock-availability-items {
+        display: none;
+    }
+
+    &__item-stock-availability--in-stock &__item-stock-availability-total {
+        display: inline;
+    }
+
+    &__item-stock-availability--in-stock &__item-stock-availability-total-label {
+        display: none;
+    }
+
+    &__item-price {
+        line-height: 1;
+        margin-left: 15px;
+        text-align: right;
+    }
+
+    &__item-price-item {
+        display: block;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    &__item-price-item-label {
+        display: none;
+    }
+
+    &__item-price-item-including-vat ~ &__item-price-item-excluding-vat,
+    &__item-price-item-excluding-vat ~ &__item-price-item-including-vat {
+        color: darken(white, 30%);
+        font-size: 11px;
+        display: inline-flex;
+        vertical-align: top;
+
+        &::before {
+            content: "(";
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__item-price-item-value {
+        font-weight: 600;
+    }
+
+    &__item-price-item-vat-label {
+        display: none;
+        font-size: 12px;
+    }
+
+    &__item-price-excluding-vat &__item-price-item-vat-label {
+        display: inline;
+    }
+
+    &__item-price-item-including-vat ~ &__item-price-item-excluding-vat &__item-price-item-vat-label,
+    &__item-price-item-excluding-vat ~ &__item-price-item-including-vat &__item-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__item-additions {
+        width: 100%;
+        margin: 0 0 15px 65px;
+    }
+
+    &__item-addition {
+        margin-bottom: 3px;
+        padding-left: 12px;
+
+        &::before {
+            content: "+";
+            display: inline-block;
+            margin-left: -12px;
+            width: 12px;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__item-addition-price {
+        display: inline;
+    }
+
+    &__item-addition-price-items {
+        display: inline-flex;
+
+        &::before {
+            content: "(";
+        }
+
+        &:after {
+            content: ")";
+        }
+    }
+
+    &__item-addition-price-item {
+        display: none;
+        font-weight: normal;
+
+        &::before {
+            content: "+";
+        }
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__item-addition-price--null &__item-addition-price-item::before {
+        content: "zdarma";
+    }
+
+    &__item-addition-price-title,
+    &__item-addition-price-item-label,
+    &__item-addition-price-item-vat-label,
+    &__item-addition-price--null &__item-addition-price-item-value {
+        display: none;
+    }
+
+    &__item-addition-price-item-excluding-vat &__item-addition-price-item-vat-label {
+        display: inline;
+        font-size: 11px;
+    }
+
+    &__summary {
+        margin: 20px 15px;
+        text-align: right;
+    }
+
+    &__summary-price {
+        margin-bottom: 15px;
+    }
+
+    &__summary-price-title {
+        margin-right: 2px;
+    }
+
+    &__summary-delivery-price-title-content,
+    &__summary-payment-price-title-content,
+    &__summary-rounding-title-content,
+    &__summary-total-price-title-content {
+        display: inline-block;
+    }
+
+    &__summary-price-title-vat-label,
+    &__summary-delivery-price-title-vat-label,
+    &__summary-payment-price-title-vat-label,
+    &__summary-person-discount-title-vat-label,
+    &__summary-discount-title-vat-label,
+    &__summary-rounding-title-vat-label,
+    &__summary-total-price-title-vat-label {
+        display: none;
+    }
+
+    &__summary-price-item {
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+
+    &__summary-price-item,
+    &__summary-delivery-price-item,
+    &__summary-payment-price-item,
+    &__summary-person-discount-item,
+    &__summary-discount-item,
+    &__summary-rounding-item,
+    &__summary-total-price-item {
+        white-space: nowrap;
+    }
+
+    &__summary-price-item-including-vat ~ &__summary-price-item-excluding-vat,
+    &__summary-price-item-excluding-vat ~ &__summary-price-item-including-vat {
+        color: darken(white, 30%);
+        display: flex;
+        font-size: 11px;
+
+        &::before {
+            content: "(";
+            flex-grow: 1;
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__summary-price-item-label,
+    &__summary-delivery-price-item-label,
+    &__summary-payment-price-item-label,
+    &__summary-person-discount-item-label,
+    &__summary-discount-item-label,
+    &__summary-rounding-item-label {
+        display: none;
+    }
+
+    &__summary-price-item-value,
+    &__summary-rounding-item-value,
+    &__summary-total-price-item-value {
+        font-weight: 600;
+    }
+
+    &__summary-price-item-vat-label,
+    &__summary-delivery-price-item-vat-label,
+    &__summary-payment-price-item-vat-label,
+    &__summary-person-discount-item-vat-label,
+    &__summary-discount-item-vat-label,
+    &__summary-rounding-item-vat-label {
+        display: none;
+        font-size: 12px;
+    }
+
+    &__summary-price-excluding-vat &__summary-price-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-price-item-including-vat ~ &__summary-price-item-excluding-vat &__summary-price-item-vat-label,
+    &__summary-price-item-excluding-vat ~ &__summary-price-item-including-vat &__summary-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__summary-delivery-price,
+    &__summary-payment-price {
+        align-items: baseline;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__summary-payment-price {
+        margin-bottom: 15px;
+    }
+
+    &__summary-delivery-price-title,
+    &__summary-payment-price-title {
+        flex-grow: 1;
+
+        &::after {
+            content: ": ";
+            margin-right: 5px;
+        }
+    }
+
+    &__summary-delivery-price--null &__summary-delivery-price-title {
+        font-size: 16px;
+        font-weight: 600;
+
+        &::after {
+            content: " zdarma";
+            margin-right: 0;
+        }
+    }
+
+    &__summary-delivery-price--null.confirm-order__summary-delivery-price--personal,
+    &__summary-payment-price--null {
+        display: none;
+    }
+
+    &__summary-delivery-price-description,
+    &__summary-payment-price-description {
+        order: 999;
+        width: 100%;
+    }
+
+    &__summary-delivery-price-description,
+    &__summary-payment-price-description {
+        color: darken(white, 50%);
+        font-size: 12px;
+    }
+
+    &__summary-delivery-price-item,
+    &__summary-payment-price-item,
+    &__summary-person-discount-item,
+    &__summary-discount-item {
+        display: none;
+        font-weight: normal;
+
+        &:first-child {
+            display: inline;
+        }
+    }
+
+    &__summary-delivery-price-item-value,
+    &__summary-payment-price-item-value,
+    &__summary-person-discount-item-value,
+    &__summary-discount-item-value {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    &__summary-delivery-price-item-excluding-vat &__summary-delivery-price-item-vat-label,
+    &__summary-payment-price-item-excluding-vat &__summary-payment-price-item-vat-label,
+    &__summary-person-discount-item-excluding-vat &__summary-person-discount-item-vat-label,
+    &__summary-discount-item-excluding-vat &__summary-discount-item-vat-label,
+    &__summary-rounding-item-excluding-vat &__summary-rounding-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-delivery-price--null &__summary-delivery-price-items {
+        display: none;
+    }
+
+    &__summary-discount-description {
+        &::before {
+            content: "– "
+        }
+
+        &::after {
+            content: ":";
+            margin-right: 2px;
+        }
+    }
+
+    &__summary-person-discount,
+    &__summary-discount {
+        color: $success;
+        margin-top: 15px;
+    }
+
+    &__summary-person-discount + &__summary-discount {
+        margin-top: 0;
+    }
+
+    &__summary-person-discount-description-content {
+        margin-right: 2px;
+
+        &::before {
+            content: "(";
+        }
+
+        &::after {
+            content: "):";
+        }
+
+        &:empty {
+            margin-left: -3px;
+        }
+
+        &:empty::before {
+            display: none;
+        }
+
+        &:empty::after {
+            content: ":";
+        }
+    }
+
+    &__summary-rounding {
+        margin-top: 15px;
+    }
+
+    &__summary-rounding-item {
+        font-weight: normal;
+    }
+
+    &__summary-rounding--null {
+        display: none;
+    }
+
+    &__summary-rounding-title::after {
+        content: ":";
+        margin-right: 2px;
+    }
+
+    &__summary-total-price {
+        margin-top: 15px;
+    }
+
+    &__summary-total-price-title {
+        font-size: 20px;
+        margin-right: 3px;
+
+        &::after {
+            content: ":";
+        }
+    }
+
+    &__summary-total-price-item {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: normal;
+    }
+
+    &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat,
+    &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat {
+        color: darken(white, 30%);
+        font-size: 12px;
+        display: flex;
+
+        &::before {
+            content: "(";
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        &::after {
+            content: ")";
+        }
+    }
+
+    &__summary-total-price-item-label {
+        display: none;
+    }
+
+    &__summary-total-price-item-vat-label {
+        display: none;
+        font-size: 13px;
+    }
+
+    &__summary-total-price-excluding-vat &__summary-total-price-item-vat-label {
+        display: inline;
+    }
+
+    &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat &__summary-total-price-item-vat-label,
+    &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat &__summary-total-price-item-vat-label {
+        display: inline;
+        font-size: inherit;
+        margin-left: 3px;
+    }
+
+    &__buttons {
+        text-align: right;
+    }
+
+    &__button-change {
+        margin-bottom: 5px;
+    }
+
+    &__button-confirm {
+        @include button-primary;
+        margin-bottom: 5px;
+    }
+
+    &__empty {
+        background-color: rgba(darken(white, 10%), 0.8);
+        display: inline-block;
+        padding: 15px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+
+        &__item-info {
+            margin: 5px 0 15px 65px;
+        }
+
+        &__item-quantity-input {
+            height: 36px;
+        }
+
+        &__item-price {
+            font-size: 16px;
+        }
+
+        &__item-price-excluding-vat &__item-price-item-vat-label {
+            display: block;
+        }
+
+        &__summary {
+            margin: 15px 5px 15px 0;
+        }
+
+        &__summary-price-item,
+        &__summary-delivery-price-item-value,
+        &__summary-payment-price-item-value,
+        &__summary-person-discount-item-value,
+        &__summary-discount-item-value {
+            font-size: 16px;
+        }
+
+        &__summary-delivery-price--null &__summary-delivery-price-title {
+            font-size: 14px;
+        }
+
+        &__summary-price-item-vat-label,
+        &__summary-delivery-price-item-vat-label,
+        &__summary-payment-price-item-vat-label,
+        &__summary-person-discount-item-vat-label,
+        &__summary-discount-item-vat-label,
+        &__summary-rounding-item-vat-label {
+            font-size: 11px;
+        }
+
+        &__summary-total-price-item {
+            font-size: 20px;
+        }
+
+        &__summary-total-price-item-including-vat ~ &__summary-total-price-item-excluding-vat,
+        &__summary-total-price-item-excluding-vat ~ &__summary-total-price-item-including-vat {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        &__data {
+            @include clearfix;
+        }
+
+        &__personal-data {
+            float: left;
+            margin-bottom: 40px;
+            padding-right: 20px;
+            width: 50%;
+        }
+
+        &__delivery-and-payment,
+        &__delivery-address {
+            float: left;
+            padding-left: 20px;
+            width: 50%;
+        }
+
+        &__item-image-container {
+            width: 100px;
+        }
+
+        &__item {
+            align-items: flex-start;
+            min-height: 116px;
+            padding-bottom: 12px;
+        }
+
+        &__item-info {
+            flex: 1 0;
+            margin: 12px 15px 15px 115px;
+            width: auto;
+        }
+
+        &__item-property {
+            display: block;
+        }
+
+        &__item-property-value::after {
+            display: none;
+        }
+
+        &__item-additions {
+            margin: 0 135px 15px 115px;
+            min-height: auto;
+        }
+
+        &__item-additions {
+            order: 999;
+        }
+
+        &__item-quantity,
+        &__item-stock-availability {
+            line-height: 1.2;
+            margin-top: 12px;
+        }
+
+        &__item-price {
+            margin-top: 10px;
+        }
+
+        &__item-stock-availability {
+            min-width: 100px;
+            text-align: center;
+        }
+
+        &__item-price-items {
+            float: right;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        &__item-price-excluding-vat {
+            min-width: 150px;
+        }
+
+        &__item-price-excluding-vat &__item-price-item-vat-label {
+            display: inline;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+
+        &__personal-data,
+        &__delivery-and-payment,
+        &__delivery-address {
+            margin-bottom: 30px;
+        }
+
+        &__summary {
+            margin: 30px 15px;
+        }
+    }
+}

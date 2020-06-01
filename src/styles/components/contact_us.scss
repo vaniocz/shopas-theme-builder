@@ -1,0 +1,78 @@
+.contact-us {
+    @include container;
+    @include clearfix;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &__contact-label {
+        display: none;
+    }
+
+    &__info,
+    &__content {
+        margin-bottom: 20px;
+    }
+
+    &__form {
+        .control-label {
+            display: none;
+        }
+
+        .form-buttons {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+
+        &__info,
+        &__content {
+            margin-bottom: 15px;
+        }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+        &__container{
+            &::before {
+                content: "";
+                float: right;
+            }
+
+            &::after {
+                content: "";
+                display: block;
+                margin-top: 9999px;
+            }
+        }
+
+        &__info,
+        &__content {
+            width: calc(100% - 500px);
+            min-width: 50%;
+        }
+
+        &__content {
+            margin-bottom: (-9999px + 20px);
+            width: 50%;
+        }
+
+        &__form {
+            float: right;
+            padding-left: 30px;
+            width: 500px; max-width: 50%;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+
+        &__info {
+            margin-bottom: 30px;
+        }
+
+        &__content {
+            margin-bottom: (-9999px + 30px);
+        }
+    }
+}

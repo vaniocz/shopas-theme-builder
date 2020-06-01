@@ -1,0 +1,65 @@
+.packetery-branch-choice.packetery-branch-choice {
+    @include clearfix;
+    max-width: 500px;
+    padding: 0 !important;
+
+    select {
+        @include select;
+        width: 100% !important;
+    }
+
+    select:first-child, .control-label:first-child + select {
+        margin-bottom: 15px;
+    }
+
+    select + span {
+        display: none !important;
+    }
+
+    optgroup {
+        background-color: rgba(white, 0);
+    }
+
+    .packetery-info-link {
+        display: none !important;
+    }
+
+    .packetery-branch-choice__loading {
+        margin-top: 5px;
+    }
+
+    .packetery-branch-choice__loading-icon {
+        margin-right: 2px;
+    }
+
+    .packetery-branch-choice__info-link {
+        color: darken(white, 85%);
+        font-weight: normal;
+        float: right;
+        text-decoration: underline;
+
+        &:hover {
+            color: darken(white, 85%);
+            text-decoration: none;
+        }
+
+        &::after {
+            display: inline-block;
+            font-icon: url("../../images/icon_external_link.svg");
+            font-size: 16px;
+            margin-left: 3px;
+            vertical-align: top;
+            width: 16px; height: 16px;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        .packetery-branch-choice__info-link::after {
+            width: 14px; height: 14px;
+        }
+    }
+}
+
+.packetery-branch-choice__value[value]:not([value=""]) + .form-errors {
+    display: none;
+}

@@ -1,0 +1,90 @@
+.uiz-widget-overlay.uiz-widget-overlay {
+    background: darken(white, 50%);
+    opacity: 0.5;
+}
+
+.uiz-widget.uiz-widget {
+    font: inherit;
+}
+
+.uiz-dialog.uiz-dialog {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 3px 9px rgba(black, 0.5);
+    max-width: 100%;
+    padding: 0;
+
+    .uiz-dialog-titlebar {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid darken(white, 15%);
+        border-radius: 0;
+        color: $primary;
+        display: flex;
+        padding: 15px;
+    }
+
+    .uiz-dialog-title {
+        align-self: center;
+        font-size: 20px; font-weight: 600;
+        flex-grow: 1;
+        margin: 0;
+        padding-right: 15px;
+    }
+
+    .uiz-dialog-titlebar-close {
+        @include button;
+        background-image: none;
+        height: auto;
+        margin: 0;
+        position: static;
+
+        .uiz-icon {
+            display: none;
+        }
+
+        &::before {
+            content: "";
+            display: inline-block;
+        }
+
+        &::after {
+            content: "×";
+            display: inline-block;
+            font-size: 24px; font-weight: normal;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+    }
+
+    .uiz-dialog-content {
+        padding: 15px;
+
+        strong[style="color: red"] {
+            color: $primary !important;
+        }
+    }
+
+    .uiz-dialog-buttonpane {
+        border-top: 1px solid darken(white, 15%);
+        margin: 0;
+        padding: 15px;
+    }
+
+    .uiz-button {
+        @include button;
+        @include button-primary;
+        background-image: none;
+        margin: 0;
+
+        .uiz-button-text {
+            display: inline;
+            line-height: inherit;
+            padding: 0;
+        }
+    }
+
+    .uiz-resizable-handle {
+        display: none !important;
+    }
+}

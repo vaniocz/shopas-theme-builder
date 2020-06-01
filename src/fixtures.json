@@ -1,0 +1,88 @@
+{
+    "name": "Název vašeho eshopu",
+    "description": "Vítejte v našem skvělém eshopu. Naleznete zde všechny produkty, které potřebujete, za bezkonkurenční cenu.",
+    "products": [
+        {
+            "name": "Můj modrý produkt",
+            "subtitle": "Zkrácený popis modrého produktu",
+            "content": "<p>Popis mého modrého produktu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis interdum egestas. Suspendisse metus enim, gravida et felis nec, malesuada placerat metus. Suspendisse molestie ante massa, non hendrerit est rhoncus ac. Mauris sagittis eros vitae augue sagittis feugiat. Suspendisse vel nibh aliquam, fringilla eros sed, iaculis sapien. Nam nec luctus turpis. Nulla dapibus urna enim, vel rhoncus quam sollicitudin non. Suspendisse accumsan convallis nibh in molestie. Integer aliquam orci sit amet nibh eleifend tincidunt. Phasellus elementum tincidunt massa, sit amet lacinia nibh commodo egestas. Maecenas sollicitudin sed purus eu viverra.</p>",
+            "priceBeforeDiscount": 99.90,
+            "price": 89.90,
+            "stockQuantity": 2,
+            "primaryTag": "Poškozený obal",
+            "secondaryTag": "-10%",
+            "image": "product_1.png",
+            "imageWidth": 633,
+            "imageHeight": 655
+        },
+        {
+            "name": "Můj produkt bez obrázku",
+            "price": 299,
+            "pricesSettings": {
+                "isFrom": true,
+                "isVatPayer": true,
+                "shouldShowPriceExcludingVat": true
+            },
+            "stockQuantity": 2,
+            "secondaryTag": "Novinka"
+        },
+        {
+            "name": "Můj zelený produkt",
+            "price": 299,
+            "stockQuantity": 3,
+            "secondaryTag": "Novinka",
+            "image": "product_3.png",
+            "imageWidth": 633,
+            "imageHeight": 655
+        },
+        {
+            "name": "Můj červený produkt",
+            "price": 299,
+            "pricesSettings": {
+                "isVatPayer": true,
+                "shouldShowPriceExcludingVat": true
+            },
+            "stockQuantity": 4,
+            "image": "product_4.png",
+            "imageWidth": 633,
+            "imageHeight": 655
+        },
+        {
+            "name": "Můj hnědý produkt",
+            "price": 299,
+            "pricesSettings": {
+                "isVatPayer": true,
+                "shouldInputPricesIncludingVat": true,
+                "shouldShowPriceIncludingVat": true,
+                "shouldShowPriceExcludingVat": true
+            },
+            "priceBeforeDiscount": 9999999.50,
+            "stockQuantity": 0,
+            "image": "product_5.png",
+            "imageWidth": 633,
+            "imageHeight": 655
+        },
+        {
+            "name": "Můj černý produkt",
+            "price": 299,
+            "pricesSettings": {
+                "isVatPayer": true,
+                "shouldShowPriceIncludingVat": true,
+                "shouldShowPriceExcludingVat": true
+            },
+            "stockQuantity": 0,
+            "image": "product_6.png",
+            "imageWidth": 633,
+            "imageHeight": 655
+        }
+    ],
+    "categories": [
+        {
+            "name": "První kategorie",
+            "children": [{"name": "Podkategorie jedna"}, {"name": "Podkategorie druhá"}]
+        },
+        {"name": "Druhá kategorie"},
+        {"name": "Třetí kategorie"},
+        {"name": "Čtvrtá kategorie"}
+    ]
+}

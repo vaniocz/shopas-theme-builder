@@ -1,0 +1,37 @@
+.product-alerts {
+    height: 0;
+    margin: -76px 0 0;
+    position: fixed; right: 0; left: 0;
+    z-index: 200;
+
+    #page__shop-homepage & {
+        margin-top: -14px;
+    }
+
+    &__container {
+        @include container;
+    }
+
+    &__alert-container {
+        clear: right;
+        float: right;
+        margin-bottom: 5px;
+    }
+
+    &__alert {
+        line-height: 20px;
+        min-width: auto;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-top: -51px;
+
+        #page__shop-homepage & {
+            margin-top: -10px;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-top: -86px;
+    }
+}

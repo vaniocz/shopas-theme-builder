@@ -1,0 +1,111 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Editace profilu'] %}
+
+{% block page %}shop-profile-edit{% endblock %}
+
+{% block content %}
+    <div class="user-content">
+        <div class="user-content__container">
+            <h1 class="user-content__title">Editace profilu</h1>
+
+            <form name="person" method="post" novalidate="">
+                <div id="person">
+                    <div class="form-group">
+                        <label class="required control-label" for="person_name_value">Jméno a příjmení</label>
+                        <input type="text" id="person_name_value" name="person[name][value]" required="required" placeholder="" class="form-control" value="Jméno a příjmení">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required control-label" for="person_email_value">E-mail</label>
+
+                        <div class="input-group">
+                            <label class="input-group-addon" for="person_email_value"><i class="icon icon-email"></i></label>
+                            <input type="email" id="person_email_value" name="person[email][value]" required="required" placeholder="" class="form-control" value="jmeno.prijmeni@example.com">
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="person_phone_value">Telefon</label>
+                    <input type="text" id="person_phone_value" name="person[phone][value]" placeholder="" class="form-control" value="+420 123 456 789">
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="person_shouldSubscribeToNewsletter" name="person[shouldSubscribeToNewsletter]" class="checkbox-toggle" value="1" checked="checked">
+                    <span class="checkbox input-group"><label class=" checkbox__label" for="person_shouldSubscribeToNewsletter">Souhlasím se zasíláním obchodních sdělení</label></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="person_invoiceAddress_isCompany" name="person[invoiceAddress][isCompany]" class="invoice-address__company-toggle checkbox-toggle" value="1" checked="checked">
+                    <span class="checkbox input-group"><label class=" checkbox__label" for="person_invoiceAddress_isCompany">Objednávám na firmu</label></span>
+
+                    <div class="invoice-address__company">
+                        <div class="form-group">
+                            <label class="control-label" for="person_invoiceAddress_companyName">Název firmy</label><input type="text" id="person_invoiceAddress_companyName" name="person[invoiceAddress][companyName]" placeholder="" class="form-control" value="Jackson and Rowland Associates">    </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="person_invoiceAddress_registrationNumber">IČO</label><input type="text" id="person_invoiceAddress_registrationNumber" name="person[invoiceAddress][registrationNumber]" placeholder="" class="form-control" value="924">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required control-label" for="person_invoiceAddress_street">Ulice</label>
+                            <input type="text" id="person_invoiceAddress_street" name="person[invoiceAddress][street]" required="required" placeholder="" class="form-control" value="Non et assumenda inc">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required control-label" for="person_invoiceAddress_houseNumber">Číslo popisné</label>
+                            <input type="text" id="person_invoiceAddress_houseNumber" name="person[invoiceAddress][houseNumber]" required="required" placeholder="" class="form-control" value="490">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required control-label" for="person_invoiceAddress_city">Město</label>
+                            <input type="text" id="person_invoiceAddress_city" name="person[invoiceAddress][city]" required="required" placeholder="" class="form-control" value="Repellendus Anim ex">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required control-label" for="person_invoiceAddress_zipCode">PSČ</label>
+                            <input type="text" id="person_invoiceAddress_zipCode" name="person[invoiceAddress][zipCode]" required="required" placeholder="" class="form-control" value="83041">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="person_deliveryAddress" class=" form-toggle">
+                            <input type="checkbox" id="person_deliveryAddress_isDifferent" name="person[deliveryAddress][isDifferent]" class=" form-toggle__toggle checkbox-toggle" checked="checked" value="1">
+                            <span class="checkbox input-group"><label class=" checkbox__label" for="person_deliveryAddress_isDifferent">Doručovací adresa je odlišná od fakturační</label></span>
+
+                            <div class="form-group form-toggle__form">
+                                <div id="person_deliveryAddress_address">
+                                    <div class="form-group">
+                                        <label class="required control-label" for="person_deliveryAddress_address_street">Ulice</label>
+                                        <input type="text" id="person_deliveryAddress_address_street" name="person[deliveryAddress][address][street]" required="required" placeholder="" class="form-control" value="Voluptatem facilis o">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="required control-label" for="person_deliveryAddress_address_houseNumber">Číslo popisné</label>
+                                        <input type="text" id="person_deliveryAddress_address_houseNumber" name="person[deliveryAddress][address][houseNumber]" required="required" placeholder="" class="form-control" value="36">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="required control-label" for="person_deliveryAddress_address_city">Město</label>
+                                        <input type="text" id="person_deliveryAddress_address_city" name="person[deliveryAddress][address][city]" required="required" placeholder="" class="form-control" value="Nesciunt incidunt">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="required control-label" for="person_deliveryAddress_address_zipCode">PSČ</label>
+                                        <input type="text" id="person_deliveryAddress_address_zipCode" name="person[deliveryAddress][address][zipCode]" required="required" placeholder="" class="form-control" value="35392">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons form-group">
+                        <button type="submit" id="person_save" name="person[save]" class="btn-primary btn">Uložit</button>
+                    </div>
+
+                    <input type="hidden" id="person__token" name="person[_token]" placeholder="" value="m8tGqulalmO2mG3CFb7gJr5BcQnWmDchrnjU_5rNr9E">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

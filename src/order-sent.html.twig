@@ -1,0 +1,15 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Objednávka odeslána'] %}
+
+{% block page %}shop-order-sent{% endblock %}
+
+{% block content %}
+    <div class="order-sent">
+        <div class="order-sent__container">
+            <div class="order-sent__content">
+                <h1>Objednávka odeslána</h1>
+                <p>Zde je text s poděkováním zákazníkovi.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+.range {
+    @include clearfix;
+    margin-bottom: 20px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__label {
+        display: none;
+    }
+
+    &__group {
+        display: table;
+        float: left;
+        font-size: 16px; font-weight: 500;
+        margin-bottom: 0;
+        width: 50%; max-width: 150px;
+        white-space: nowrap;
+    }
+
+    &__group--minimum::after,
+    &__group--maximum::after {
+        display: table-cell;
+        width: 35px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    &__group--minimum::after {
+        content: "–";
+    }
+
+    &__value {
+        display: table-cell;
+        font-size: 14px;
+        width: 100%;
+        -moz-appearance: textfield;
+
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        margin-bottom: 15px;
+
+        &__values {
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin-bottom: 30px;
+    }
+}

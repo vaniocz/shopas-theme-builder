@@ -1,0 +1,41 @@
+.eu-cookies-bar {
+    background-color: white;
+    box-shadow: 0 0 15px rgba(black, 0.1);
+    line-height: 1.2;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+
+    &__container {
+        @include container;
+    }
+
+    &__content {
+        display: inline-block;
+        margin: 0;
+    }
+
+    &__buttons {
+        display: inline-block;
+    }
+
+    &__link {
+        text-decoration: underline;
+    }
+
+    &__button {
+        @include button-small;
+        border-radius: 0;
+        line-height: 18px;
+        margin-left: 5px;
+        padding: 0 5px;
+    }
+
+    .no-js & {
+        display: none;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        padding: 5px 0;
+    }
+}

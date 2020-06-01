@@ -1,0 +1,43 @@
+.order-summary {
+    margin-bottom: 15px;
+    padding-top: 15px;
+
+    &__price {
+        margin-bottom: 0;
+    }
+
+    &__free-delivery {
+        font-size: 18px; font-weight: 600;
+        margin: 15px 0 0;
+    }
+
+    &__delivery-price {
+        margin: 15px 0 0;
+    }
+
+    &__free-delivery-additional-price {
+        color: darken(white, 50%);
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    &__free-delivery-additional-price-value {
+        font-weight: normal;
+    }
+
+    &__total-price {
+        margin-top: 15px;
+    }
+
+    &__price-value, &__delivery-price-value {
+        font-size: 18px;
+    }
+
+    &__total-price {
+        font-size: 20px;
+    }
+
+    &__total-price-value {
+        font-size: 24px;
+    }
+}

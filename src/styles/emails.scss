@@ -1,0 +1,227 @@
+@import "variables";
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+}
+
+p, ul, ol, dl, table, h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+body {
+    margin: 10px;
+}
+
+body,
+.email {
+    color: darken(white, 65%);
+    font: 14px/1.5 $system-font;
+}
+
+img {
+    vertical-align: top;
+}
+
+ul, ol {
+    padding-left: 25px;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
+
+    ol {
+        list-style-type: decimal;
+    }
+}
+
+table {
+    color: inherit;
+    font-size: inherit;
+    width: 100%;
+}
+
+body,
+.email,
+table,
+p {
+    color: black;
+}
+
+a {
+    color: $primary;
+}
+
+th {
+    font-weight: 600;
+    margin: 0;
+    padding: 5px;
+    vertical-align: bottom;
+}
+
+td {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.email__logo {
+    max-width: 200px; max-height: 75px;
+    margin-bottom: 15px;
+}
+
+.order-email {
+    &__title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    &__items {
+        border-collapse: collapse;
+        width: auto;
+    }
+
+    &__items-header th {
+        border-bottom: 2px solid darken(white, 20%);
+        line-height: 1;
+    }
+
+    &__header-product,
+    &__item-product,
+    &__rounding-label {
+        text-align: left;
+    }
+
+    &__header-unit-price,
+    &__header-total-price,
+    &__header-total-price-excluding-vat,
+    &__item-unit-price,
+    &__item-total-price,
+    &__item-total-price-excluding-vat,
+    &__rounding-value {
+        text-align: right;
+    }
+
+    &__item th,
+    &__item td {
+        border-bottom: 1px solid darken(white, 10%);
+    }
+
+    &__item-product {
+        padding-bottom: 5px !important;
+    }
+
+    &__item-image-link {
+        float: left;
+        margin: 0 10px 5px 0;
+    }
+
+    &__item-image-placeholder {
+        background: url("~!url-loader!../images/image_placeholder.png") center no-repeat;
+        background-size: contain;
+        display: inline-block;
+        width: 75px; height: 90px;
+    }
+
+    &__item-info {
+        display: table;
+        margin-bottom: 5px;
+        min-width: 100px;
+    }
+
+    &__item-additions {
+        display: table;
+        list-style-type: none;
+        margin-top: 5px;
+        padding: 0;
+    }
+
+    &__item-addition {
+        line-height: 1.2;
+        margin: 0 0 5px 0;
+    }
+
+    &__item-info-link {
+        display: inline-block;
+        line-height: 1.2;
+    }
+
+    &__summary {
+        width: auto;
+    }
+
+    &__summary td {
+        font-weight: 600;
+        vertical-align: middle;
+    }
+
+    &__summary-label {
+        padding: 5px 10px 5px 0;
+        text-align: left;
+    }
+
+    &__summary-value {
+        padding: 5px 10px;
+        text-align: right;
+    }
+
+    &__item-addition-price-vat-label,
+    &__summary-vat-label,
+    &__summary-item-vat-label,
+    &__summary-total-price-item-vat-label,
+    &__person-orders-vat-label {
+        font-size: 12px;
+    }
+
+    &__summary-price-item {
+        white-space: nowrap;
+    }
+
+    &__summary-price-item + &__summary-price-item,
+    &__summary-total-price-item + &__summary-total-price-item {
+        color: darken(white, 30%);
+        font-size: 11px;
+        line-height: 1;
+    }
+
+    &__summary-price-item + &__summary-price-item &__summary-price-item-vat-label,
+    &__summary-total-price-item + &__summary-total-price-item &__summary-total-price-item-vat-label {
+        font-size: inherit;
+    }
+
+    &__summary-total-price-label {
+        font-size: 16px;
+        vertical-align: middle;
+    }
+
+    &__summary-total-price-item {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    &__person-orders-value {
+        font-weight: bold;
+    }
+}
+
+@media (max-width: $breakpoint-small) {
+    body,
+    .email {
+        font-size: 12px !important;
+    }
+}
+
+@media (min-width: $breakpoint-medium) {
+    body {
+        margin: 20px !important;
+    }
+
+    th, td {
+        padding: 10px !important;
+    }
+}

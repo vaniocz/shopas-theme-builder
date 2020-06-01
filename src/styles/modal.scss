@@ -1,0 +1,115 @@
+.modal {
+    display: none;
+    outline: 0;
+    overflow: hidden;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 10000;
+    -webkit-overflow-scrolling: touch;
+
+    .modal-open & {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    &-dialog {
+        margin: 30px auto;
+        padding: 15px;
+        position: relative;
+        max-width: 960px;
+    }
+
+    &.fade &-dialog {
+        transform: translate(0, -25%);
+        transition: transform 0.3s ease-out;
+    }
+
+    &.in &-dialog {
+        transform: translate(0, 0);
+    }
+
+    &-content {
+        background-color: white;
+        position: relative;
+        box-shadow: 0 3px 9px rgba(black, 0.5);
+        background-clip: padding-box;
+        outline: 0;
+    }
+
+    &-backdrop {
+        background-color: darken(white, 50%);
+        position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+        z-index: 1099;
+
+        &.fade {
+            opacity: 0;
+        }
+
+        &.in {
+            opacity: 0.5;
+        }
+    }
+
+    &-header {
+        @include clearfix;
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px;
+    }
+
+    &-title {
+        align-self: center;
+        flex-grow: 1;
+        padding-right: 15px;
+    }
+
+    &-header .close {
+        align-self: flex-start;
+        order: 999;
+
+        &::before {
+            content: "";
+            display: inline-block;
+        }
+
+        &::after {
+            content: "×";
+            display: inline-block;
+            font-size: 24px;
+            font-weight: normal;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+    }
+
+    &-title {
+        margin: 0;
+    }
+
+    &-body {
+        @include clearfix;
+        position: relative;
+        padding: 15px;
+    }
+
+    &-footer {
+        @include clearfix;
+        padding: 15px;
+        text-align: right;
+    }
+
+    &-scrollbar-measure {
+        width: 50px; height: 50px;
+        overflow: scroll;
+        position: absolute; top: -9999px;
+    }
+
+    @media (max-width: 576px) {
+        &-dialog {
+            margin: 15px auto;
+        }
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
+}

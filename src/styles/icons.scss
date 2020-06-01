@@ -1,0 +1,141 @@
+@keyframes icon-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+@mixin icon {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+
+    &::before {
+        background-position: center; background-repeat: no-repeat; background-size: cover;
+        content: "";
+        display: inline-block;
+        min-width: 1em; min-height: 1em;
+        position: relative; top: -1px;
+        font-style: normal;
+        font-variant: normal;
+        text-decoration: inherit;
+        text-rendering: auto;
+        text-transform: none;
+        vertical-align: top;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+@mixin icon-spin {
+    animation: icon-spin 1s infinite linear;
+}
+
+.icon {
+    @include icon;
+    font-family: "Font Awesome 5";
+    font-weight: bold;
+}
+
+.icon-search::before {
+    content: $font-awesome-5-search;
+}
+
+.icon-user::before {
+    content: $font-awesome-5-user;
+}
+
+.icon-login::before {
+    content: $font-awesome-5-user;
+}
+
+.icon-profile::before {
+    content: $font-awesome-5-user;
+}
+
+.icon-logout::before {
+    content: $font-awesome-5-sign-out-alt;
+}
+
+.icon-comparison::before {
+    content: $font-awesome-5-balance-scale-right;
+}
+
+.icon-cart::before {
+    content: $font-awesome-5-shopping-cart;
+}
+
+.icon-email::before {
+    content: $font-awesome-5-envelope;
+}
+
+.icon-envelope::before {
+    content: $font-awesome-5-envelope;
+}
+
+.icon-password::before {
+    content: $font-awesome-5-lock;
+}
+
+.icon-phone::before {
+    content: $font-awesome-5-phone;
+}
+
+.icon-print::before {
+    content: $font-awesome-5-print;
+}
+
+.icon-truck::before {
+    content: $font-awesome-5-truck;
+}
+
+.icon-thumbs-up::before {
+    content: $font-awesome-5-thumbs-up;
+}
+
+.icon-money::before {
+    content: $font-awesome-5-money-bill-alt;
+    font-weight: normal;
+}
+
+.icon-undo::before {
+    content: $font-awesome-5-undo;
+}
+
+.icon-clock::before {
+    content: $font-awesome-5-clock;
+    font-weight: normal;
+}
+
+.icon-loading::before {
+    @include icon-spin;
+    content: $font-awesome-5-spinner;
+}
+
+.icon-facebook::before {
+    font-family: "Font Awesome 5 Brands";
+    content: $font-awesome-5-facebook-f;
+}
+
+.icon-twitter::before {
+    font-family: "Font Awesome 5 Brands";
+    content: $font-awesome-5-twitter;
+}
+
+.icon-instagram::before {
+    font-family: "Font Awesome 5 Brands";
+    content: $font-awesome-5-instagram;
+}
+
+.icon-skype::before {
+    font-family: "Font Awesome 5 Brands";
+    content: $font-awesome-5-skype;
+}
+
+.icon-pinterest::before {
+    font-family: "Font Awesome 5 Brands";
+    content: $font-awesome-5-pinterest;
+}

@@ -1,0 +1,269 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Objednávky', '123456789'] %}
+
+{% block page %}shop-order-detail{% endblock %}
+
+{% block content %}
+    <div class="order-detail">
+        <div class="order-detail__container">
+            <h1 class="order-detail__title">Objednávka č. 123456789</h1>
+
+            <dl class="order-detail__info">
+                <dt class="order-detail__info-label">Stav objednávky:</dt>
+                <dd class="order-detail__info-value">Vytvořená</dd>
+                <dt class="order-detail__info-label">Datum a čas objednávky:</dt>
+                <dd class="order-detail__info-value">7. 8. 2019 0:07</dd>
+                <dt class="order-detail__info-label">Obchodní podmínky platné v době objednávky:</dt>
+                <dd class="order-detail__info-value"><a href="./document.html">ukázat</a></dd>
+            </dl>
+
+            <div class="order-detail__data">
+                <div class="order-detail__personal-data">
+                    <h3 class="order-detail__personal-data-title">Údaje o nakupujícím</h3>
+
+                    <p>
+                        Trevor Guerra<br>
+                        Ea proident aut nos 822<br>
+                        74486 Placeat totam numqu
+                    </p>
+
+                    <p>
+                        E-mail: jmeno.prijmeni@example.com<br>
+                        Telefon: +1 (872) 201-2986<br>
+                    </p>
+
+                    <p><strong>Poznámka</strong>:<br>Voluptatum veritatis</p>
+                </div>
+
+                <div class="order-detail__delivery-and-payment">
+                    <h3 class="order-detail__delivery-and-payment-title">Doprava a platba</h3>
+
+                    {% include './partials/price.html.twig' with {
+                        price: 0,
+                        class: 'order-detail__delivery-price',
+                        titleLabel: 'Způsob dopravy',
+                        descriptionLabel: 'Osobní odběr',
+                        pricesSettings: {
+                            isVatPayer: true,
+                            shouldShowPriceExcludingVat: true,
+                            shouldShowPriceIncludingVat: true,
+                        },
+                    } %}
+
+                    {% include './partials/price.html.twig' with {
+                        price: 0,
+                        class: 'order-detail__payment-price',
+                        titleLabel: 'Způsob platby',
+                        descriptionLabel: 'Kartou online',
+                        pricesSettings: {
+                            isVatPayer: true,
+                            shouldShowPriceExcludingVat: true,
+                            shouldShowPriceIncludingVat: true,
+                        },
+                    } %}
+
+                    <p class="order-detail__packetery-branch">
+                        <strong class="order-detail__packetery-branch-label">Pobočka Zásilkovny</strong>
+                        <span class="order-detail__packetery-branch-value"><a href="//www.zasilkovna.cz/pobocky/2938" target="_blank">Praha 13, Stodůlky (Metro B), Hábova <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+                    </p>
+
+                    <p class="order-detail__payment-status">
+                        <strong class="order-detail__payment-status-label">Stav platby</strong>
+                        <span class="order-detail__payment-status-value">Vytvořená <a class="order-detail__payment-status-link" href="" target="_blank">Klikněte zde pro provedení platby</a></span>
+                    </p>
+                </div>
+
+                <div class="order-detail__delivery-address">
+                    <h3 class="order-detail__delivery-address-title">Doručovací adresa</h3>
+
+                    <p>
+                        Trevor Guerra<br>
+                        Ea proident aut nos 822<br>
+                        74486 Placeat totam numqu
+                    </p>
+
+                    <p>
+                        E-mail: jmeno.prijmeni@example.com<br>
+                        Telefon: +1 (872) 201-2986
+                    </p>
+                </div>
+            </div>
+
+            <div class="order-detail__items">
+                <h3 class="order-detail__items-title">Položky objednávky</h3>
+
+                <div class="order-detail__header" aria-hidden="true">
+                    <span class="order-detail__header-item order-detail__header-image"><span class="order-detail__header-item-content order-detail__header-image-content">Fotografie</span></span>
+                    <span class="order-detail__header-item order-detail__header-info"><span class="order-detail__header-item-content order-detail__header-info-content">Produkt</span></span>
+                    <span class="order-detail__header-item order-detail__header-quantity"><span class="order-detail__header-item-content order-detail__header-quantity-content">Počet kusů</span></span>
+                    <span class="order-detail__header-item order-detail__header-unit-price order-detail__header-unit-price-excluding-vat"><span class="order-detail__header-item-content order-detail__header-unit-price-content">Cena <span class="order-detail__header-unit-price-vat-label">bez DPH</span></span></span>
+                    <span class="order-detail__header-item order-detail__header-total-price order-detail__header-total-price-excluding-vat"><span class="order-detail__header-item-content order-detail__header-total-price-content">Celková cena <span class="order-detail__header-total-price-vat-label">bez DPH</span></span></span>
+                </div>
+
+                {% for product in fixtures().products %}
+                    <div class="order-detail__item">
+                        <div class="order-detail__item-image-container">
+                            <span class="order-detail__item-title order-detail__item-image-title"><span class="order-detail__item-title-content">Fotografie</span></span>
+
+                            <a href="./detail.html" class="order-detail__item-image-link">
+                                {% if product.image %}
+                                    <img class="order-detail__item-image order-detail__item-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                {% else %}
+                                    <span class="order-detail__item-image-placeholder"></span>
+                                {% endif %}
+                            </a>
+                        </div>
+
+                        <div class="order-detail__item-info">
+                            <span class="order-detail__item-title order-detail__item-info-title"><span class="order-detail__item-title-content">Produkt</span></span>
+                            <h3 class="order-detail__item-name"><a href="./detail.html" class="order-detail__item-link">{{ product.name }}</a></h3>
+
+                            {% if loop.index % 2 %}
+                                <div class="order-detail__item-properties">
+                                    <div class="order-detail__item-property">
+                                        <span class="order-detail__item-property-label">Velikost</span>
+                                        <span class="order-detail__item-property-value"><span class="property-value">malá</span></span>
+                                    </div>
+
+                                    <div class="order-detail__item-property">
+                                        <span class="order-detail__item-property-label">Potisk</span>
+                                        <span class="order-detail__item-property-value"><span class="property-value">Bez potisku</span></span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {% if loop.index % 3 == 0 %}
+                            <div class="order-detail__item-additions">
+                                <div class="order-detail__item-addition">{{ '' -}}
+                                    <span class="order-detail__item-addition-label">Prodloužená záruka o 1 rok</span>
+
+                                    {%- include './partials/price.html.twig' with {
+                                        price: 299,
+                                        class: 'order-detail__item-addition-price',
+                                        pricesSettings: {
+                                            isVatPayer: true,
+                                            shouldInputPricesIncludingVat: false,
+                                            shouldShowPriceExcludingVat: true,
+                                        }
+                                    } -%}
+                                </div>
+
+                                <div class="order-detail__item-addition">{{ '' -}}
+                                    <span class="order-detail__item-addition-label">Další doplněk k produktu</span>
+
+                                    {%- include './partials/price.html.twig' with {
+                                        price: 0,
+                                        class: 'order-detail__item-addition-price',
+                                        pricesSettings: {
+                                            isVatPayer: true,
+                                            shouldInputPricesIncludingVat: false,
+                                            shouldShowPriceExcludingVat: true,
+                                        }
+                                    } -%}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="order-detail__item-quantity">
+                            <span class="order-detail__item-title order-detail__item-quantity-title"><span class="order-detail__item-title-content">Počet kusů</span></span>
+                            <span class="order-detail__item-quantity-value">{{ loop.index }} ks</span>
+                        </div>
+
+                        {% if product.pricesSettings %}
+                            {% set pricesSettings = product.pricesSettings|merge({isFrom: false}) %}
+                        {% endif %}
+
+                        {% include './partials/price.html.twig' with {price: product.price, class: 'order-detail__item-unit-price'} %}
+                        {% include './partials/price.html.twig' with {price: product.price, class: 'order-detail__item-total-price', itemLabel: 'Celková cena'} %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="order-detail__summary">
+                {% include './partials/price.html.twig' with {
+                    price: 200,
+                    class: 'order-detail__summary-price',
+                    titleLabel: 'Celkem 5 položek za',
+                    itemLabel: 'Celkem',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 155,
+                    class: 'order-detail__summary-delivery-price',
+                    titleLabel: 'Doprava',
+                    descriptionLabel: 'EMS ČESKO – cena dle hmotnosti',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price:
+                    155,
+                    class: 'order-detail__summary-payment-price',
+                    titleLabel: 'Platba',
+                    descriptionLabel: 'EMS – DOBÍRKA (jen ČR)',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: -30,
+                    class: 'order-detail__summary-person-discount',
+                    titleLabel: 'Sleva pro zákazníka',
+                    itemLabel: 'Sleva',
+                    descriptionLabel: '10 %',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: -50,
+                    class: 'order-detail__summary-discount',
+                    itemLabel: 'Sleva',
+                    descriptionLabel: 'Super sleva',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 0.5,
+                    class: 'order-detail__summary-rounding',
+                    itemLabel: 'Zaokrouhlení',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                    },
+                } %}
+
+                {% include './partials/price.html.twig' with {
+                    price: 200,
+                    class: 'order-detail__summary-total-price',
+                    itemLabel: 'Celková cena',
+                    pricesSettings: {
+                        isVatPayer: true,
+                        shouldShowPriceExcludingVat: true,
+                        shouldShowPriceIncludingVat: true,
+                    },
+                } %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

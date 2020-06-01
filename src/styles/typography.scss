@@ -1,0 +1,202 @@
+html {
+    font: 14px/1.5 "Poppins", sans-serif;
+
+    @media (max-width: $breakpoint-small) {
+        font-size: 12px;
+    }
+}
+
+body {
+    color: darken(white, 65%);
+
+    p, ul, ol, dl, table, h1, h2, h3, h4, h5, h6 {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: darken(white, 40%);
+    }
+}
+
+strong {
+    font-weight: 600;
+}
+
+p, ul, ol, dl, table {
+    margin: 0 0 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin: 0 0 15px;
+}
+
+img {
+    vertical-align: top;
+}
+
+ul, ol {
+    padding-left: 25px;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
+
+    ol {
+        list-style-type: decimal;
+    }
+}
+
+table {
+    color: inherit;
+    font-size: inherit;
+    width: 100%;
+}
+
+@mixin headline {
+    color: darken(white, 85%);
+    font-smoothing: antialiased;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin h1 {
+    @include headline;
+    font-size: 36px;
+    margin-bottom: 20px;
+
+    @media (max-width: $breakpoint-small) {
+        font-size: 24px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+        font-size: 40px;
+    }
+}
+
+@mixin h2 {
+    @include h1;
+}
+
+@mixin h3 {
+    @include headline;
+    font-size: 24px;
+
+    @media (max-width: $breakpoint-small) {
+        font-size: 20px;
+    }
+}
+
+@mixin h4 {
+    @include headline;
+    font-size: 16px;
+
+    @media (max-width: $breakpoint-small) {
+        font-size: 14px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+        font-size: 18px;
+    }
+}
+
+@mixin h5 {
+    @include headline;
+    font-size: 14px;
+}
+
+@mixin h6 {
+    @include headline;
+    font-size: 1rem;
+}
+
+h1 {
+    @include h1;
+}
+
+h2 {
+    @include h2;
+}
+
+h3 {
+    @include h3;
+}
+
+h4 {
+    @include h5;
+}
+
+h5 {
+    @include h5;
+}
+
+h6 {
+    @include h6;
+}
+
+th {
+    font-weight: 500;
+}
+
+dt, dd {
+    display: inline;
+}
+
+dt {
+    font-weight: 500;
+}
+
+dd::after {
+    content: "\a";
+    white-space: pre-wrap;
+}
+
+td, th {
+    padding: 10px;
+    vertical-align: top;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid darken(white, 30%);
+    margin: 20px 0;
+
+    @media (max-width: $breakpoint-small) {
+        margin: 15px 0;
+    }
+
+    @media (min-width: $breakpoint-large) {
+        margin: 30px 0;
+    }
+}
+
+.table {
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid darken(white, 5%);
+    }
+
+    th {
+        text-align: left;
+    }
+
+    thead th {
+        border-bottom: 2px solid darken(white, 10%);
+    }
+}

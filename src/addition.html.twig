@@ -1,0 +1,30 @@
+{% extends './shopping-cart.html.twig' %}
+
+{% block body_class %}modal-open{% endblock %}
+
+{% block addition_modal %}
+    <div class="addition modal fade" data-component-checkbox-modal="edit_shopping_cart_5b2b703b-13c2-4701-afb3-a4d570f4d378_0" role="dialog" style="display: block">
+        <div class="modal-dialog" style="top: 25%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close button" data-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <img class="addition__image addition__image--portrait" src="./images/content/extended_warranty.png" alt="Prodloužená záruka o 1 rok" style="max-width: 300px; max-height: 300px">
+                    <h3 class="addition__title">Prodloužená záruka o 1 rok</h3>
+                    <p class="addition__description">Toto je popis prodloužené záruky o 1 rok.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="button addition__button addition__button-add" data-state="1" data-dismiss="modal">Mám zájem</a>
+                    <a class="button addition__button addition__button-remove" data-state="0" data-dismiss="modal">Nemám zájem</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="modal-backdrop fade in"></div>
+{% endblock %}

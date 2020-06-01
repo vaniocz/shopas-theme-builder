@@ -1,0 +1,68 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Hlídání dostupnosti'] %}
+
+{% block page %}shop-profile-product-watches{% endblock %}
+
+{% block content %}
+    <div class="product-watches">
+        <div class="product-watches__container">
+            <h1 class="product-watches__title">Nastavená hlídání dostupnosti produktů</h1>
+            <p class="product-watches__empty">Prozatím nemáte žádná nastavená hlídání dostupnosti produktů.</p>
+
+            <div class="product-watches__items">
+                <div class="product-watches__header" aria-hidden="true">
+                    <span class="product-watches__header-item product-watches__header-image"><span class="product-watches__header-item-content product-watches__header-image-content">Fotografie</span></span>
+                    <span class="product-watches__header-item product-watches__header-info"><span class="product-watches__header-item-content product-watches__header-info-content">Produkt</span></span>
+                    <span class="product-watches__header-item product-watches__header-price product-watches__header-item product-watches__header-price-excluding-vat"><span class="product-watches__header-item-content product-watches__header-price-content">Cena <span class="product-watches__header-price-vat-label">bez DPH</span></span></span>
+                    <span class="product-watches__header-item product-watches__header-actions"></span>
+                </div>
+
+                {% for product in fixtures().products %}
+                    <div class="product-watches__item product-watches__item" data-item-id="6a43b46c-568e-4a5d-8891-9a01e5f7a0e1">
+                        <div class="product-watches__item-image-container">
+                            <span class="product-watches__item-title product-watches__item-image-title"><span class="product-watches__item-title-content">Fotografie</span></span>
+
+                            <a class="product-watches__item-image-link" href="./detail.html">
+                                {% if product.image %}
+                                    <img class="product-watches__item-image product-watches__item-image--{{ product.imageWidth > product.imageHeight ? 'landscape' : 'portrait' }}" src="./images/content/{{ product.image }}" style="max-width: {{ product.imageWidth }}px; max-height: {{ product.imageHeight }}px">
+                                {% else %}
+                                    <span class="product-watches__item-image-placeholder"></span>
+                                {% endif %}
+                            </a>
+                        </div>
+    
+                        <div class="product-watches__item-info">
+                            <span class="product-watches__item-title product-watches__item-info-title"><span class="product-watches__item-title-content">Produkt</span></span>
+                            <h3 class="product-watches__item-name"><a class="product-watches__item-link" href="./detail.html">{{ product.name }}</a></h3>
+
+                            {% if loop.index % 2 %}
+                                <div class="product-watches__item-properties">
+                                    <div class="product-watches__item-property">
+                                        <span class="product-watches__item-property-label">Varianta</span>
+                                        <span class="product-watches__item-property-value"><span class="property-value">malá</span></span>
+                                    </div>
+
+                                    <div class="product-watches__item-property">
+                                        <span class="product-watches__item-property-label">Potisk</span>
+                                        <span class="product-watches__item-property-value"><span class="property-value">Bez potisku</span></span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {% if product.pricesSettings %}
+                            {% set pricesSettings = product.pricesSettings|merge({isFrom: false}) %}
+                        {% endif %}
+
+                        {% include './partials/price.html.twig' with {price: product.price, class: 'product-watches__item-price'} %}
+
+                        <p class="product-watches__item-actions">
+                            <span class="product-watches__item-title product-watches__item-actions-title"><span class="product-watches__item-title-content">Akce</span></span>
+                            <button type="button" class="button product-watches__item-remove"><span class="product-watches__item-remove-content">Odebrat</span></button>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

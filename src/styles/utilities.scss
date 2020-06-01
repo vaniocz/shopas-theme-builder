@@ -1,0 +1,44 @@
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+}
+
+@mixin stretch-line {
+    &::before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+@mixin aspect-ratio($ratio) {
+    &::before {
+        content: "";
+        display: inline-block;
+        padding-top: percentage(1 / $ratio);
+        vertical-align: middle;
+    }
+}
+
+@mixin container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: $container-max-width;
+    padding: 0 20px;
+
+    @media (max-width: $breakpoint-small) {
+        padding: 0 15px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+        padding: 0 30px;
+    }
+}

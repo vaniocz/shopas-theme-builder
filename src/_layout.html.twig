@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html id="page__{% block page %}{% endblock %}" lang="cs" xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopas theme</title>
+    <style>html:not(.loaded) * { transition: none !important }</style>
+
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+        window.onload = function () {
+            document.documentElement.className += ' loaded';
+        };
+    </script>
+
+    <base href="/">
+
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon-512x512.png">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#EF7F1A">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#FFF">
+    <meta name="msapplication-square150x150logo" content="/favicon/mstile-150x150.png">
+    <meta name="application-name" content="{{ shopas.currentShop.name }}">
+    <meta name="theme-color" content="#FFF">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+<input id="mobileMenuToggle" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+<input id="mobileSearchToggle" class="checkbox-toggle" type="checkbox" autocomplete="off" aria-hidden="true">
+
+<div class="site">
+    {% block header %}{% endblock %}
+
+    <header class="header site__header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a class="header__logo-link" href="/" title="Homepage" style="background-image: url('${require(`./images/content/logo.svg`)}')">
+                    <img class="header__logo-image" src="./images/content/logo.svg" alt="{{ fixtures().name }}">
+                </a>
+            </div>
+
+            <nav class="header__navigation">
+                <ul class="header__navigation-items">
+                    <li class="header__navigation-item header__navigation-search">
+                        <label class="header__navigation-link" for="mobileSearchToggle" title="Vyhledat">
+                            <i class="icon header__navigation-icon icon-search" aria-hidden="true"></i>
+                            <span class="header__navigation-label"><span class="header__navigation-label-content">Vyhledat</span></span>
+                        </label>
+                    </li>
+
+                    <li class="header__navigation-item header__navigation-login">
+                        <a class="header__navigation-link" href="../login.html" title="Přihlásit se">
+                            <i class="icon header__navigation-icon icon-login" aria-hidden="true"></i>
+                            <span class="header__navigation-label"><span class="header__navigation-label-content">Přihlásit se</span></span>
+                        </a>
+                    </li>
+
+<!--                    <li class="header__navigation-item header__navigation-user" aria-haspopup="true">-->
+<!--                        <ul class="header__navigation-user-items">-->
+<!--                            <li class="header__navigation-user-item header__navigation-profile">-->
+<!--                                <a class="header__navigation-user-link" href="../profile.html" title="Můj profil">-->
+<!--                                    <i class="icon header__navigation-user-icon icon-profile" aria-hidden="true"></i>-->
+<!--                                    <span class="header__navigation-user-label"><span class="header__navigation-user-label-content">Firstname Lastname</span></span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+<!--                            <li class="header__navigation-user-item header__navigation-logout">-->
+<!--                                <a class="header__navigation-user-link" href="#" title="Odhlásit se">-->
+<!--                                    <i class="icon header__navigation-user-icon icon-logout" aria-hidden="true"></i>-->
+<!--                                    <span class="header__navigation-user-label"><span class="header__navigation-user-label-content">Odhlásit se</span></span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+
+                    <li class="header__navigation-item header__navigation-comparison">
+                        <a class="header__navigation-link" href="../comparison.html" title="Porovnání">
+                            <i class="icon header__navigation-icon icon-comparison" aria-hidden="true"></i>
+                            <span class="header__navigation-label"><span class="header__navigation-label-content">Porovnání</span></span>
+                            <em id="comparisonTotalCount" class="header__navigation-comparison-total-count" data-total-count="2">2</em>
+                        </a>
+                    </li>
+
+                    <li class="header__navigation-item header__navigation-cart">
+                        <a class="header__navigation-link" href="../shopping-cart.html" title="Nákupní košík">
+                            <i class="icon header__navigation-icon icon-cart" aria-hidden="true"></i>
+                            <span class="header__navigation-label"><span class="header__navigation-label-content">Nákupní košík</span></span>
+                            <em id="shoppingCartTotalCount" class="header__navigation-cart-total-count" data-total-count="2">2</em>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!--<nav class="header__language-menu" aria-haspopup="true">-->
+                <!--<ul class="header__language-menu-list">-->
+                    <!--<li class="header__language-menu-item"><a class="header__language-menu-link" href="#">CZ</a></li>-->
+                    <!--<li class="header__language-menu-item"><a class="header__language-menu-link" href="#">SK</a></li>-->
+                    <!--<li class="header__language-menu-item"><a class="header__language-menu-link" href="#">PL</a></li>-->
+                    <!--<li class="header__language-menu-item"><a class="header__language-menu-link" href="#">DE</a></li>-->
+                <!--</ul>-->
+            <!--</nav>-->
+
+            <nav class="main-menu" data-component-main-menu>
+                <label class="main-menu__overlay" for="mobileMenuToggle"></label>
+
+                <div class="main-menu__container">
+                    <label class="main-menu__close" for="mobileMenuToggle"></label>
+
+                    <ul class="main-menu__items">
+                        <li id="main-menu-produkty" class="main-menu__item main-menu__item--categories">
+                            <span class="main-menu__toggle" data-component-collapse="#main-menu-produkty_items"></span>
+                            <a class="main-menu__link" href="#">Produkty</a>
+                            {% include './partials/categories.html.twig' with {categories: fixtures().categories, class: 'main-menu__categories', id: 'main-menu-produkty', useList: false} %}
+                        </li>
+
+                        <li id="main-menu-o-nas" class="main-menu__item main-menu__item--submenu">
+                            <span class="main-menu__toggle" data-component-collapse="#main-menu-o-nas_items"></span>
+                            <a class="main-menu__link">O nás</a>
+
+                            <div class="main-menu__submenu main-menu__submenu--level-1">
+                                <ul class="main-menu__submenu-items">
+                                    <li class="main-menu__submenu-item"><a class="main-menu__submenu-link" href="#">Historie</a></li>
+                                    <li class="main-menu__submenu-item"><a class="main-menu__submenu-link" href="#">Náš tým</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+
+                        <li id="main-menu-akce-mesice" class="main-menu__item ">
+                            <a class="main-menu__link" href="./document.html">Akce měsíce</a>
+                        </li>
+
+                        <li id="main-menu-kontakt" class="main-menu__item ">
+                            <a class="main-menu__link" href="./contact-us.html">Kontakt</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <label class="header__mobile-menu-toggle" for="mobileMenuToggle" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="header__search">
+                <form action="../auto-complete.html">
+                    <div class="header__search-term">
+                        <div id="filter" class="header__search-term-auto-complete auto-complete">
+                            <input type="text" id="filter_term" name="filter[term]" class="header__search-term-input form-control" autocomplete="off">
+                            <input type="hidden" id="filter_entityId" name="filter[entityId]" required>
+                        </div>
+
+                        <span class="header__search-term-reset"></span>
+                        <button class="button header__search-button"><i class="icon icon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="header__contact">
+                <p class="header__contact-phone">
+                    <a class="header__contact-link" href="tel:+420123456789">
+                        <i class="icon icon-phone header__contact-icon"></i> +420 123 456 789
+                    </a>
+                </p>
+
+                <p class="header__contact-email">
+                    <a class="header__contact-link" href="mailto:info@vas-eshop.cz">
+                        <i class="icon icon-email header__contact-icon"></i> info@vas-eshop.cz
+                    </a>
+                </p>
+
+                <span class="header__contact-photo"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs site__breadcrumbs">
+        <div class="breadcrumbs__container">
+            <ul class="breadcrumbs__items">
+                {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ loop.first ? '/' : 'javascript:;' }}"><span class="breadcrumbs__content">{{ breadcrumb }}</span></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="site__content">
+        {% block content %}{% endblock %}
+        <span class="site__clear"></span>
+    </div>
+
+    <footer class="footer site__footer">
+        <div class="footer__container">
+            <div class="footer__navigation-menu">
+                <ul class="footer__navigation-menu-items">
+                    <li class="footer__navigation-menu-item"><a class="footer__navigation-menu-link" href="./document.html">Dokumenty</a></li>
+                    <li class="footer__navigation-menu-item"><a class="footer__navigation-menu-link" href="./contact-us.html">Kontaktujte nás</a></li>
+                    <li class="footer__navigation-menu-item"><a class="footer__navigation-menu-link" href="./detail.html">Detail produktu</a></li>
+                </ul>
+            </div>
+
+            <div id="footer-navigation-kategorie" class="footer__navigation-menu footer__navigation-menu--categories">
+                <h4 class="footer__navigation-menu-title" data-component-collapse="#footer-navigation-kategorie"><span class="footer__navigation-menu-title-content">Kategorie</span></h4>
+                {% include './partials/categories.html.twig' with {categories: fixtures().categories, class: 'footer__categories', id: 'footer-categories', useList: false, depth: 1} %}
+            </div>
+
+            <div class="footer__contact">
+                <h4 class="footer__contact-title"><span class="footer__contact-title-content">Kontakt</span></h4>
+
+                <div class="footer__contact-info">
+                    <div class="footer__contact-phone">
+                        <h5 class="footer__contact-label">Telefon</h5>
+
+                        <a class="footer__contact-link" href="tel:+420702613363">
+                            <i class="icon icon-phone footer__contact-icon"></i> +420 702 613 363
+                        </a>
+                    </div>
+
+                    <div class="footer__contact-email">
+                        <h5 class="footer__contact-label">E-mail</h5>
+
+                        <a class="footer__contact-link" href="mailto:podpora@shopas.cz">
+                            <i class="icon icon-email footer__contact-icon"></i> podpora@shopas.cz
+                        </a>
+                    </div>
+                </div>
+
+                <p class="footer__contact-address">
+                    <span class="footer__contact-address-name">Eshop Na Shopasu</span>
+                    <br>
+                    <span class="footer__contact-address-street">Moje Adresa 1</span>
+                    <br>
+                    <span class="footer__contact-address-zip-code">123 45</span>
+                    <span class="footer__contact-address-city">Moje Město</span>
+                    <br>
+                    <span class="footer__contact-address-country">Česká republika</span>
+                </p>
+
+                <dl class="footer__contact-seller">
+                    <dd class="footer__contact-seller-value footer__contact-seller-name">Provozovatel s.r.o.</dd>
+                    <dt class="footer__contact-seller-label footer__contact-seller-registration-number-label">IČO</dt>
+                    <dd class="footer__contact-seller-value footer__contact-seller-registration-number-value">123456789</dd>
+                    <dt class="footer__contact-seller-value footer__contact-seller-vat-id-label">DIČ</dt>
+                    <dd class="footer__contact-seller-value footer__contact-seller-vat-id-value">CZ123456789</dd>
+                </dl>
+            </div>
+
+            <div class="footer__content"></div>
+
+            <div class="footer__newsletter">
+                <h4 class="footer__newsletter-title"><span class="footer__newsletter-title-content">Novinky do e-mailu</span></h4>
+
+                <form class="footer__newsletter-form" action="#" method="POST">
+                    <label class="footer__newsletter-label">Váš e-mail</label>
+
+                    <div class="input-group footer__newsletter-email-group">
+                        <label class="input-group-addon footer__newsletter-email-addon" for="newsletterEmail"><i class="icon icon-email footer__newsletter-icon" aria-hidden="true"></i></label>
+                        <input id="newsletterEmail" name="email" type="email" class="form-control footer__newsletter-email" placeholder="Váš e-mail" required="">
+                    </div>
+
+                    <input class="button footer__newsletter-button" type="submit" value="Odebírat">
+                </form>
+            </div>
+
+            <p class="footer__copyright">
+                <a class="footer__copyright-link" href="https://www.shopas.cz" target="_blank">E-shop na <span class="footer__copyright-link-text">Shopasu</span></a>
+            </p>
+        </div>
+    </footer>
+</div>
+
+{% block footer %}{% endblock %}
+</body>
+</html>

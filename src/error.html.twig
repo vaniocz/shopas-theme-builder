@@ -1,0 +1,17 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Stránka nenalezena'] %}
+
+{% block page %}error{% endblock %}
+
+{% block content %}
+    <div class="error">
+        <div class="error__container">
+            <h1 class="error__title">Stránka nenalezena</h1>
+
+            <div class="error__content">
+                <p class="error__message">Požadovaná stránka nemohla být nalezena. Je možné, že byla zadána nesprávná adresa, nebo že stránka již neexistuje.</p>
+                <p class="error__code">Error 404</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

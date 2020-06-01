@@ -1,0 +1,61 @@
+{% extends './_layout.html.twig' %}
+{% set breadcrumbs = [fixtures().name, 'Můj profil', 'Editace profilu'] %}
+
+{% block page %}fos-user-security-login{% endblock %}
+
+{% block content %}
+    <div class="alerts">
+        <div class="alerts__container">
+            <div class="alert alert-warning alert--warning alerts__alert" role="alert">
+                Pro vstup na tuto stránku se musíte přihlásit.
+            </div>
+        </div>
+    </div>
+
+    <div class="user-content">
+        <div class="user-content__container">
+            <h1 class="user-content__title">Přihlášení</h1>
+
+            <div class="alert alert-danger" role="alert">
+                Tento účet ještě nebyl aktivován.<br>
+                <a href="/registrace/overeni/jmeno.prijmeni@example.com">Požádat o nový aktivační e-mail</a>.
+            </div>
+
+            <form action="/" method="POST" class="fos_user_security_login" data-component-native-validation>
+                <div class="form-group">
+                    <label class="control-label" for="loginUsername">E-mail</label>
+
+                    <div class="input-group">
+                        <label class="input-group-addon" for="loginUsername"><i class="icon icon-email" aria-hidden="true"></i></label>
+                        <input id="loginUsername" class="form-control" name="_username" value="" placeholder="E-mail" required="" oninvalid="this.setCustomValidity(this.getAttribute('data-validation-message'))" oninput="this.setCustomValidity('')" data-validation-message="Vyplňte e-mail." type="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="loginPassword">Heslo</label>
+
+                    <div class="input-group">
+                        <label class="input-group-addon" for="loginPassword"><i class="icon icon-password" aria-hidden="true"></i></label>
+                        <input id="loginPassword" class="form-control" name="_password" placeholder="Heslo" required="" oninvalid="this.setCustomValidity(this.getAttribute('data-validation-message'))" oninput="this.setCustomValidity('')" data-validation-message="Vyplňte heslo." type="password">
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input name="_remember_me" type="checkbox">
+                        <span>Zapamatovat si</span>
+                        <b></b>
+                    </label>
+                </div>
+
+                <div class="form-buttons form-group">
+                    <button class="btn btn-primary">Přihlásit se</button>
+                </div>
+
+                <div class="login-footer form-footer">
+                    <p>Zapomněli jste heslo? <a href="./forgotten-password.html">Nastavte si nové</a>.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

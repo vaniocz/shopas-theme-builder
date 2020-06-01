@@ -1,0 +1,301 @@
+{% extends './_layout.html.twig' %}
+
+{% block page %}shop-homepage{% endblock %}
+
+{% block header %}
+    <div class="eu-cookies-bar" data-component-eu-cookies-bar>
+        <div class="eu-cookies-bar__container">
+            <p class="eu-cookies-bar__content">Webové stránky používají k poskytování služeb, personalizaci reklam a analýze návštěvnosti soubory cookie. Používám webu s tím souhlasíte.</p>
+
+            <p class="eu-cookies-bar__buttons">
+                <a class="eu-cookies-bar__link" href="./document.html">Více informací</a>
+                <button class="button eu-cookies-bar__button">Rozumím</button>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="alerts product-alerts">
+        <div class="alerts__container">
+            <div class="alerts__alert-container product-alerts__alert-container">
+                <div class="alert alert--success alert--dismissable alerts__alert product-alerts__alert">
+                    <button type="button" class="alert__close" aria-label="Close"></button>
+                    <p>Produkt byl přidán do košíku.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="headline site__headline">
+        <span class="headline__container">{{ fixtures().name }}</span>
+    </h1>
+
+    <section class="introduction site__introduction">
+        <div class="introduction__container">
+            <p>{{  fixtures().description }}</p>
+        </div>
+    </section>
+
+    <section class="showcase site__showcase">
+        <div class="showcase__container">
+            <div class="showcase__items">
+                <div class="showcase__item">
+                    <div class="showcase__item-container">
+                        <div class="showcase__item-content">
+                            <h3 class="showcase__title">Tady může být skvělý banner</h3>
+                            <h4 class="showcase__subtitle">Prodávejte své zboží na Shopasu a&nbsp;vydělejte víc!</h4>
+                            <p class="showcase__button-container"><a class="button showcase__button" href="./detail.html">Prodávat</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav class="image-menu site__image-menu" data-items-count="4">
+        <div class="image-menu__container">
+            <div class="image-menu__items">
+                <div class="image-menu__item">
+                    <a class="image-menu__item-link" href="./category.html">
+                        <span class="image-menu__item-image-container"><img class="image-menu__item-image" src="./images/content/menu_1.png"></span>
+                        <span class="image-menu__item-name">Rozcestník</span>
+                    </a>
+                </div>
+
+                <div class="image-menu__item">
+                    <a class="image-menu__item-link" href="./category.html">
+                        <span class="image-menu__item-image-container"><img class="image-menu__item-image" src="./images/content/menu_2.png"></span>
+                        <span class="image-menu__item-name">Důležitých</span>
+                    </a>
+                </div>
+
+                <div class="image-menu__item">
+                    <a class="image-menu__item-link" href="./category.html">
+                        <span class="image-menu__item-image-container"><img class="image-menu__item-image" src="./images/content/menu_3.png"></span>
+                        <span class="image-menu__item-name">Odkazů</span>
+                    </a>
+                </div>
+
+                <div class="image-menu__item">
+                    <a class="image-menu__item-link" href="./category.html">
+                        <span class="image-menu__item-image-container"><img class="image-menu__item-image" src="./images/content/menu_4.png"></span>
+                        <span class="image-menu__item-name">Na e-shopu</span>
+                    </a>
+                </div>
+
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+                <span class="image-menu__item-placeholder" aria-hidden="true"></span>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="menu site__menu">
+        <div class="menu__container">
+            <div class="menu__items">
+                <div class="menu__item"><a class="menu__item-link" href="./category.html">Rozcestník</a></div>
+                <div class="menu__item"><a class="menu__item-link" href="./category.html">Odkazů</a></div>
+                <div class="menu__item"><a class="menu__item-link" href="./category.html">Bez obrázků</a></div>
+                    <div class="menu__item"><a class="menu__item-link" href="./category.html">Jen texty</a></div>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+                <span class="menu__item-placeholder" aria-hidden="true"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="site__filter">
+        <div id="categories" class="site__filter-categories">
+            <h3 class="site__filter-categories-title" data-component-collapse="#categories_items"><span class="site__filter-categories-title-content">Kategorie</span></h3>
+            {% include './partials/categories.html.twig' with {categories: fixtures().categories, isFirstCategoryActive: true} %}
+        </div>
+    </div>
+
+    <nav class="wizzard site__wizzard">
+        <div class="wizzard__container">
+            <div class="wizzard__item">
+                <h2 class="wizzard__title">Jaký produkt potřebujete?</h2>
+
+                <div class="wizzard__answers" data-items-count="3">
+                    <div class="wizzard__answer is-active">
+                        <a class="wizzard__answer-link" href="./category.html">
+                            <span class="wizzard__answer-image-container">
+                                <img class="wizzard__answer-image wizzard__answer-image--landscape" src="./images/content/menu_1.png" alt="modrý">
+                            </span>
+
+                            <span class="wizzard__answer-name">Modrý</span>
+                        </a>
+                    </div>
+
+                    <div class="wizzard__answer is-loading">
+                        <a class="wizzard__answer-link" href="./category.html">
+                            <span class="wizzard__answer-image-container">
+                                <img class="wizzard__answer-image wizzard__answer-image--landscape" src="./images/content/menu_3.png" alt="zelený">
+                            </span>
+
+                            <span class="wizzard__answer-name">Zelený</span>
+                        </a>
+                    </div>
+
+                    <div class="wizzard__answer">
+                        <a class="wizzard__answer-link" href="./category.html">
+                            <span class="wizzard__answer-image-container">
+                                <img class="wizzard__answer-image wizzard__answer-image--landscape" src="./images/content/menu_4.png" alt="červený">
+                            </span>
+
+                            <span class="wizzard__answer-name">Červený</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contact site__contact">
+        <h4 class="contact__title"><span class="contact__title-content">Kontakt</span></h4>
+
+        <div class="contact__phone">
+            <h5 class="contact__label">Telefon</h5>
+
+            <a class="contact__link" href="tel:+420734201275">
+                <i class="icon icon-phone contact__icon"></i>
+                +420 734 201 275
+            </a>
+        </div>
+
+        <div class="contact__email">
+            <h5 class="contact__label">E-mail</h5>
+
+            <a class="contact__link" href="mailto:info@vas-eshop.cz">
+                <i class="icon icon-email contact__icon"></i>
+                info@vas-eshop.cz
+            </a>
+        </div>
+
+        <span class="contact-photo"></span>
+    </div>
+
+    <section class="products site__homepage-products">
+        <div class="products__container">
+            <h2 class="products__title">Novinky</h2>
+
+            <div class="products__content">
+                <div class="products__items">
+                    {% for product in fixtures().products %}
+                        <div class="products__item">
+                            {% include './partials/product.html.twig' with {isLoading: loop.first} %}
+                        </div>
+                    {% endfor %}
+
+                    {% for i in 1..10 %}
+                        <span class="products__item-placeholder"></span>
+                    {% endfor %}
+                </div>
+
+                <p class="products__buttons"><a class="button button--primary" href="./category.html">Další novinky</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products site__recommended-products">
+        <div class="products__container">
+            <h2 class="products__title">Doporučujeme</h2>
+
+            <div class="products__content">
+                <div class="products__items">
+                    {% for product in fixtures().products[:5] %}
+                        <div class="products__item">
+                            {% include './partials/product.html.twig' %}
+                        </div>
+                    {% endfor %}
+
+                    {% for i in 1..10 %}
+                        <span class="products__item-placeholder"></span>
+                    {% endfor %}
+                </div>
+
+                <p class="products__buttons"><a class="button button--primary" href="/vyhledavani">Další produkty</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="icon-menu site__icon-menu">
+        <div class="icon-menu__container">
+            <ul class="icon-menu__items">
+                <li class="icon-menu__item">
+                    <a class="icon-menu__item-link" href="./document.html">
+                        <i class="icon icon-menu__icon icon-truck" aria-hidden="true"></i>
+
+                        <div class="icon-menu__content">
+                            <h5 class="icon-menu__item-title">Doprava zdarma</h5>
+                            <p class="icon-menu__item-text">Při objednávce nad</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="icon-menu__item">
+                    <a class="icon-menu__item-link" href="./category.html">
+                        <i class="icon icon-menu__icon icon-money" aria-hidden="true"></i>
+
+                        <div class="icon-menu__content">
+                            <h5 class="icon-menu__item-title">Vydělejte si</h5>
+                            <p class="icon-menu__item-text">Ušetřete nákupem u nás</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="icon-menu__item">
+                    <a class="icon-menu__item-link" href="./category.html">
+                        <i class="icon icon-menu__icon icon-undo" aria-hidden="true"></i>
+
+                        <div class="icon-menu__content">
+                            <h5 class="icon-menu__item-title">Vrácení zboží</h5>
+                            <p class="icon-menu__item-text">Do 14 dnů jednoduše</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="icon-menu__item">
+{#                    <a class="icon-menu__item-link" href="./contact-us.html">#}
+                    <i class="icon icon-menu__icon icon-clock" aria-hidden="true"></i>
+
+                    <div class="icon-menu__content">
+                        <h5 class="icon-menu__item-title">702 613 363</h5>
+                        <p class="icon-menu__item-text">9:00 – 17:00 Shopas podpora</p>
+                    </div>
+{#                    </a>#}
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!--<section class="newsletter site__newsletter">-->
+        <!--<div class="newsletter__container">-->
+            <!--<div class="newsletter__content">-->
+                <!--<h4 class="newsletter__title">Newsletter</h4>-->
+                <!--<p class="newsletter__text">Zadejte svůj e-mail pro odběr newsletterů a získáte 20% slevu na první nákup.</p>-->
+            <!--</div>-->
+
+            <!--<form class="newsletter__form">-->
+                <!--<label class="newsletter__label">Váš e-mail</label>-->
+                <!--<input class="form-control newsletter__email" type="email" placeholder="Váš e-mail" required>-->
+                <!--<input class="button newsletter__button" type="submit" value="Odebírat">-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</section>-->
+{% endblock %}
