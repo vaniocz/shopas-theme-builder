@@ -41,7 +41,7 @@
     "iconfont-webpack-plugin": "^4.2.1",
     "imports-loader": "^0.8.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^3.0.0",
     "resolve-url-loader": "^3.1.1",
     "sass-loader": "^8.0.2",
